@@ -140,6 +140,25 @@ td i.fa {
 	border: 1px solid #dfe1e6;
 }
 
+#editor.show-hide{
+	display: none;
+}
+
+#visual {
+	position: absolute;
+	top: 145px;
+	left: 15px;
+	bottom: 10px;
+	right: 15px;
+	border: 1px solid #dfe1e6;
+	background-color: #fcfcfc;
+	display: none;
+}
+
+#visual.show-hide{
+	display: blocl;
+}
+
 table tbody tr {
 	cursor: pointer;
 }

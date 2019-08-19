@@ -1,6 +1,6 @@
 <div id="editorBar">
 	<div class="sub-menu1">
-		<a class="click-btn switch-code"><i class="fa fa-file-code-o"></i></a>
+		<a class="click-btn switch-code" data-toggle="tooltip" data-original-title="Visual / Code"><i class="fa fa-file-code-o"></i></a>
 		<span class="separator">|</span>
 	</div>
 	<div class="sub-menu">
@@ -25,6 +25,7 @@
 	</div>
 </div>
 <div id="editor"></div>
+<div id="visual"></div>
 <script>
 
 	var editor = null;
@@ -51,7 +52,11 @@
 	$('.switch-code').click(function(event){
 		$(this).find('i').toggleClass('fa fa-file-code-o fa fa-eye');
 		$('.sub-menu').toggle('active');
+		$('#editor').toggle('show-hide');
+		$('#visual').toggle('show-hide');
 	});
+
+	$('[data-toggle="tooltip"]').tooltip();
 
 	function getLanguageId(editFile){
 
@@ -118,6 +123,7 @@
 			if (oldModel) {
 				oldModel.dispose();
 			}
+			monaco.editor.setTheme('vs-dark');
 			$('.loading.editor').fadeOut({ duration: 300 });
 		})
 	}
