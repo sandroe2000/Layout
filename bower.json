@@ -1,0 +1,23 @@
+{
+  "name": "builderup",
+  "description": "App",
+  "main": "",
+  "authors": [
+    "sandroe2000@gmail.com"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/sandroe2000/builderup",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "3.4.1",
+    "bootstrap": "4.3.1",
+    "popper.js": "1.14.7"
+  }
+}

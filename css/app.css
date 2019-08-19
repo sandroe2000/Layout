@@ -1,0 +1,173 @@
+html,
+body {
+	height: 100%;
+	font-size: 14px;
+}
+
+header {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	height: 40px;
+	background-color: #0747A6;
+}
+
+nav.left-menu {
+	position: absolute;
+	top: 40px;
+	left: 0px;
+	bottom: 0px;
+	width: 55px;
+	border-right: 1px solid #CECECE;
+	background-color: #F4F5F7;
+}
+
+nav.left-menu.active {
+	width: 280px;
+}
+
+nav.left-menu.active button {
+	padding-left: 10px;
+	text-align: left;
+	width: 260px;
+}
+
+nav.left-menu button span.menu-label {
+	margin-left: 10px;
+	display: none;
+}
+
+nav.left-menu.active button span.menu-label {
+	margin-left: 10px;
+	display: inline-block;
+}
+
+nav.left-menu button {
+	height: 32px;
+	width: 32px;
+	padding: 0px;
+	margin: 3px 10px;
+	border-color: #F4F5F7;
+	color: #505F79;
+}
+
+.btn.focus, 
+.btn:focus {
+    outline: 0;
+    box-shadow: none;
+}
+
+nav.left-menu button:hover {
+	background-color: #DFE1E6; 
+	border-color: #DFE1E6;
+}
+
+nav.left-menu button.logo {
+	margin: 15px 10px;
+	background-color: #4C9AFF; 
+	border-color: #4C9AFF;
+	color: #FFF;
+}
+
+.refres-combo-source {
+	background-color: #4C9AFF; 
+	border-color: #4C9AFF;
+	color: #FFF;
+}
+i.fa.fa-refresh {
+	font-size: 14px;
+}
+
+nav.left-menu button.expand {
+	position: absolute;
+	bottom: 10px;
+}
+
+main {
+	position: absolute;
+	top: 40px;
+	left: 55px;
+	bottom: 40px;
+	right: 0px;
+	background-color: #FFF;
+	padding: 5px 15px;
+	overflow-y: auto;
+}
+
+main.collapsed {
+	left: 280px;
+}
+
+main nav ol.breadcrumb {
+	padding-inline-start: 0px;
+	margin-block-end: 0px;
+	background-color: #FFF;
+}
+
+main select.form-control{
+	min-width: 150px;
+	max-width: 250px;
+}
+
+.table td, 
+.table th {
+    padding: 8px;
+}
+
+i.fa {
+	font-size: 18px;
+}
+td i.fa {
+	margin-right: 5px;
+}
+
+#editor{
+	position: absolute;
+	top: 120px;
+	left: 15px;
+	bottom: 90px;
+	right: 30px;
+	/*height:calc(100vh - 250px) !important;*/
+	border: 1px solid #CECECE;
+}
+
+table tbody tr {
+	cursor: pointer;
+}
+
+footer {
+	position: absolute;
+	height: 40px;
+	left: 55px;
+	bottom: 0px;
+	right: 0px;
+	background-color: #F4F5F7;
+	border-top: 1px solid #CECECE;
+}
+
+footer.collapsed {
+	left: 280px;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-button {
+    width: 8px;
+    height:5px;
+}
+::-webkit-scrollbar-track {
+    background:#eee;
+    border: thin solid lightgray;
+    box-shadow: 0px 0px 3px #dfdfdf inset;
+    border-radius:10px;
+}
+::-webkit-scrollbar-thumb {
+    background:#c8c8c8;
+    border: thin solid #c9c9c9;
+    border-radius:10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background:#9b9b9b;
+}
