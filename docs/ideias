@@ -1,0 +1,21 @@
+IDEIAS 1.0
+----------------
+
+Como no servidor visual Git:
+- Criar Projetos, um paralelo com "Empresa" do P5;
+- Branchs como "Especs" do P5;
+- Criar branch a partir de um template, selecionando de um "store";
+- Criar branchs a partir de outro branch.
+
+Bradcrumbs função focal de atualização da seção "Source":
+- Como parametros id e nome do folder, a partir da combo ou da table;
+- Clica no combo -> passa id do branch -> pesquisa todas os folders 
+  e files do branch com id parent 0(zero);
+- Clica no folder a partir da table -> pesquisa todas os folders e files 
+  do branch com id parent do folder clicado;
+- Clica no file a partir da table -> envia para visualização onde pode ser editado.
+
+Os templates
+------------
+
+São "Bootstraps" para sistemas, por exemplo uma loja, blog, estoque, etc...
