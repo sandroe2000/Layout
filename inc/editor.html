@@ -4,24 +4,24 @@
 		<span class="separator">|</span>
 	</div>
 	<div class="sub-menu">
-		<a class="action-btn" data-toggle="tooltip" data-original-title="Row"><i class="fa fa-th-list"></i></a>
-		<a class="action-btn" data-toggle="tooltip" data-original-title="Col"><i class="fa fa-columns"></i></a>
-		<a class="action-btn" data-toggle="tooltip" data-original-title="Nav Tab"><i class="fa fa-folder-o"></i></a>
-		<a class="action-btn" data-toggle="tooltip" data-original-title="Accordion"><i class="fa fa-list-alt"></i></a>
-		<a class="action-btn" data-toggle="tooltip" data-original-title="DataTable"><i class="fa fa-table"></i></a>
+		<a draggable="true" class="action-btn" data-toggle="tooltip" data-original-title="Row"><i class="fa fa-th-list"></i></a>
+		<a draggable="true" class="action-btn" data-toggle="tooltip" data-original-title="Col"><i class="fa fa-columns"></i></a>
+		<a draggable="true" class="action-btn" data-toggle="tooltip" data-original-title="Nav Tab"><i class="fa fa-folder-o"></i></a>
+		<a draggable="true" class="action-btn" data-toggle="tooltip" data-original-title="Accordion"><i class="fa fa-list-alt"></i></a>
+		<a draggable="true" class="action-btn" data-toggle="tooltip" data-original-title="DataTable"><i class="fa fa-table"></i></a>
 		<span class="separator">|</span>
-		<a class="action-btn" data-toggle="tooltip" data-original-title="Label"><i class="fa fa-font"></i></a>
-		<a class="action-btn" data-toggle="tooltip" data-original-title="Input Text"><i class="fa fa-pencil"></i></a>
-		<a class="action-btn" data-toggle="tooltip" data-original-title="Input E-mail"><i class="fa fa-envelope-o"></i></a>
-		<a class="action-btn" data-toggle="tooltip" data-original-title="Input Password"><i class="fa fa-ellipsis-h"></i></a>
-		<a class="action-btn" data-toggle="tooltip" data-original-title="Input Date"><i class="fa fa-calendar"></i></a>
-		<a class="action-btn" data-toggle="tooltip" data-original-title="Input Number"><i class="fa fa-sort"></i></a>
-		<a class="action-btn" data-toggle="tooltip" data-original-title="Input Range"><i class="fa fa-sliders"></i></a>
-		<a class="action-btn" data-toggle="tooltip" data-original-title="Input Checkbox"><i class="fa fa-check-square-o"></i></a>
-		<a class="action-btn" data-toggle="tooltip" data-original-title="Input Radio"><i class="fa fa-dot-circle-o"></i></a>
-		<a class="action-btn" data-toggle="tooltip" data-original-title="Select"><i class="fa fa-pencil-square-o"></i></a>
-		<a class="action-btn" data-toggle="tooltip" data-original-title="Select"><i class="fa fa-bars"></i></a>
-		<a class="action-btn" data-toggle="tooltip" data-original-title="Button"><i class="fa fa-square"></i></a>
+		<a draggable="true" class="action-btn" data-toggle="tooltip" data-original-title="Label"><i class="fa fa-font"></i></a>
+		<a draggable="true" class="action-btn" data-toggle="tooltip" data-original-title="Input Text"><i class="fa fa-pencil"></i></a>
+		<a draggable="true" class="action-btn" data-toggle="tooltip" data-original-title="Input E-mail"><i class="fa fa-envelope-o"></i></a>
+		<a draggable="true" class="action-btn" data-toggle="tooltip" data-original-title="Input Password"><i class="fa fa-ellipsis-h"></i></a>
+		<a draggable="true" class="action-btn" data-toggle="tooltip" data-original-title="Input Date"><i class="fa fa-calendar"></i></a>
+		<a draggable="true" class="action-btn" data-toggle="tooltip" data-original-title="Input Number"><i class="fa fa-sort"></i></a>
+		<a draggable="true" class="action-btn" data-toggle="tooltip" data-original-title="Input Range"><i class="fa fa-sliders"></i></a>
+		<a draggable="true" class="action-btn" data-toggle="tooltip" data-original-title="Input Checkbox"><i class="fa fa-check-square-o"></i></a>
+		<a draggable="true" class="action-btn" data-toggle="tooltip" data-original-title="Input Radio"><i class="fa fa-dot-circle-o"></i></a>
+		<a draggable="true" class="action-btn" data-toggle="tooltip" data-original-title="Select"><i class="fa fa-pencil-square-o"></i></a>
+		<a draggable="true" class="action-btn" data-toggle="tooltip" data-original-title="Select"><i class="fa fa-bars"></i></a>
+		<a draggable="true" class="action-btn" data-toggle="tooltip" data-original-title="Button"><i class="fa fa-square"></i></a>
 	</div>
 </div>
 <div id="editor"></div>
@@ -54,6 +54,17 @@
 		$('.sub-menu').toggle('active');
 		$('#editor').toggle('show-hide');
 		$('#visual').toggle('show-hide');
+
+		let left = document.querySelector('.sub-menu');
+		let right = document.querySelector('#visual');
+
+		dragula([left, right], {
+			copy: true,
+			accepts: function (el, target) {
+				return target !== document.getElementById(left)
+			}
+		});
+
 	});
 
 	$('[data-toggle="tooltip"]').tooltip();
