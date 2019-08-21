@@ -58,12 +58,17 @@
 		let left = document.querySelector('.sub-menu');
 		let right = document.querySelector('#visual');
 
-		dragula([left, right], {
-			copy: true,
+		let drake = dragula({
+			copy: function (el, source) {
+				return source === left;
+			},
+			copySortSource: true,
 			accepts: function (el, target) {
-				return target !== document.getElementById(left)
+				return target !== left;
 			}
 		});
+		drake.containers.push(left);
+		drake.containers.push(right);
 
 	});
 
