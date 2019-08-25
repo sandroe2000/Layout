@@ -1,0 +1,21 @@
+{
+    "name": "builderup",
+    "version": "0.0.1",
+    "description": "App",
+    "author": "sandroe2000@gmail.com",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/sandroe2000/builderup.git"
+    },
+    "license": "MIT",
+    "private": true,
+    "devDependencies": {
+        "browser-sync": "^2.26.7",
+        "gulp": "^4.0.2",
+        "gulp-cli": "^2.2.0"
+    },
+    "dependencies": {
+        "monaco-editor": "^0.17.1"
+    },
+    "optionalDependencies": {}
+}

@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="icon" href="/img/favicons/favicon.ico" />
+        <link rel="stylesheet" href="/assets/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="/assets/font-awesome/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="/assets/material-design-icons/css/material-icons.min.css" />
+        <link rel="stylesheet" href="/assets/dragula/dragula.min.css" />
+        <link rel="stylesheet" href="/source/css/app.css" />
+        <title>Layout</title>
+    </head>
+    <body>
+        
+        <div class="nav-app"></div>
+        <div class="main-app">
+
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Sandro Cesário Di Espindula</a></li>
+                    <li class="breadcrumb-item">woolaweaver</li>
+                </ol>
+            </nav>
+
+            <h4>index.html</h4>
+
+            <nav aria-label="breadcrumb">
+                <i class="fa fa-folder" aria-hidden="true"></i>
+
+                <ol class="breadcrumb breadcrumb-folder">
+                    <li class="breadcrumb-item"><a href="/source.html?folderId=1">woolaweaver</a></li>
+                    <li class="breadcrumb-item"><a href="/source.html?folderId=2">node_modules</a></li>
+                    <li class="breadcrumb-item"><a href="/source.html?folderId=3">ansi-regex</a></li>
+                </ol>
+
+            </nav>
+
+            <div class="topbar">
+                <button id="btnTextEditor" class="btn btn-light ml-2" type="button" style="float:left;margin-top:9px">
+                    <i class="fa fa-code" aria-hidden="true"></i>
+                </button>
+                <div class="topbar-title">                    
+                    Editing index.html on branch: <strong>master</strong>
+                </div>
+                <div class="topbar-buttons">
+                    <button class="btn btn-light mr-2" type="button">Cancel</button>
+                    <button class="btn btn-light mr-2" type="button">View diff</button>
+                    <button class="btn btn-primary mr-2" type="button">Commit</button>
+                </div>
+            </div>
+            <div id="editor">
+                <aside>
+                    <div class="asise-separator">Form</div>
+                    <button class="btn btn-aside-menu" title="Form"><i class="fa fa-file-code-o"></i></button>
+                    <button class="btn btn-aside-menu" title="Form Group"><i class="fa fa-object-group"></i></button>
+                    <div class="asise-separator">Layout</div>
+                    <button class="btn btn-aside-menu" title="Row"><i class="fa fa-th-list"></i></button>
+                    <button class="btn btn-aside-menu" title="Column"><i class="fa fa-columns"></i></button>
+                    <button class="btn btn-aside-menu" title="Panel"><i class="fa fa-square-o"></i></button>
+                    <button class="btn btn-aside-menu" title="Nav Tab"><i class="fa fa-folder-o"></i></button>
+                    <button class="btn btn-aside-menu" title="Accordion"><i class="fa fa-list-alt"></i></button>
+                    <button class="btn btn-aside-menu" title="DataTable"><i class="fa fa-table"></i></button>
+                    <div class="asise-separator">Components</div>
+                    <button class="btn btn-aside-menu" title="Label"><i class="fa fa-font"></i></button>
+                    <button class="btn btn-aside-menu" title="Input Text"><i class="fa fa-terminal"></i></button>
+                    <button class="btn btn-aside-menu" title="Input Email"><i class="fa fa-envelope-o"></i></button>
+                    <button class="btn btn-aside-menu" title="Input Password"><i class="fa fa-ellipsis-h"></i></button>
+                    <button class="btn btn-aside-menu" title="Input Number"><i class="fa fa-sort"></i></button>
+                    <button class="btn btn-aside-menu" title="Input Checkbox"><i class="fa fa-check-square-o"></i></button>
+                    <button class="btn btn-aside-menu" title="Input Radio"><i class="fa fa-dot-circle-o"></i></button>
+                    <button class="btn btn-aside-menu" title="Textarea"><i class="fa fa-pencil-square-o"></i></button>
+                    <button class="btn btn-aside-menu" title="Select"><i class="fa fa-chevron-down"></i></button>
+                    <button class="btn btn-aside-menu" title="Button"><i class="fa fa-square"></i></button>
+                </aside>
+
+                <main>
+                    <div class="main-ruler container-fluid">
+                        <div class="row"></div>
+                    </div>
+                    <div class="main-content container-fluid edit"></div>
+                </main>
+            </div>            
+        </div>
+        
+	    <script src="/assets/jquery/dist/jquery.min.js"></script>
+        <script src="/assets/popper.js/dist/umd/popper.min.js"></script>
+        <script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="/assets/dragula/dragula.min.js"></script>
+        <script src="/assets/ww/js/layout.js"></script>
+        <script src="/assets/ww/js/object-inspector.js"></script>
+        <script src="/assets/ww/js/core.js"></script>
+        <script src="/assets/ww/js/events.js"></script>
+        <script src="/source/js/htmlVisualEditor.js"></script>
+    </body>
+</html>
