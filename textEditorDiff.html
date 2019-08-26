@@ -37,24 +37,25 @@
             </nav>
 
             <div class="topbar">
-                <button id="btnVisualEditor" class="btn btn-light ml-2" type="button" style="float:left;margin-top:9px">
-                    <i class="fa fa-eye" aria-hidden="true"></i>
-                </button>
+
                 <div class="topbar-title">                    
-                    Editing index.html on branch: <strong>master</strong>
+                    View diff index.html on branch: <strong>master</strong>
                 </div>
+
                 <div class="topbar-buttons">
                     <form class="form-inline">
-                        <select class="form-control mr-2">
-                            <option>Source</option>
-                            <option>View Diff</option>
-                            <option>History</option>
+                        <select id="menuTextEditor" class="form-control mr-2">
+                            <option value="textEditorSource.html?fileId=1">Source</option>
+                            <option value="textEditorDiff.html?fileId=1" selected>View Diff</option>
+                            <option value="history.html?fileId=1">History</option>
                         </select>
                         <button class="btn btn-light mr-2" type="button">Cancel</button>
-                        <button class="btn btn-primary mr-2" type="button">Commit</button>
+                        <button class="btn btn-primary mr-2" type="button" disabled>Commit</button>
                     </form>
                 </div>
+
             </div>
+
             <div id="editor"></div>
 
         </div>
@@ -95,6 +96,6 @@
         <script src="/assets/monaco-editor/min/vs/loader.js"></script>
         <script src="/assets/monaco-editor/min/vs/editor/editor.main.nls.js"></script>
         <script src="/assets/monaco-editor/min/vs/editor/editor.main.js"></script>
-        <script src="/source/js/textEditorSource.js"></script>
+        <script src="/source/js/textEditorDiff.js"></script>
     </body>
 </html>

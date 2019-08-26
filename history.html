@@ -11,7 +11,7 @@
         <title>Layout</title>
     </head>
     <body>
-
+        
         <div class="nav-app"></div>
         <div class="main-app">
 
@@ -22,121 +22,46 @@
                 </ol>
             </nav>
 
-            <h4>ansi-regex</h4>
-
-            <form class="form-inline">
-                <div class="form-group mb-2 mt-3">
-                    <select class="form-control form-control-lg combo-branch">
-                        <option>master</option>
-                    </select>
-                </div>          
-                
-                <div class="dropdown">
-                    <button class="btn btn-light btn-lg mb-2 ml-3 mt-3 dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-2 fa-ellipsis-v" aria-hidden="true"></i>
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                        <button class="dropdown-item" type="button" data-toggle="modal" data-target="#modalCreate">
-                            <i class="fa fa-folder-open-o" aria-hidden="true"></i> New Folder
-                        </button>
-                        <button class="dropdown-item" type="button" data-toggle="modal" data-target="#modalCreate">
-                            <i class="fa fa-file-o" aria-hidden="true"></i> New File
-                        </button>
-                    </div>
-                </div>
-                
-            </form>
+            <h4>index.html</h4>
 
             <nav aria-label="breadcrumb">
                 <i class="fa fa-folder" aria-hidden="true"></i>
+
                 <ol class="breadcrumb breadcrumb-folder">
-                    <li class="breadcrumb-item"><a href="#">woolaweaver</a></li>
-                    <li class="breadcrumb-item"><a href="#">node_modules</a></li>
-                    <li class="breadcrumb-item"><a href="#">ansi-regex</a></li>
+                    <li class="breadcrumb-item"><a href="/source.html?folderId=1">woolaweaver</a></li>
+                    <li class="breadcrumb-item"><a href="/source.html?folderId=2">node_modules</a></li>
+                    <li class="breadcrumb-item"><a href="/source.html?folderId=3">ansi-regex</a></li>
                 </ol>
+
             </nav>
 
-            <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th class="th-30">Name</th>
-                            <th class="th-10 txt-r">Size</th>
-                            <th class="th-1">Last commit</th>
-                            <th class="th-40">Message</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <a href="#"><i class="mdi mdi-subdirectory-arrow-left ico-rotate-90" style="font-size:2rem"></i></a>
-                            </td>
-                            <td class="txt-r"></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="#"><i class="fa fa-folder" aria-hidden="true"></i> back</a>
-                            </td>
-                            <td class="txt-r"></td>
-                            <td>2019-08-15</td>
-                            <td>Correções pesquisa home e categoria, card</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="#"><i class="fa fa-folder" aria-hidden="true"></i> front</a>
-                            </td>
-                            <td class="txt-r"></td>
-                            <td>2019-08-15</td>
-                            <td>Correções pesquisa home e categoria, card</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="/textEditorSource.html?fileId=0"><i class="fa fa-file-text-o" aria-hidden="true"></i> .gitignore</a>
-                            </td>
-                            <td class="txt-r">132 B</td>
-                            <td>2019-08-15</td>
-                            <td>Atualizando</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            <div class="topbar">
 
-        </div>
-
-        <div class="modal fade" id="modalCreate" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="modalLabel">...</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="form-group">
-                                <label for="name" class="col-form-label">Name:</label>
-                                <input type="text" class="form-control" id="name" />
-                            </div>
-                            <div class="form-group">
-                                <label for="message" class="col-form-label">Message:</label>
-                                <input type="text" class="form-control" id="message" />
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-primary">Create</button>
-                    </div>
+                <div class="topbar-title">                    
+                    History index.html on branch: <strong>master</strong>
                 </div>
+
+                <div class="topbar-buttons">
+                    <form class="form-inline">
+                        <select id="menuTextEditor" class="form-control mr-2">
+                            <option value="textEditorSource.html?fileId=1">Source</option>
+                            <option value="textEditorDiff.html?fileId=1">View Diff</option>
+                            <option value="history.html?fileId=1" selected>History</option>
+                        </select>
+                        <button class="btn btn-light mr-2" type="button">Cancel</button>
+                        <button class="btn btn-primary mr-2" type="button" disabled>Commit</button>
+                    </form>
+                </div>
+
             </div>
+
+            <div id="editor"></div>
+
         </div>
         
 	    <script src="/assets/jquery/dist/jquery.min.js"></script>
         <script src="/assets/popper.js/dist/umd/popper.min.js"></script>
         <script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="/source/js/source.js"></script>
+        <script src="/source/js/history.js"></script>
     </body>
 </html>
