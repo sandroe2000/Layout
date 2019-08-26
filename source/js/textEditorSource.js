@@ -4,7 +4,7 @@ let editor = null;
 
 $(document).ready(function() {
 
-    let fileUrl = '/textEditor.html';
+    let fileUrl = '/source/css/app.css';
     fetch(fileUrl)
         .then(function(response) {
             return response.text();

@@ -15,7 +15,7 @@ $('div.modal-footer > button.btn.btn-primary').on('click', function(event){
     if(button.includes('File')){
         classIcon = 'fa fa-file-text-o';
         size = '0 B';
-        link = 'textEditor.html?fileId=0';
+        link = 'textEditorSource.html?fileId=0';
     }
 
     let template = `<tr>

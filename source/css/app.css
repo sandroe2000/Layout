@@ -173,14 +173,14 @@ i.fa.fa-exchange {
 }
 
 .btn-light {
-	background-color: #eff1f5;
-	border: 1px solid #dfe1e6;
+	background-color: #F4F5F7;
+	border: 1px solid #F4F5F7;
 }
 
 /*--------------*/
 aside {
 	position: absolute;
-	background-color: #f4f5f7;
+	background-color: #F4F5F7;
 	top: 0px;
 	bottom: 0px;
 	width: 82px;
