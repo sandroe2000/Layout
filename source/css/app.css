@@ -7,6 +7,19 @@ body {
 	overflow: hidden;
 }
 
+div.nav-app button.btn {
+	border-radius: 50%;
+	width: 46px;
+	height: 46px;
+	margin-bottom: 5px;
+}
+
+.btn-bottom {
+	position: absolute;
+	width: 100%;
+	bottom: 10px;
+}
+
 .nav-app {
 	position: absolute;
 	top: 0px;
@@ -15,6 +28,7 @@ body {
 	width: 64px;
 	background-color: #f4f5f7;
 	border-right: 1px solid #dfe1e6;
+	padding: 8px;
 }
 
 .main-app {
@@ -24,7 +38,7 @@ body {
 	right: 0px;
 	bottom: 0px;
 	background-color: #fff;
-	padding: 20px 0px 0px 40px;
+	padding: 20px 0px 0px 20px;
 }
 
 .breadcrumb {
@@ -130,7 +144,13 @@ i.fa.fa-exchange {
 	-webkit-transform: rotate(90deg);
 	-ms-transform: rotate(90deg);
 	transform: rotate(90deg);
-  }
+}
+
+.ico-rotate-180 {
+-webkit-transform: rotate(180deg);
+-ms-transform: rotate(180deg);
+transform: rotate(180deg);
+}
 
   .mdi {
 	  font-size: 2rem;
@@ -145,7 +165,7 @@ i.fa.fa-exchange {
 .topbar {
 	position: absolute;
 	top: 145px;
-	left: 40px;
+	left: 20px;
 	height: 53px;
 	right: 15px;
 	background-color: #f4f5f7;
@@ -166,8 +186,8 @@ i.fa.fa-exchange {
 #container{
 	position: absolute;
 	top: 197px;
-	left: 40px;
-	bottom: 10px;
+	left: 20px;
+	bottom: 20px;
 	right: 15px;
 	border: 1px solid #dfe1e6;
 }
@@ -261,7 +281,7 @@ div.main-ruler div.col-md-1 {
 
 .main-content {
     position: absolute;
-    margin: 5px 0 5px 0;
+    margin: 5px 0 0px 0;
     padding-top: 10px;
     padding-bottom: 30px;
 	top: 10px;

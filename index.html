@@ -7,61 +7,131 @@
         <link rel="stylesheet" href="/assets/bootstrap/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" href="/assets/font-awesome/css/font-awesome.min.css" />
         <link rel="stylesheet" href="/assets/material-design-icons/css/material-icons.min.css" />
-        <link rel="stylesheet" href="/source/css/app.css" />
+        <style>
+            html,
+            body {
+                height: 100%;
+            }
+
+            body { 
+                background: url('/img/kRanI4v.jpg') no-repeat center center fixed; 
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;
+                display: -ms-flexbox;
+                display: flex;
+                -ms-flex-align: center;
+                align-items: center;
+                padding-top: 40px;
+                padding-bottom: 40px;
+                color: #FFF;
+            }
+
+            textarea:focus,
+            input[type="text"]:focus,
+            input[type="password"]:focus,
+            input[type="datetime"]:focus,
+            input[type="datetime-local"]:focus,
+            input[type="date"]:focus,
+            input[type="month"]:focus,
+            input[type="time"]:focus,
+            input[type="week"]:focus,
+            input[type="number"]:focus,
+            input[type="email"]:focus,
+            input[type="url"]:focus,
+            input[type="search"]:focus,
+            input[type="tel"]:focus,
+            input[type="color"]:focus,
+            .uneditable-input:focus {   
+                box-shadow: none;
+                outline: 0 none;
+            }
+
+            .container{
+                padding: 25px;   
+            } 
+
+            .form-signin {
+                width: 100%;
+                max-width: 330px;
+                padding: 15px;
+                margin: auto;
+            }
+            .form-signin .checkbox {
+                font-weight: 400;
+            }
+            .form-signin .form-control {
+                position: relative;
+                box-sizing: border-box;
+                height: auto;
+                padding: 10px;
+                font-size: 16px;
+            }
+            .form-signin .form-control:focus {
+                z-index: 2;
+            }
+            .form-signin input[type="email"] {
+                margin-bottom: -1px;
+                border-bottom-right-radius: 0;
+                border-bottom-left-radius: 0;
+            }
+            .form-signin input[type="password"] {
+                margin-bottom: 10px;
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
+            }
+            .bd-placeholder-img {
+                font-size: 1.125rem;
+                text-anchor: middle;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+
+            @media (min-width: 768px) {
+                .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+                }
+            }
+        </style>
         <title>Layout</title>
     </head>
     <body>
 
-        <div class="nav-app"></div>
-        <div class="main-app">
+        <div class="container">
+            <form class="form-signin" action="project.html">
 
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item">Sandro Cesário Di Espindula</li>
-                </ol>
-            </nav>
-
-            <h4>Projects</h4>
-
-            <p>Here's where you'll find this repository's source files. To give your users an idea of what they'll find here, add a description to your repository.</p>
-
-            <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th class="th-30">Project</th>
-                            <th class="th-1">Last updated</th>
-                            <th class="th-40">Message</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <a href="source.html?projectId=1">
-                                    <i class="fa fa-product-hunt" aria-hidden="true"></i> woolaweavwe
-                                </a>
-                            </td>
-                            <td>2019-08-15</td>
-                            <td>Correções pesquisa home e categoria, card</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="source.html?projectId=2">
-                                    <i class="fa fa-product-hunt" aria-hidden="true"></i> motoshop
-                                </a>
-                            </td>
-                            <td>2019-08-15</td>
-                            <td>Correções pesquisa home e categoria, card</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
+                <h1 class="h3 mb-3 font-weight-normal">Please log in</h1>
+                
+                <label for="inputEmail" class="sr-only">Username</label>
+                <input type="email" class="form-control" placeholder="Username" autofocus />
+                
+                <label for="inputPassword" class="sr-only">Password</label>
+                <input type="password" id="inputPassword" class="form-control" placeholder="Password" />
+                
+                <div class="checkbox mb-3">
+                    <label>
+                        <input type="checkbox" value="remember-me"> Remember me
+                    </label>
+                </div>
+                <button class="btn btn-primary btn-block" type="submit">Sign in</button>
+                <button class="btn btn-light btn-block" type="button">
+                    <span class="css-1vqao0l">
+                        <span class="css-t5emrf">
+                            <img src="https://aid-frontend.prod.atl-paas.net/atlassian-id/front-end/5.0.36/static/media/google-logo.c21ca9d1.svg" alt="" style="height: 18px; margin-right: 8px; vertical-align: middle; width: 18px;">
+                            <span>Entrar com o Google</span>
+                        </span>
+                    </span>
+                </button>
+                <p class="mt-5 mb-3 text-muted">&copy; 2017-2019</p>
+            </form>
         </div>
 
 	    <script src="/assets/jquery/dist/jquery.min.js"></script>
         <script src="/assets/popper.js/dist/umd/popper.min.js"></script>
         <script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="/source/js/app.js"></script>
+        <script src="/source/js/login.js"></script>
     </body>
 </html>
