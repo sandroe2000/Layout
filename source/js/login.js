@@ -8,7 +8,7 @@ let imgs = ["kRanI4v.jpg", "kRanI5v.jpg", "kRanI6v.jpg", "kRanI7v.jpg"];
     
 function greet(){
     let img = getRandom(imgs);
-    $('body').css("background-image", `url("/img/${img}")`);
+    $('body').css("background-image", `url("img/${img}")`);
 }
 
 function getRandom(arr){

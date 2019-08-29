@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="icon" href="img/favicons/favicon.ico" />
+        <link rel="stylesheet" href="assets/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="assets/material-design-icons/css/material-icons.min.css" />
+        <link rel="stylesheet" href="source/css/app.css" />
+        <title>Layout</title>
+    </head>
+    <body>
+
+        <div class="nav-app">
+            
+            <i class="mdi mdi-widgets ico-rotate-90 mb-5" style="color:#03a9f4; font-size:48px"></i>
+            
+            <button class="btn btn-light btn-sm" type="button">
+                <i class="mdi mdi-search"></i>
+            </button>
+            <button class="btn btn-light btn-sm" type="button">
+                <i class="mdi mdi-add-circle-outline"></i>
+            </button>
+            <a href="project.html">
+                <button class="btn btn-light btn-sm" type="button">
+                    <i class="mdi mdi-code"></i>
+                </button>
+            </a> 
+            <a href="profile.html">               
+                <button class="btn btn-light btn-sm" type="button">
+                    <i class="mdi mdi-person"></i>
+                </button>
+            </a>
+            <div class="btn-bottom">
+                <button class="btn btn-light btn-sm" type="button">
+                    <i class="mdi mdi-report-problem"></i>
+                </button>
+                <a href="index.html">
+                    <button class="btn btn-light btn-sm" type="button">
+                        <i class="mdi mdi-exit-to-app"></i>
+                    </button>
+                </a>                
+            </div>
+        </div>
+
+        <div class="main-app">
+
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">Sandro Cesário Di Espindula</li>
+                </ol>
+            </nav>
+
+            <h4>index.html</h4>
+
+            <p>What information would you like to collect from your users?</p>
+
+            <div class="row">
+                <div class="col-md-3">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="search">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">
+                                        <i class="fa fa-search" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">Dapibus ac facilisis in</li>
+                        <li class="list-group-item">Morbi leo risus</li>
+                        <li class="list-group-item">Porta ac consectetur ac</li>
+                        <li class="list-group-item">Vestibulum at eros</li>
+                    </ul>
+                </div>
+                <div class="col-md-9 fieldsContainer">
+                    <div class="row mb-2">
+                        <div class="col-md-3">
+                            <input type="text" class="form-control" id="label" />
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-control" id="type">
+                                <option disabled>Single value</option>
+                                <option>Text</option>
+                                <option>Text(Mult lines)</option>
+                                <option>File</option>
+                                <option>CheckBox</option>
+                                <option>Currency</option>
+                                <option>Date</option>
+                                <option>Date and Time</option>
+                                <option>Dropdown</option>
+                                <option>Email</option>
+                                <option>Location</option>
+                                <option>Number(Integer)</option>
+                                <option>Number(Decimal)</option>
+                                <option>Phone</option>
+                                <option>Time</option>
+                                <option>User reference</option>
+                                <option disabled>Complex types</option>
+                                <option>Data reference</option>
+                                <option>Field group</option>
+                                <option>Field group(Repeating)</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-control" id="type">
+                                <option>Optional</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <i class="fa fa-cog mr-2" data-toggle="dropdown" aria-hidden="true" style="font-size: 22px"></i>
+                            <div class="dropdown-menu">
+                                <button class="dropdown-item" type="button">
+                                    <i class="fa fa-folder-open-o" aria-hidden="true"></i> New Folder
+                                </button>
+                                <button class="dropdown-item" type="button">
+                                    <i class="fa fa-file-o" aria-hidden="true"></i> New File
+                                </button>
+                            </div>
+                            <i class="fa fa-trash-o mr-2" aria-hidden="true" style="font-size: 22px"></i>
+                        </div>
+                    </div>
+                    <a href="#" id="addField">+ Add Field</a>
+                </div>
+            </div>
+
+        </div>
+
+	    <script src="assets/jquery/dist/jquery.min.js"></script>
+        <script src="assets/popper.js/dist/umd/popper.min.js"></script>
+        <script src="assets/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="source/js/formWizard.js"></script>
+    </body>
+</html>

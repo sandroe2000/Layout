@@ -38,7 +38,7 @@ div.nav-app button.btn {
 	right: 0px;
 	bottom: 0px;
 	background-color: #fff;
-	padding: 20px 0px 0px 20px;
+	padding: 20px 20px 0px 20px;
 }
 
 .breadcrumb {
@@ -341,4 +341,22 @@ div.main-content.container-fluid .active {
 
 .hilight {
     background: #D4FFDD !important;
+}
+
+li.list-group-item {
+	background: #f4f5f7;
+}
+
+.btn-outline-secondary {
+    color: #6c757d;
+	border-color: #ced4da;
+}
+
+.btn-outline-secondary:hover {
+	background: #ced4da;
+	border-color: #ced4da;
+}
+
+.btn-outline-secondary.focus, .btn-outline-secondary:focus {
+    box-shadow: none;
 }

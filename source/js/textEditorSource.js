@@ -4,7 +4,7 @@ let editor = null;
 
 $(document).ready(function() {
 
-    let fileUrl = '/source/css/app.css';
+    let fileUrl = 'source/css/app.css';
     fetch(fileUrl)
         .then(function(response) {
             return response.text();
@@ -36,7 +36,7 @@ function getModelId(file){
 }
 
 $('#btnVisualEditor').on('click', function(event){
-    window.location.href = '/htmlVisualEditor.html?fileId=0';
+    window.location.href = 'htmlVisualEditor.html?fileId=0';
 });
 
 $('#menuTextEditor').on('change', function(event){
