@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="assets/bootstrap/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css" />
         <link rel="stylesheet" href="assets/material-design-icons/css/material-icons.min.css" />
+        <link rel="stylesheet" href="source/css/confirm.css" />
         <link rel="stylesheet" href="source/css/app.css" />
         <title>Layout</title>
     </head>
@@ -107,17 +108,14 @@
                         <div class="col-md-3">
                             <select class="form-control" id="type">
                                 <option>Optional</option>
+                                <option>Required</option>
                             </select>
                         </div>
-                        <div class="col-md-3">
+                        <div style="margin-top: 5px;">
                             <i class="fa fa-cog mr-2" data-toggle="dropdown" aria-hidden="true" style="font-size: 22px"></i>
                             <div class="dropdown-menu">
-                                <button class="dropdown-item" type="button">
-                                    <i class="fa fa-folder-open-o" aria-hidden="true"></i> New Folder
-                                </button>
-                                <button class="dropdown-item" type="button">
-                                    <i class="fa fa-file-o" aria-hidden="true"></i> New File
-                                </button>
+                                <button class="dropdown-item" type="button">New Folder</button>
+                                <button class="dropdown-item" type="button">New File</button>
                             </div>
                             <i class="fa fa-trash-o mr-2" aria-hidden="true" style="font-size: 22px"></i>
                         </div>
@@ -127,10 +125,13 @@
             </div>
 
         </div>
+        
+        <div id="msgContainer"></div>
 
 	    <script src="assets/jquery/dist/jquery.min.js"></script>
         <script src="assets/popper.js/dist/umd/popper.min.js"></script>
         <script src="assets/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="source/js/confirm.js"></script>
         <script src="source/js/formWizard.js"></script>
     </body>
 </html>

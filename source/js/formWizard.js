@@ -1,5 +1,16 @@
 'use strict';
 
+/*
+window.addEventListener('keydown', function(event) {
+    if (event.keyCode == 46 && layout.design) { confirmRemoveNode(); }
+}, false);
+
+$('.row').on('click', 'i.fa.fa-trash-o', function(event){
+    
+    $(this).closest('.row').remove();
+});
+*/
+
 $('#addField').on('click', function(event){
     
     let row = `<div class="row mb-2">
@@ -33,17 +44,14 @@ $('#addField').on('click', function(event){
         <div class="col-md-3">
             <select class="form-control" id="type">
                 <option>Optional</option>
+                <option>Required</option>
             </select>
         </div>
-        <div class="col-md-3">
+        <div style="margin-top: 5px;">
             <i class="fa fa-cog mr-2" data-toggle="dropdown" aria-hidden="true" style="font-size: 22px"></i>
             <div class="dropdown-menu">
-                <button class="dropdown-item" type="button">
-                    <i class="fa fa-folder-open-o" aria-hidden="true"></i> New Folder
-                </button>
-                <button class="dropdown-item" type="button">
-                    <i class="fa fa-file-o" aria-hidden="true"></i> New File
-                </button>
+                <button class="dropdown-item" type="button">New Folder</button>
+                <button class="dropdown-item" type="button">New File</button>
             </div>
             <i class="fa fa-trash-o mr-2" aria-hidden="true" style="font-size: 22px"></i>
         </div>
@@ -51,6 +59,6 @@ $('#addField').on('click', function(event){
     $('.fieldsContainer a').before(row);
 });
 
-$('.main-app').on('click', '.fa.fa-trash-o', function(event){
-   event.target.closest('.row').remove();
-});
+(function(){
+    setTemplateMsgBox('#msgContainer', '.fa.fa-trash-o', '.row');
+})();
