@@ -1,12 +1,13 @@
 <!doctype html>
 <html lang="pt-br">
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <link rel="icon" href="img/favicons/favicon.ico" />
         <link rel="stylesheet" href="assets/bootstrap/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css" />
         <link rel="stylesheet" href="assets/material-design-icons/css/material-icons.min.css" />
+        <link rel="stylesheet" href="assets/confirmRemove/css/confirmRemove.css" />
         <link rel="stylesheet" href="source/css/app.css" />
         <title>Layout</title>
     </head>
@@ -33,17 +34,35 @@
                 </button>
             </a>
             <div class="btn-bottom">
+                <button id="toggleLeftMenu" class="btn btn-light btn-sm" style="background: #03a9f4;" type="button">
+                    <i class="mdi mdi-last-page" style="color:#FFF"></i>
+                </button>
                 <button class="btn btn-light btn-sm" type="button">
                     <i class="mdi mdi-report-problem"></i>
                 </button>
                 <a href="index.html">
                     <button class="btn btn-light btn-sm" type="button">
-                        <i class="mdi mdi-exit-to-app"></i>
+                        <i class="mdi mdi-power-settings-new"></i>
                     </button>
                 </a>                
             </div>
         </div>
-
+        <div class="main-menu">
+            <div class="input-group mb-2">
+                <input type="text" class="form-control" id="search">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item">Pessoa</li>
+                <li class="list-group-item">- Dados Cadastrais</li>
+                <li class="list-group-item">Manifestação</li>
+                <li class="list-group-item">Informação</li>
+            </ul>
+        </div>
         <div class="main-app">
 
             <nav aria-label="breadcrumb">
@@ -52,52 +71,27 @@
                 </ol>
             </nav>
 
-            <h4>Projects</h4>
+            <h4>index.html</h4>
 
-            <p>Here's where you'll find this repository's source files. To give your users an idea of what they'll find here, add a description to your repository.</p>
+            <p>What information would you like to collect from your users?</p>
 
-            <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th class="th-30">Project</th>
-                            <th class="th-1">Last updated</th>
-                            <th class="th-40">Message</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <a href="source.html?projectId=1">
-                                    <i class="fa fa-product-hunt" aria-hidden="true"></i> woolaweavwe
-                                </a>
-                            </td>
-                            <td>2019-08-15</td>
-                            <td>Correções pesquisa home e categoria, card</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="source.html?projectId=2">
-                                    <i class="fa fa-product-hunt" aria-hidden="true"></i> motoshop
-                                </a>
-                            </td>
-                            <td>2019-08-15</td>
-                            <td>Correções pesquisa home e categoria, card</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="row">
+                <div class="col-md-12 fieldsContainer">
+                    <a class="btn btn-light mb-3" href="#" id="addField">Add Field</a>
+                </div>
             </div>
 
         </div>
-
+        
         <div id="msgContainer"></div> 
-        <div class="main-menu"></div> 
         <div class="right-menu"></div>         
         <button id="toggleRightMenu" class="btn btn-light"><i class="mdi mdi-first-page"></i></button>
 
 	    <script src="assets/jquery/dist/jquery.min.js"></script>
         <script src="assets/popper.js/dist/umd/popper.min.js"></script>
         <script src="assets/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="assets/confirmRemove/js/confirmRemove.js"></script>
+        <script src="source/js/formWizard2.js"></script>
         <script src="source/js/app.js"></script>
     </body>
 </html>

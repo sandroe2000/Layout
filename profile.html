@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css" />
         <link rel="stylesheet" href="assets/material-design-icons/css/material-icons.min.css" />
         <link rel="stylesheet" href="source/css/app.css" />
+        <link ref="stylesheet" href="source/css/profile.css" />
         <title>Layout</title>
     </head>
     <body>
@@ -29,6 +30,11 @@
                 <i class="mdi mdi-person"></i>
             </button>                   
             <div class="btn-bottom">
+                
+                <button id="toggleLeftMenu" class="btn btn-light btn-sm" style="background: #03a9f4;" type="button">
+                    <i class="mdi mdi-last-page" style="color:#FFF"></i>
+                </button>
+                
                 <button class="btn btn-light btn-sm" type="button">
                     <i class="mdi mdi-report-problem"></i>
                 </button>
@@ -38,7 +44,7 @@
                     </button>
                 </a> 
             </div>
-        </div>
+        </div>        
         
         <div class="main-app">
 
@@ -49,12 +55,18 @@
             </nav>
 
             <h4>Settings</h4>
-
-
             
+        </div>
+
+        <div id="msgContainer"></div>
+        <div class="main-menu"></div> 
+        <div class="right-menu"></div>         
+        <button id="toggleRightMenu" class="btn btn-light"><i class="mdi mdi-first-page"></i></button>
         
 	    <script src="assets/jquery/dist/jquery.min.js"></script>
         <script src="assets/popper.js/dist/umd/popper.min.js"></script>
         <script src="assets/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="source/js/profile.js"></script>
+        <script src="source/js/app.js"></script>
     </body>
 </html>

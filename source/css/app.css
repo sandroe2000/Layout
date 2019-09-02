@@ -7,11 +7,12 @@ body {
 	overflow: hidden;
 }
 
-div.nav-app button.btn {
+button.btn.btn-light.btn-sm {
 	border-radius: 50%;
 	width: 46px;
 	height: 46px;
 	margin-bottom: 5px;
+	margin-right: 10px;
 }
 
 .btn-bottom {
@@ -29,6 +30,7 @@ div.nav-app button.btn {
 	background-color: #f4f5f7;
 	border-right: 1px solid #dfe1e6;
 	padding: 8px;
+	z-index: 5000;
 }
 
 .main-app {
@@ -39,6 +41,52 @@ div.nav-app button.btn {
 	bottom: 0px;
 	background-color: #fff;
 	padding: 20px 20px 0px 20px;
+	z-index: 4998;
+	overflow-y: auto;
+}
+
+.main-menu {
+    position: absolute;
+	top: 0px;
+	left: -286px;
+	bottom: 0px;
+    width: 286px;
+	background-color: #f4f5f7;
+	border-right: 1px solid #dfe1e6;
+    padding: 15px;
+	z-index: 4999;
+	transition-duration: 1s;
+}
+.left-to-right {
+	left: 64px;
+}
+
+.right-menu {
+    position: absolute;
+	top: 0px;
+	right: -286px;
+	bottom: 0px;
+    width: 286px;
+	background-color: #f4f5f7;
+	border-left: 1px solid #dfe1e6;
+    padding: 15px;
+	z-index: 4999;
+	transition-duration: 1s;
+}
+.right-to-left {
+	right: 0px;
+}
+
+#toggleRightMenu {
+	position: absolute;
+	border-radius: 50%;
+	height: 54px;
+	width: 54px;
+	right: 30px;
+	bottom: 30px;
+	background: orange;
+	color: #FFF;
+	z-index: 5000;
 }
 
 .breadcrumb {
@@ -172,7 +220,17 @@ transform: rotate(180deg);
 	border: 1px solid #dfe1e6;
 }
 
-.topbar div.topbar-title {
+.top-wizard{
+	position: relative;
+	margin-top: 20px;
+	left: 0px;
+	height: 53px;
+	right: 15px;
+	background-color: #f4f5f7;
+	border: 1px solid #dfe1e6;
+}
+
+div.topbar-title {
 	float: left;
 	padding: 15px;
 }
@@ -184,12 +242,15 @@ transform: rotate(180deg);
 
 #editor,
 #container{
+	position: relative;
+	/*
 	position: absolute;
 	top: 197px;
 	left: 20px;
 	bottom: 20px;
 	right: 15px;
 	border: 1px solid #dfe1e6;
+	*/
 }
 
 .btn-light {
@@ -199,12 +260,13 @@ transform: rotate(180deg);
 
 /*--------------*/
 aside {
-	position: absolute;
+	position: relative;
 	background-color: #F4F5F7;
-	top: 0px;
-	bottom: 0px;
 	width: 82px;
+	min-height: 450px;
+	border-left: 1px solid #dfe1e6;
 	border-right: 1px solid #dfe1e6;
+	border-bottom: 1px solid #dfe1e6;
 }
 
 .btn-aside-menu {
@@ -236,11 +298,13 @@ aside {
 
 .asise-separator {
     display: block;
-    margin-top: 5px;
+    margin-top: 10px;
     width: 100%;
     font-size: 11px;
     color: #CFD2DA;
-    text-align: center;
+	text-align: center;
+	border-top: 1px solid #dfe1e6;
+	padding-top: 2px;
 }
 
 main {
@@ -257,13 +321,11 @@ main.expand {
 }
 
 .main-ruler {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    right: 0px;
+    position: relative;
     height: 15px;
     background: #fff;
 	border-bottom: 1px solid #dfe1e6;
+	border-top: 1px solid #dfe1e6;
 }
 
 .rule-dash {
@@ -276,20 +338,19 @@ div.main-ruler div.col-md-1 {
     font-size: 9px;
     /*color: #FFF;*/
     margin-bottom: 10px;
-    border-right: 1px dashed #dfe1e6;
+    border-right: 1px dashed orangered;
 }
 
 .main-content {
     position: absolute;
-    margin: 5px 0 0px 0;
-    padding-top: 10px;
-    padding-bottom: 30px;
-	top: 10px;
+	top: 16px;
     left: 0px;
     right: 0px;
     bottom: 0px;
     background: #FFF;
-    overflow: auto;
+	overflow: auto;
+	border-right: 1px solid #dfe1e6;
+	border-bottom: 1px solid #dfe1e6;
 }
 
 .main-content::-webkit-scrollbar {
@@ -321,7 +382,7 @@ div.main-content.container-fluid.edit .form-group,
 div.main-content.container-fluid.edit .panel-body {
     margin-top: 7px;
     margin-bottom: 7px;
-    border: 2px dashed rgb(233, 232, 232);
+    border: 2px dashed rgb(189, 230, 247);
     min-height: 60px;
     background: #FFFFFF;
 }
@@ -343,9 +404,11 @@ div.main-content.container-fluid .active {
     background: #D4FFDD !important;
 }
 
+/*
 li.list-group-item {
 	background: #f4f5f7;
 }
+*/
 
 .btn-outline-secondary {
     color: #6c757d;

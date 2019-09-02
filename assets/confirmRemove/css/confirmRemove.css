@@ -79,22 +79,20 @@
     background: rgba(149, 183, 93, 0.9);
 }
 
-.mb-control-yes{
-    background-color: rgb(1, 61, 139);
-}
-.mb-control-close {
-    background-color: rgb(0,118,215);
-}
 .mb-control-yes,
 .mb-control-close {
     width: 120px;
     border: 2px solid #FFF;
     border-radius: 0px;
+    background-color: rgb(1, 61, 139);
 }
 .mb-control-yes:hover,
-.mb-control-close:hover {
+.mb-control-yes:focus,
+.mb-control-close:hover,
+.mb-control-close:focus {
     background-color: rgb(0,118,215); 
     border: 2px solid #FFF;
     border-radius: 0px;
 }
+
 /* end message box */
