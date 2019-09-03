@@ -10,7 +10,7 @@ let btnCancel = $('<button></button>').text('Cancel').addClass('btn btn-danger')
 });
 
 $('#smartwizard').smartWizard({
-    theme:'dots',
+    theme:'arrows',
     toolbarSettings: {
         toolbarButtonPosition: 'end',
         toolbarExtraButtons: [btnFinish, btnCancel]
