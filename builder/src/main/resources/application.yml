@@ -1,0 +1,29 @@
+# Spring properties
+spring:
+  application:
+    name: Application
+  datasource:
+    driverClassName: org.h2.Driver
+    url: jdbc:h2:file:./db/h2;MODE=MySQL;IGNORECASE=TRUE
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+spring.http.multipart.maxFileSize: 5Mb
+spring.http.multipart.maxRequestSize: 5Mb
+
+logging:
+  file: logs/dev_app.log
+  pattern:
+    console: "%d %-5level %logger : %msg%n"
+    file: "%d %-5level [%thread] %logger : %msg%n"
+  level:
+    br.com.sdvs.cdr: INFO
+
+app:
+  base:
+    path: /App/workspaces/builderup/
+    upload: /App/workspaces/builderup/img/
+    imgDir: /img/
+    constants: /App/workspaces/builderup/builder/data/constants.json
+    front: http://localhost:3000

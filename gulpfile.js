@@ -8,9 +8,7 @@
   const files = [
     './*.html',
     './source/js/*.js',
-    './source/css/*.css',
-    '.projects/*.*',
-    '.projects/*/*.*'
+    './source/css/*.css'
   ];
   
   function watch (){
