@@ -178,8 +178,9 @@ function getFormGroup() {
 
 function getSideMenuSnippet(code) {
     //TODO - RECUPERAR SNIPPET DO DB
-    var snippet = window.atob(code); ///DECODE BASE 64
-    return snippet.toDomElement();
+    //var snippet = window.atob(code); ///DECODE BASE 64
+    //return code.toDomElement();
+    listDOM(code.toDomElement(), setEventToDOM);
 }
 
 function getButton() {
@@ -381,6 +382,12 @@ function isAcceptable(el, target) {
 function pushContainer(el) {
     drakeMenu.containers.push(el);
 }
+
+String.prototype.toDomElement = function() {
+    var wrapper = document.createElement('div');
+    wrapper.innerHTML = this;
+    return wrapper;
+};
 
 (function() {
     dragFromMenu();

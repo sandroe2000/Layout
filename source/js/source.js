@@ -1,4 +1,4 @@
-$('#modalCreate').on('show.bs.modal', function (event) {
+$('.modal').on('show.bs.modal', function (event) {
     let button = $(event.relatedTarget);
     let modal = $(this);
     let template = `<i class="${$(button).children().attr('class')}"></i> ${$(button).text().trim()}`;
@@ -27,6 +27,6 @@ $('div.modal-footer > button.btn.btn-primary').on('click', function(event){
                         <td>${$('#message').val()}</td>
                     </tr>`;
 
-    $('table tbody').append(template);
-    $('#modalCreate').modal('hide');
+    $('table tbody > tr:first').before(template);
+    $('#modalCreateFolder').modal('hide');
 });

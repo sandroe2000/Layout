@@ -76,6 +76,7 @@ function setNavTabEvent(node) {
 }
 
 function setFormEvent(node) {
+    debugger;
     if (node.tagName && node.tagName == 'FORM') {
         removeActiveClass(node);
         pushContainer(node);
