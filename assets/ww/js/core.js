@@ -115,7 +115,7 @@ function getRow() {
 function getColumn() {
     var column = document.createElement("div");
     column.setAttribute("id", "col" + getId());
-    column.setAttribute("class", "col-md-2 col");
+    column.setAttribute("class", "col-md-6 col");
     return column;
 }
 
@@ -289,8 +289,8 @@ function setElementDrag(el) {
 
     if (el.parentNode) {
         el.parentNode.replaceChild(node, el);
-        node.parentNode.insertBefore(document.createTextNode("\n"), node);
-        node.parentNode.appendChild(document.createTextNode("\n"));
+        //node.parentNode.insertBefore(document.createTextNode("\n"), node);
+        //node.parentNode.appendChild(document.createTextNode("\n"));
         listDOM(node, setEventToDOM);
         //domHasChanged();
     }
@@ -330,7 +330,7 @@ function isCopy(el) {
 }
 
 function isAcceptable(el, target) {
-
+    
     if (target.classList.contains('edit') || target.classList.contains('panel-body')) {
         if (el.getAttribute("title") == "Row") return true;
         if (el.getAttribute("title") == "Snippet") return true;
@@ -367,6 +367,7 @@ function isAcceptable(el, target) {
     }
 
     if (target.classList.contains('row')) {
+        if (el.classList.contains('col-md-6')) return true;
         if (el.getAttribute("title") == "Column") return true;
     }
 
