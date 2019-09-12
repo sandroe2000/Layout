@@ -304,7 +304,8 @@ function dragFromMenu() {
         },
         accepts: function(el, target) {
             return isAcceptable(el, target);
-        }
+        },
+        copySortSource: true
     }).on('over', function(el, container, source) {
         if (container != source) {
             if (container) container.classList.toggle("drag-over");

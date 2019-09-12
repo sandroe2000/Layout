@@ -64,8 +64,10 @@ function validDOM(node, func) {
 function setCol(node) {    
     if (node.hasAttribute && (node.classList.contains("col-md-6") || node.classList.contains("col-md-12")) ){        
         $(node).click(function(event){
-            $(this).toggleClass('hilight');
-            event.stopPropagation();
+            if((event.target.classList.contains("col-md-6") || event.target.classList.contains("col-md-12"))){
+                $(this).toggleClass('hilight');
+                event.stopPropagation();
+            }
         });   
 
         $(node).on('contextmenu', function(event) {
@@ -98,8 +100,10 @@ function setRow(node) {
     if (node.hasAttribute && node.classList.contains("row")) {    
         drakeMenu.containers.push(node);          
         $(node).click(function(event){
-            $(this).toggleClass('hilight');
-            event.stopPropagation();
+            if(event.target.classList.contains("row")){
+                $(this).toggleClass('hilight');
+                event.stopPropagation();
+            }
         });   
         return;
     }
@@ -125,12 +129,8 @@ function removeNode(){
     }
 }
 
-function coltoHalfScreen(){
+function toggleCol(){
     let id = "#"+$("#context-menu").attr('idCol');
     $(id).toggleClass('col-md-12 col-md-6');
-}
-
-function coltoFullScreen(){
-    let id = "#"+$("#context-menu").attr('idCol');
-    $(id).toggleClass('col-md-6 col-md-12');
+    $(id).addClass('hilight');
 }

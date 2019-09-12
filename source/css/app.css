@@ -321,9 +321,14 @@ div.main-content.container-fluid.edit .form-group,
 div.main-content.container-fluid.edit .panel-body {
     margin-top: 7px;
     margin-bottom: 7px;
-    border: 2px dashed rgb(233, 232, 232);
     min-height: 60px;
-    background: #FFFFFF;
+	background: #FFFFFF;
+	border: 1px dashed #FFFFFF;
+}
+
+div.main-content.container-fluid.edit div.row:hover,
+div.main-content.container-fluid.edit [class*="col-md-"]:hover {
+	border: 1px dashed orange;
 }
 
 div.main-content.container-fluid.edit [class*="radio"],
@@ -340,5 +345,6 @@ div.main-content.container-fluid .active {
 }
 
 .hilight {
-    background: #D4FFDD !important;
+	background: rgb(255, 255, 230) !important;
+	border: 1px dashed orange !important;
 }
