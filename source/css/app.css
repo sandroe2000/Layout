@@ -356,3 +356,7 @@ div.main-content.container-fluid .active {
 	background: rgb(255, 255, 230) !important;
 	border: 1px dashed orange !important;
 }
+
+.showBorder {
+	border-color: #CECECE !important;
+}
