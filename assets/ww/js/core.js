@@ -187,7 +187,7 @@ function getButton() {
     var btn = document.createElement("button");
     btn.setAttribute("id", "btn" + getId());
     btn.setAttribute("type", "button");
-    btn.setAttribute("class", "btn btn-default");
+    btn.setAttribute("class", "btn btn-secondary");
     var text = document.createTextNode("Button");
     btn.appendChild(text);
     return btn;
@@ -319,7 +319,9 @@ function dragFromMenu() {
     });
 
     //START DRAG HERE
-    pushContainer(document.querySelector('aside'));
+    pushContainer(document.querySelector('.sideBarForm'));
+    pushContainer(document.querySelector('.sideBarLayout'));
+    pushContainer(document.querySelector('.sideBarComponents'));
     pushContainer(document.querySelector('.edit'));
 
 }
@@ -351,7 +353,9 @@ function isAcceptable(el, target) {
         if (el.getAttribute("title") == "Button") return true;
     }
 
-    if (target.classList.contains('form-group')) {
+    if (target.classList.contains('form-group') 
+        || target.classList.contains('col-md-6')
+        || target.classList.contains('col-md-12')) {
         if (el.getAttribute("title") == "Label") return true;
         if (el.getAttribute("title") == "Column") return true;
         if (el.getAttribute("title") == "Textarea") return true;

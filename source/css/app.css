@@ -237,10 +237,18 @@ aside {
 .asise-separator {
     display: block;
     margin-top: 5px;
-    width: 100%;
+	width: 100%;
+	height: 20px;
+	padding-top: 1px;
     font-size: 11px;
-    color: #CFD2DA;
-    text-align: center;
+    color: rgb(80, 80, 80);
+	text-align: center;
+	cursor: pointer;
+}
+.asise-separator:hover {
+	color: #FFF;
+	background-color: #cacbce;
+	border-radius: 6px;
 }
 
 main {

@@ -13,10 +13,10 @@ function listDOM(node, func) {
 function setEventToDOM(node) {
     setRowEvent(node);
     setColEvent(node); 
-    setFormEvent(node);
-    setFormGroupEvent(node);
-    setPanelEvent(node);
-    setHilight(node);
+    //setFormEvent(node);
+    //setFormGroupEvent(node);
+    //setPanelEvent(node);
+    //setHilight(node);
 }
 
 function setPanelEvent(node){
@@ -33,7 +33,7 @@ function setPanelEvent(node){
 }
 
 function setRowEvent(node) {
-    
+    /*
     if (node.hasAttribute && node.classList.contains("row")) {    
         removeActiveClass(node);
         node.addEventListener('mouseover', function(event) {
@@ -44,10 +44,39 @@ function setRowEvent(node) {
         pushContainer(node);
         return;
     }
+    */
+    if (node.hasAttribute && (node.classList.contains("col-md-6") || node.classList.contains("col-md-12")) ){        
+        $(node).click(function(event){
+            if((event.target.classList.contains("col-md-6") || event.target.classList.contains("col-md-12"))){
+                $(this).toggleClass('hilight');
+                event.stopPropagation();
+            }
+        });   
+
+        $(node).on('contextmenu', function(event) {
+
+            if(!event.target.classList.contains("col-md-6") && !event.target.classList.contains("col-md-12")) return false;
+
+            var top = event.pageY - 10;
+            var left = event.pageX - 90;
+
+            $("#context-menu").attr('idCol', event.target.id);
+            $("#context-menu").css({
+                display: "block",
+                top: top,
+                left: left
+            }).addClass("show");            
+            return false; 
+        }).on("click", function() {
+            $("#context-menu").removeClass("show").hide();
+        });
+
+        return;
+    }
 }
 
 function setColEvent(node) {
-    if (node.hasAttribute && node.classList.contains("col")) {
+    /*if (node.hasAttribute && node.classList.contains("col")) {
         removeActiveClass(node);
         node.addEventListener('mouseover', function(event) {
             setDrakeDom(event, node);
@@ -55,6 +84,16 @@ function setColEvent(node) {
             event.stopPropagation();
         }, false);
         pushContainer(node);
+        return;
+    }*/
+    if (node.hasAttribute && node.classList.contains("row")) {    
+        drakeMenu.containers.push(node);          
+        $(node).click(function(event){
+            if(event.target.classList.contains("row")){
+                $(this).toggleClass('hilight');
+                event.stopPropagation();
+            }
+        });   
         return;
     }
 }
@@ -76,7 +115,6 @@ function setNavTabEvent(node) {
 }
 
 function setFormEvent(node) {
-    debugger;
     if (node.tagName && node.tagName == 'FORM') {
         removeActiveClass(node);
         pushContainer(node);

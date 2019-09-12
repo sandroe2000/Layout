@@ -124,9 +124,20 @@ window.addEventListener('keydown', function(event) {
 }, false);
 
 function removeNode(){
-    if(confirm('Deseja remover este item?')){
-        $('.hilight').remove();
-    }
+
+    $.confirm({
+        title: 'Confirmação!',
+        content: 'Deseja remover este item?',
+        draggable: true,
+        buttons: {
+            confirm: function () {
+                $('.hilight').remove();
+            },
+            cancel: function () {
+                //$.alert('Canceled!');
+            }
+        }
+    });
 }
 
 function toggleCol(){
@@ -134,3 +145,15 @@ function toggleCol(){
     $(id).toggleClass('col-md-12 col-md-6');
     $(id).addClass('hilight');
 }
+
+$('#sideBarForm').click(function(event){
+    $('.sideBarForm').toggleClass('hide');
+});
+
+$('#sideBarLayout').click(function(event){
+    $('.sideBarLayout').toggleClass('hide');
+});
+
+$('#sideBarComponents').click(function(event){
+    $('.sideBarComponents').toggleClass('hide');
+});
