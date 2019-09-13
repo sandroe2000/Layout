@@ -158,9 +158,10 @@ $('#sideBarComponents').click(function(event){
     $('.sideBarComponents').toggleClass('hide');
 });
 
-$('#btnStudioConfig').click(function(event){
+$('#btnRowBorders').click(function(event){
     $('div.main-content.container-fluid.edit div.row').toggleClass('showBorder');
-    $('div.main-content.container-fluid.edit [class*="col-md-"]').toggleClass('showBorder');
 });
 
-
+$('#btnColBorders').click(function(event){
+    $('div.main-content.container-fluid.edit [class*="col-md-"]').toggleClass('showBorder');
+});

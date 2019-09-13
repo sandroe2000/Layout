@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="/assets/material-design-icons/css/material-icons.min.css" />
         <link rel="stylesheet" href="/assets/dragula/dragula.min.css" />
         <link rel="stylesheet" href="/assets/jquery-confirm/dist/jquery-confirm.min.css">
+        <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.5.0/css/bootstrap4-toggle.min.css" rel="stylesheet">
         <link rel="stylesheet" href="/source/css/app.css" />
         <style>
             .hide {
@@ -80,6 +81,10 @@
                 </div>
                 <div class="topbar-buttons">
                     <form class="form-inline">
+
+                        <button class="btn btn-light mr-2" type="button" id="btnRowBorders">Row Borders</button>
+                        <button class="btn btn-light mr-2" type="button" id="btnColBorders">Col Borders</button>
+
                         <select id="menuTextEditor" class="form-control mr-2">
                             <option value="textEditorSource.html?fileId=1" selected>Source</option>
                             <option value="textEditorDiff.html?fileId=1">View Diff</option>
@@ -118,10 +123,7 @@
                         <button class="btn btn-aside-menu" title="Textarea"><i class="fa fa-pencil-square-o"></i></button>
                         <button class="btn btn-aside-menu" title="Select"><i class="fa fa-chevron-down"></i></button>
                         <button class="btn btn-aside-menu" title="Button"><i class="fa fa-square"></i></button>
-                    </div>
-
-                    <button id="btnStudioConfig" class="btn btn-aside-menu" type="button" style="width:72px;margin-top:30px"><i class="fa fa-cog"></i></button>
-                    
+                    </div>                    
                 </aside>
 
                 <main>
@@ -152,5 +154,6 @@
         <script src="/assets/ww/js/core.js"></script>
         <script src="/assets/ww/js/events.js"></script>
         <script src="/source/js/htmlVisualEditor.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.5.0/js/bootstrap4-toggle.min.js"></script>
     </body>
 </html>
