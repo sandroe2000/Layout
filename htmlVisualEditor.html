@@ -39,6 +39,9 @@
                 </button>
             </a>
             <div class="btn-bottom">
+                <button id="toggleLeftMenu" class="btn btn-light btn-sm" style="background: #03a9f4;" type="button">
+                    <i class="mdi mdi-last-page" style="color:#FFF"></i>
+                </button>
                 <button class="btn btn-light btn-sm" type="button">
                     <i class="mdi mdi-report-problem"></i>
                 </button>
@@ -82,16 +85,18 @@
                 <div class="topbar-buttons">
                     <form class="form-inline">
 
-                        <button class="btn btn-light mr-2" type="button" id="btnRowBorders">Row Borders</button>
-                        <button class="btn btn-light mr-2" type="button" id="btnColBorders">Col Borders</button>
+                        <div class="form-check form-check-inline">
+                            <label for="chkColBorders" class="form-check-label mr-2">Col Borders</label>
+                            <input id="chkColBorders" type="checkbox" data-toggle="toggle" data-width="50" data-style="fast" />
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <label for="chkRowBorders" class="form-check-label mr-2">Row Borders</label>
+                            <input id="chkRowBorders" type="checkbox" data-toggle="toggle" data-width="40" data-style="fast" />
+                        </div>
 
-                        <select id="menuTextEditor" class="form-control mr-2">
-                            <option value="textEditorSource.html?fileId=1" selected>Source</option>
-                            <option value="textEditorDiff.html?fileId=1">View Diff</option>
-                            <option value="history.html?fileId=1">History</option>
-                        </select>
-                        <button class="btn btn-light mr-2" type="button">Cancel</button>
-                        <button class="btn btn-primary mr-2" type="button">Commit</button>
+                        <button class="btn btn-light mr-2" type="button" style="border: 1px solid #CECECE; width:100px">Cancel</button>
+                        <button class="btn btn-primary mr-2" type="button" style="width:100px">Commit</button>
+
                     </form>
                 </div>
             </div>
@@ -132,6 +137,9 @@
                     </div>
                     <div class="main-content container-fluid edit"></div>
                 </main>
+                <div class="main-footer">
+                    <ol class="breadcrumb"></ol>
+                </div>
             </div>            
         </div>
 
@@ -143,6 +151,10 @@
             <a class="dropdown-item" href="#">Bla bla bla</a>
             <a class="dropdown-item" href="#">Bla bla bla</a>
         </div>
+
+        <div class="main-menu"></div>
+        <div class="right-menu"></div>         
+        <button id="toggleRightMenu" class="btn btn-light"><i class="mdi mdi-first-page"></i></button>
         
 	    <script src="/assets/jquery/dist/jquery.min.js"></script>
         <script src="/assets/popper.js/dist/umd/popper.min.js"></script>
@@ -155,5 +167,6 @@
         <script src="/assets/ww/js/events.js"></script>
         <script src="/source/js/htmlVisualEditor.js"></script>
         <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.5.0/js/bootstrap4-toggle.min.js"></script>
+        <script src="/source/js/app.js"></script>
     </body>
 </html>

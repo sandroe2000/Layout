@@ -38,7 +38,7 @@ function loadObjectInspector(){
 }
 
 //document.querySelector('#btnRefreshTreeview ').addEventListener('click', domHasChanged, false);
-
+/*
 window.addEventListener('keydown', function(event) {
     if (event.ctrlKey && event.keyCode == 13) { beautify(); }
     if (event.keyCode == 46 && layout.design) { confirmRemoveNode(); }
@@ -48,7 +48,7 @@ window.addEventListener('keydown', function(event) {
     if (event.ctrlKey && event.keyCode == 90) { undoRedo('UNDO'); }
     if (event.ctrlKey && event.keyCode == 89) { undoRedo('REDO'); }
 }, false);
-
+*/
 function undoRedo(action) {
 
     var versionContentNode = getVersionContentNode();
@@ -292,7 +292,7 @@ function setDomSelectNode(node) {
     nodeShowProperties(node);
 }
 
-/* MESSAGE BOX */
+/* MESSAGE BOX 
 function confirmRemoveNode() {
 
     if (!getConfirmRemoveMessage()) {
@@ -323,7 +323,7 @@ function confirmRemoveNode() {
     return false;
 }
 
-/* END MESSAGE BOX */
+ END MESSAGE BOX */
 
 /* PLAY SOUND FUNCTION */
 function playAudio(file) {
