@@ -1,232 +1,90 @@
 ;
 'use strict';
 
-var id = 1;
-var drakeMenu;
-var drakeDom = null;
+let drakeMenu;
+let contId = 0;
+let ruler = document.querySelector('.main-ruler.container-fluid').childNodes[1];
+let footerBreadcrumb = document.querySelector('div.main-footer > ol.breadcrumb');
+let currentNodeInEdit = null;
+let currentCopyedNode = null;
+let maxLen = 100;
+let currentContentNode = 0;
 
-function setDrakeDom(event, node) {
+window.addEventListener('keydown', function(event) {
+    if (event.keyCode == 46) { removeNode(); }
+    if (event.ctrlKey && event.keyCode == 90) { undoRedo('UNDO'); }
+    if (event.ctrlKey && event.keyCode == 89) { undoRedo('REDO'); }
+    if (event.ctrlKey && event.keyCode == 67) { copySelectdNode(); }
+    if (event.ctrlKey && event.keyCode == 86) { pastSelectdNode(); }
+    if (event.ctrlKey && event.keyCode == 88) { cuteSelectdNode(); }
+}, false);
 
-    if (drakeDom) drakeDom.destroy();
-    drakeDom = dragula([node.parentNode], {}).on('drop', function(el, container) {
-        setTimeout(function() {
-            if (drakeDom) drakeDom.destroy();
-        }, 100);
-    }).on('cancel', function(el, container) {
-        setTimeout(function() {
-            if (drakeDom) drakeDom.destroy();
-        }, 100);
-    });
+function setRuler(){
+    let totalCols = 12;
+    for (let i = 0; i < totalCols; i++) {
+        let colRule = document.createElement('div');
+        colRule.setAttribute('class', 'col-md-1');
+        colRule.appendChild(document.createTextNode(i + 1));
+        ruler.appendChild(colRule);
+    }
 }
 
-function getId() {
-    return id++;
-}
-
-function createTabAndPane(clazz) {
-
-    var i = getId();
-
-    // TAB ////////////////////////////////////////
-    var item = document.createElement("li");
-    item.setAttribute("role", "presentation");
-    item.setAttribute("class", "tab-item");
-    if (clazz) item.classList.add(clazz);
-
-    var a = document.createElement("a");
-    a.setAttribute("href", "#tab" + i);
-    a.setAttribute("aria-controls", "tab" + i);
-    a.setAttribute("role", "tab");
-    a.setAttribute("data-toggle", "tab");
-
-    var text = document.createTextNode("Tab" + i);
-
-    // PANE ////////////////////////////////////////
-    var tabPane = document.createElement("div");
-    tabPane.setAttribute("id", "tab" + i);
-    tabPane.setAttribute("role", "tabpanel");
-    tabPane.setAttribute("class", "tab-pane");
-    if (clazz) tabPane.classList.add(clazz);
-
-    a.appendChild(text);
-    item.appendChild(a);
-
-    var retorno = {
-        tab: item,
-        pane: tabPane
-    };
-
-    return retorno;
-}
-
-function getNavTab() {
-
-    var div = document.createElement("div");
-    div.classList.add("nav-tab-wrapper");
-
-    var navTab = document.createElement("ul");
-    navTab.setAttribute("id", "navTab" + getId());
-    navTab.setAttribute("role", "tablist");
-    navTab.setAttribute("class", "nav nav-tabs");
-
-    // TAB_CONTENT ////////////////////////////////////////
-    var tabContent = document.createElement("div");
-    tabContent.classList.add("tab-content");
-
-    // TAB_PANE_1 ////////////////////////////////////////
-    var tab1 = createTabAndPane('active');
-    var item1 = tab1.tab;
-    var tabPane1 = tab1.pane;
-
-    // TAB_PANE_2 ////////////////////////////////////////
-    var tab2 = createTabAndPane(null);
-    var item2 = tab2.tab;
-    var tabPane2 = tab2.pane;
-
-    // APPEND ELEMENTS ////////////////////////////////////////  
-    navTab.appendChild(document.createTextNode("\n"));
-    navTab.appendChild(item1);
-    navTab.appendChild(document.createTextNode("\n"));
-    navTab.appendChild(item2);
-    navTab.appendChild(document.createTextNode("\n"));
-
-    tabContent.appendChild(document.createTextNode("\n"));
-    tabContent.appendChild(tabPane1);
-    tabContent.appendChild(document.createTextNode("\n"));
-    tabContent.appendChild(tabPane2);
-    tabContent.appendChild(document.createTextNode("\n"));
-
-    div.appendChild(document.createTextNode("\n"));
-    div.appendChild(navTab);
-    div.appendChild(document.createTextNode("\n"));
-    div.appendChild(tabContent);
-    div.appendChild(document.createTextNode("\n"));
-
-    return div;
+function getId(){
+    return contId++;
 }
 
 function getRow() {
-    var row = document.createElement("div");
-    row.setAttribute("id", "row" + getId());
-    row.setAttribute("class", "row");
-    return row;
+    return `<div id="row${getId()}" class="row"></div>`;
 }
 
 function getColumn() {
-    var column = document.createElement("div");
-    column.setAttribute("id", "col" + getId());
-    column.setAttribute("class", "col-md-6 col");
-    return column;
+    return `<div id="col${getId()}" class="col-md-6"></div>`;
 }
 
 function getLabel() {
-    var label = document.createElement("label");
-    label.setAttribute("id", "lbl" + getId());
-    var text = document.createTextNode("Label");
-    label.appendChild(text);
-    return label;
+    return `<label id="lbl${getId()}">Label</label>`;
 }
 
 function getInput(type) {
 
-    var el;
-
-    //For input type: text, password, date, number 
-    var input = document.createElement("Input");
-    input.setAttribute("id", "inp" + getId());
-    input.setAttribute("type", type);
-    input.setAttribute("class", "form-control");
-    el = input;
-
     //For input type: checkbox, radio
     if (type == 'checkbox' || type == 'radio') {
 
-        input.setAttribute("class", type);
-        var label = getLabel();
-        label.insertBefore(input, label.childNodes[0]);
-
-        var div = document.createElement("div");
-        div.setAttribute('id', type.substring(0, 3).concat(getId()));
-        div.setAttribute('class', type);
-        div.appendChild(label);
-
-        el = div;
+        return  `<div>
+                    <input id="inp${getId()}" type="${type}" class="form-check-input" />
+                    <label id="lbl${getId()}">Label</label>
+                </div>`;
     }
 
-    return el;
-}
-
-function getTextarea() {
-    var textarea = document.createElement("textarea");
-    textarea.setAttribute("id", "txtArea" + getId());
-    textarea.setAttribute("class", "form-control");
-    return textarea;
-}
-
-function getForm() {
-    var frm = document.createElement("form");
-    frm.setAttribute("id", "frm" + getId());
-    return frm;
-}
-
-function getFormGroup() {
-    var frmGrp = document.createElement("div");
-    frmGrp.setAttribute("id", "grp" + getId());
-    frmGrp.setAttribute("class", "form-group");
-    return frmGrp;
+    //For input type: text, password, date, number 
+    return `<input id="inp${getId()}" type="${type}" class="form-control" />`;
 }
 
 function getSideMenuSnippet(code) {
     //TODO - RECUPERAR SNIPPET DO DB
-    //var snippet = window.atob(code); ///DECODE BASE 64
-    //return code.toDomElement();
-    listDOM(code.toDomElement(), setEventToDOM);
-}
-
-function getButton() {
-    var btn = document.createElement("button");
-    btn.setAttribute("id", "btn" + getId());
-    btn.setAttribute("type", "button");
-    btn.setAttribute("class", "btn btn-secondary");
-    var text = document.createTextNode("Button");
-    btn.appendChild(text);
-    return btn;
+    var snippet = window.atob(code); ///DECODE BASE 64
+    return snippet.toDomElement();
 }
 
 function getSelect() {
-    var sel = document.createElement("select");
-    sel.setAttribute("id", "sel" + getId());
-    sel.setAttribute("class", "form-control");
-    var opt = document.createElement("option");
-    opt.setAttribute("value", "");
-    var text = document.createTextNode("Selecione uma Opção");
-    opt.appendChild(text);
-    sel.appendChild(opt);
-    return sel;
+    return `<select id="sel${getId()}" class="form-control">
+                <option>Selecione uma opção</option>
+            </select>`;
 }
 
-function getPanel() {
+function getTextarea(){
+    return `<textarea id="txt${getId()}" class="form-control" rows="3"></textarea>`;
+}
 
-    var panelHeading = document.createElement('div');
-    panelHeading.setAttribute('class', 'panel-heading');
-    panelHeading.appendChild(document.createTextNode('Panel Heading'));
-
-    var panelBody = document.createElement('div');
-    panelBody.setAttribute('class', 'panel-body');
-
-    var panel = document.createElement('div');
-    panel.setAttribute('class', 'panel panel-default');
-
-    panel.appendChild(panelHeading);
-    panel.appendChild(panelBody);
-    return panel;
+function getButton(){
+    return `<button id="btn${getId()}" type="button" class="btn btn-light">Light</button>`;
 }
 
 function setElementDrag(el) {
 
-    var title = el.getAttribute("title");
-    var code = el.getAttribute("data-code");
-    var node;
+    let title = el.getAttribute("title");
+    let code = el.getAttribute("data-code");
+    let node;
 
     switch (title) {
         case 'Label':
@@ -262,37 +120,24 @@ function setElementDrag(el) {
         case 'Textarea':
             node = getTextarea();
             break;
-        case 'Snippet':
-            node = getSideMenuSnippet(code);
-            break;
-        case 'Nav Tab':
-            node = getNavTab();
-            break;
-        case 'Form':
-            node = getForm();
-            break;
-        case 'Form Group':
-            node = getFormGroup();
-            break;
         case 'Select':
             node = getSelect();
             break;
         case 'Button':
             node = getButton();
             break;
-        case 'Panel':
-            node = getPanel();
+        case 'Snippet':
+            node = getSideMenuSnippet(code);
             break;
         default:
             return false;
     }
 
     if (el.parentNode) {
+        node = node.toDomElement();
         el.parentNode.replaceChild(node, el);
-        //node.parentNode.insertBefore(document.createTextNode("\n"), node);
-        //node.parentNode.appendChild(document.createTextNode("\n"));
         listDOM(node, setEventToDOM);
-        //domHasChanged();
+        domHasChanged(node);
     }
 }
 
@@ -304,17 +149,8 @@ function dragFromMenu() {
         },
         accepts: function(el, target) {
             return isAcceptable(el, target);
-        },
-        copySortSource: true
-    }).on('over', function(el, container, source) {
-        if (container != source) {
-            if (container) container.classList.toggle("drag-over");
         }
-    }).on('out', function(el, container, source) {
-        if (container) container.classList.remove("drag-over");
     }).on('drop', function(el, container) {
-        if (container) container.classList.remove('draging');
-        if (container) container.classList.toggle("drag-over");
         setElementDrag(el);
     });
 
@@ -324,6 +160,7 @@ function dragFromMenu() {
     pushContainer(document.querySelector('.sideBarComponents'));
     pushContainer(document.querySelector('.edit'));
 
+    document.querySelector('.main-content.container-fluid.edit').addEventListener('click', setBreadcrumb, false);
 }
 
 function isCopy(el) {
@@ -333,56 +170,89 @@ function isCopy(el) {
 }
 
 function isAcceptable(el, target) {
-    
-    if (target.classList.contains('edit') || target.classList.contains('panel-body')) {
-        if (el.getAttribute("title") == "Row") return true;
-        if (el.getAttribute("title") == "Snippet") return true;
-        if (el.getAttribute("title") == "Nav Tab") return true;
-        if (el.getAttribute("title") == "Form") return true;
+    if(el.disabled){
+        return false;
     }
-
-    if (target.classList.contains('tab-pane')) {
-        if (el.getAttribute("title") == "Line") return true;
-        if (el.getAttribute("title") == "Snippet") return true;
+    if (target.classList.contains('edit')) {
+        if (el.getAttribute("title") == "Row"){ return true; }
     }
-
-    if (target.nodeName == 'FORM') {
-        if (el.getAttribute("title") == "Form Group") return true;
-        if (el.getAttribute("title") == "Input Checkbox") return true;
-        if (el.getAttribute("title") == "Input Radio") return true;
-        if (el.getAttribute("title") == "Button") return true;
-    }
-
-    if (target.classList.contains('form-group') 
-        || target.classList.contains('col-md-6')
-        || target.classList.contains('col-md-12')) {
-        if (el.getAttribute("title") == "Label") return true;
-        if (el.getAttribute("title") == "Column") return true;
-        if (el.getAttribute("title") == "Textarea") return true;
-        if (el.getAttribute("title") == "Input Text") return true;
-        if (el.getAttribute("title") == "Input E-mail") return true;
-        if (el.getAttribute("title") == "Input Password") return true;
-        if (el.getAttribute("title") == "Input Date") return true;
-        if (el.getAttribute("title") == "Input Number") return true;
-        if (el.getAttribute("title") == "Input Checkbox") return true;
-        if (el.getAttribute("title") == "Input Radio") return true;
-        if (el.getAttribute("title") == "Select") return true;
-        if (el.getAttribute("title") == "Select") return true;
-        if (el.getAttribute("title") == "Button") return true;
-    }
-
     if (target.classList.contains('row')) {
-        if (el.classList.contains('col-md-6')) return true;
-        if (el.getAttribute("title") == "Column") return true;
+        if (el.getAttribute("title") == "Column"){ return true; }
     }
-
-    if (target.classList.contains('col')) {
-        if (el.getAttribute("title") == "Column") return false;
-
-        return true;
+    if (target.classList.contains('col-md-6') || target.classList.contains('col-md-12')) {
+        if (el.getAttribute("title") == "Row"){ return true; }
+        if (el.getAttribute("title") == "Label"){ return true; }
+        if (el.getAttribute("title") == "Input Text"){ return true; }
+        if (el.getAttribute("title") == "Input Email"){ return true; }
+        if (el.getAttribute("title") == "Input Password"){ return true; }
+        if (el.getAttribute("title") == "Input Number"){ return true; }
+        if (el.getAttribute("title") == "Input Checkbox"){ return true; }
+        if (el.getAttribute("title") == "Input Radio"){ return true; }
+        if (el.getAttribute("title") == "Textarea"){ return true; }
+        if (el.getAttribute("title") == "Select"){ return true; }
+        if (el.getAttribute("title") == "Button"){ return true; }
     }
-
     return false;
+}
+
+function cuteSelectdNode() {
+    if (!isCopyAcceptable()) return false;
+    var template = document.createElement('div');
+    template.innerHTML = currentNodeInEdit.outerHTML.replace('active', '');
+    listDOM(template, replaceNodeId);
+    currentCopyedNode = template.firstChild;
+    $('.active').remove();
+    domHasChanged();
+    setSnakBar('Cuted!');
+}
+
+function copySelectdNode() {
+    if (!isCopyAcceptable()) return false;
+    var template = document.createElement('div');
+    template.innerHTML = currentNodeInEdit.outerHTML.replace('active', '');
+    listDOM(template, replaceNodeId);
+    currentCopyedNode = template.firstChild;
+    setSnakBar('Copied!');
+}
+
+function isCopyAcceptable() {
+    let mainContent = document.querySelector('.main-content.container-fluid.edit');
+    if (!currentNodeInEdit) return false;
+    if (currentNodeInEdit == mainContent) return false;
+    return true;
+}
+
+function pastSelectdNode() {
+    if (!isPastAcceptable()) return false;
+    currentNodeInEdit.appendChild(currentCopyedNode);
+    listDOM(currentCopyedNode, setEventToDOM);
+    domHasChanged();
+}
+
+function isPastAcceptable() {
+    if (!currentCopyedNode || !currentNodeInEdit) return false;
+    if (currentCopyedNode == currentNodeInEdit) return false;
+    if (currentNodeInEdit.classList.contains('edit') && !currentCopyedNode.classList.contains('row')) return false;
+    if (currentNodeInEdit.classList.contains('row') && (!currentCopyedNode.classList.contains('col-md-6') && !currentCopyedNode.classList.contains('col-md-12') )) return false;
+    return true;
+}
+
+function replaceNodeId(node) {
+
+    if (!node.hasAttribute || !node.hasAttribute('id')) return false;
+
+    var prefixId = "";
+    var id = node.getAttribute('id');
+    if (id.indexOf('row') > -1) prefixId = 'row';
+    if (id.indexOf('col') > -1) prefixId = 'col';
+    if (id.indexOf('lbl') > -1) prefixId = 'lbl';
+    if (id.indexOf('inp') > -1) prefixId = 'inp';
+    if (id.indexOf('txt') > -1) prefixId = 'txt';
+    if (id.indexOf('sel') > -1) prefixId = 'sel';
+    if (id.indexOf('btn') > -1) prefixId = 'btn';
+    //TODO - OUTROS ID.....
+
+    node.setAttribute('id', prefixId.concat(getId()));
 }
 
 function pushContainer(el) {
@@ -392,9 +262,272 @@ function pushContainer(el) {
 String.prototype.toDomElement = function() {
     var wrapper = document.createElement('div');
     wrapper.innerHTML = this;
-    return wrapper;
+    return wrapper.firstElementChild;
 };
+
+function setEventToDOM(node){
+    setEventsRow(node);
+    setEventsCol(node);
+}
+
+function setEventsCol(node) { 
+
+    if (node.hasAttribute && (node.classList.contains("col-md-6") || node.classList.contains("col-md-12")) ){        
+
+        drakeMenu.containers.push(node);
+
+        $(node).on('contextmenu', function(event) {
+
+            if(!event.target.classList.contains("col-md-6") && !event.target.classList.contains("col-md-12")) return false;
+
+            var top = event.pageY - 10;
+            var left = event.pageX - 90;
+
+            $("#context-menu").attr('idCol', event.target.id);
+            $("#context-menu").css({
+                display: "block",
+                top: top,
+                left: left
+            }).addClass("show");            
+            return false; 
+        }).on("click", function() {
+            $("#context-menu").removeClass("show").hide();
+        });
+    }
+}
+
+function changeColSize(){
+    let col = $("#context-menu").attr('idCol');
+    $(`#${col}`).toggleClass('col-md-6 col-md-12');
+    domHasChanged();
+}
+
+$("#context-menu a").on("click", function() {
+    $(this).parent().removeClass("show").hide();
+});
+
+function setEventsRow(node) {    
+  
+    if (node.hasAttribute && node.classList.contains("row")) { 
+        drakeMenu.containers.push(node);             
+        return;
+    }
+}
+
+function setBreadcrumb(event) {
+
+    let mainContent = document.querySelector('.main-content.container-fluid.edit');
+    cleanBreadcrumb();
+    listDOM(document.querySelector('.main-content.container-fluid.edit'), removeClicked);
+    addBreadcrumb(event.target);
+    //if (event.target !== mainContent) {
+    event.target.classList.add('active');
+    //}
+    currentNodeInEdit = event.target;
+}
+
+function cleanBreadcrumb() {
+    footerBreadcrumb.innerHTML = "";
+}
+
+function addBreadcrumb(node) {
+
+    if (!node) return false;
+    var el = node;
+    var clicked = node;
+    let mainContent = document.querySelector('.main-content.container-fluid.edit');
+
+    while (el.parentNode) {
+        var li = document.createElement('li');
+            li.setAttribute('class', 'breadcrumb-item');
+        var a = document.createElement('a');
+        a.setAttribute('href', 'javascript:void(0);');
+        a.setAttribute('onclick', 'clickOnBreadcrumb(this)');
+        var txt = el.nodeName.toLowerCase();
+        if (el.getAttribute('id')) txt += "#" + el.getAttribute('id');
+        if (el.getAttribute('class')) {
+            var cls = el.getAttribute('class').split(' ');
+            for (var i = 0; i < cls.length; i++) {
+                if (cls[i] !== 'active') txt += "." + cls[i];
+            }
+        }
+        var txtNode = document.createTextNode(txt);
+        a.appendChild(txtNode);
+        li.appendChild(a);
+        if (el === mainContent) return false;
+        footerBreadcrumb.insertBefore(li, footerBreadcrumb.childNodes[0]);
+        el = el.parentNode;
+    }
+}
+
+function clickOnBreadcrumb(el) {
+    let node = document.querySelector(el.lastChild.textContent);
+    node.click();
+}
+
+function removeClicked(node) {
+    if (node.hasAttribute && node.classList.contains('active')) {
+        node.classList.remove('active');
+    }
+    if (node.hasAttribute && node.classList.contains('node-selected')) {
+        node.classList.remove('node-selected');
+    }
+}
+
+function listDOM(node, func) {
+    func(node);
+    node = node.firstChild;
+    while (node) {
+        listDOM(node, func);
+        node = node.nextSibling;
+    }
+}
+
+function undoRedo(action) {
+
+    let versionContentNode = getVersionContentNode();
+    let i;
+    let mainContent = document.querySelector('.main-content.container-fluid.edit');
+
+    if (currentContentNode < 0) return false;
+
+    i = currentContentNode;
+    if (action == 'UNDO') i++;
+    if (action == 'REDO') i--;
+
+    if (!versionContentNode || i > versionContentNode.length) return false;
+    if (!versionContentNode[i]) return false
+
+    var template = document.createElement('div');
+    template.innerHTML = versionContentNode[i];
+    var nodes = template.firstChild;
+
+    mainContent.parentNode.replaceChild(nodes, mainContent);
+
+    currentContentNode = i;
+    
+    drakeMenu.containers.length  = 0;
+
+    pushContainer(document.querySelector('.sideBarForm'));
+    pushContainer(document.querySelector('.sideBarLayout'));
+    pushContainer(document.querySelector('.sideBarComponents'));
+    pushContainer(document.querySelector('.edit'));
+    
+    listDOM(document.querySelector('.main-content.container-fluid.edit'), setEventToDOM);
+    domHasChanged();
+}
+
+function removeNode(){
+
+    $.confirm({
+        title: 'Confirmação!',
+        content: 'Deseja remover este item?',
+        draggable: true,
+        closeIcon: true,
+        buttons: {
+            confirm: {
+                keys: ['enter'],
+                text: 'Ok',
+                btnClass: 'btn-blue',
+                action: function () {
+                    $('.active').remove();
+                    domHasChanged();
+                }
+            },
+            cancel: {
+                keys: ['esc'],
+                text: 'Cancel',
+                btnClass: 'btn-warning',
+                action: function () {
+                    //close
+                }
+            }
+        }       
+    });
+}
+
+$('#chkRowBorders').change(function(event){
+    $('div.main-content.container-fluid.edit div.row').toggleClass('showBorder');
+});
+
+$('#chkColBorders').change(function(event){
+    $('div.main-content.container-fluid.edit [class*="col-md-"]').toggleClass('showBorder');
+});
+
+function domHasChanged(){
+
+    if($('#chkRowBorders').prop('checked')){
+        $('div.main-content.container-fluid.edit div.row').removeClass('showBorder');
+        $('div.main-content.container-fluid.edit div.row').addClass('showBorder');
+    }
+
+    if($('#chkColBorders').prop('checked')){
+        $('div.main-content.container-fluid.edit [class*="col-md-"]').removeClass('showBorder');
+        $('div.main-content.container-fluid.edit [class*="col-md-"]').addClass('showBorder');
+    }
+
+    document.querySelector('.main-content.container-fluid.edit').addEventListener('click', setBreadcrumb, false);
+
+    setVersionContentNode();
+    if (currentNodeInEdit) currentNodeInEdit.click();
+}
+
+function cleanVersionContentNode() {
+    localStorage.setItem("versionContentNode", "");
+}
+
+function setVersionContentNode() {
+
+    let mainContent = document.querySelector('.main-content.container-fluid.edit');
+
+    if (typeof(Storage) == "undefined") return false;
+
+    var versionContentNode = [];
+
+    if (getVersionContentNode()) {
+        versionContentNode = getVersionContentNode();
+    }
+
+    var clone = mainContent.cloneNode(true);
+
+    //NÃO GRAVA CONTEÚDO IGUAL AO ÚLTIMO NÓ
+    if(versionContentNode[0]==clone.outerHTML.replace('active', '').replace(/\n/g, '')) return false;
+
+    if (versionContentNode.length == 0) {
+        versionContentNode.unshift('<div class="main-content container-fluid edit "></div>');
+    }
+
+    if (versionContentNode.length < maxLen) {
+        versionContentNode.unshift(clone.outerHTML.replace('active', '').replace(/\n/g, ''));
+    } else {
+        versionContentNode.pop();
+        versionContentNode.unshift(clone.outerHTML.replace('active', '').replace(/\n/g, ''));
+    }
+
+    localStorage.setItem("versionContentNode", JSON.stringify(versionContentNode));
+}
+
+function getConfirmRemoveMessage() {
+    return localStorage.getItem("confirmRemoveMessage");
+}
+
+function getVersionContentNode() {
+    if (localStorage.getItem("versionContentNode")) {
+        return JSON.parse(localStorage.getItem("versionContentNode"));
+    }
+    return null;
+}
+
+function setSnakBar(msg) {
+    let snackbar = document.querySelector("#snackbar");
+    snackbar.innerHTML = msg;
+    snackbar.classList.toggle("show");
+    setTimeout(function() {
+        snackbar.classList.toggle("show");
+    }, 2000);
+}
 
 (function() {
     dragFromMenu();
+    setRuler();
 })();

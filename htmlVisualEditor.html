@@ -76,7 +76,7 @@
             </nav>
 
             <div class="topbar">
-                <button id="btnTextEditor" class="btn btn-light ml-2" type="button" style="float:left;margin-top:9px">
+                <button id="btnTextEditor" class="btn btn-light ml-2" type="button" style="float:left;margin-top:9px;border:1px solid #CECECE;width:67px">
                     <i class="fa fa-code" aria-hidden="true"></i>
                 </button>
                 <div class="topbar-title">                    
@@ -87,11 +87,11 @@
 
                         <div class="form-check form-check-inline">
                             <label for="chkColBorders" class="form-check-label mr-2">Col Borders</label>
-                            <input id="chkColBorders" type="checkbox" data-toggle="toggle" data-width="50" data-style="fast" />
+                            <input id="chkColBorders" type="checkbox" checked data-toggle="toggle" data-width="50" data-style="fast" />
                         </div>
                         <div class="form-check form-check-inline">
                             <label for="chkRowBorders" class="form-check-label mr-2">Row Borders</label>
-                            <input id="chkRowBorders" type="checkbox" data-toggle="toggle" data-width="40" data-style="fast" />
+                            <input id="chkRowBorders" type="checkbox" checked data-toggle="toggle" data-width="40" data-style="fast" />
                         </div>
 
                         <button class="btn btn-light mr-2" type="button" style="border: 1px solid #CECECE; width:100px">Cancel</button>
@@ -104,30 +104,30 @@
                 <aside>
                     <div class="asise-separator" id="sideBarForm">Form <i class="fa fa-caret-down" aria-hidden="true"></i></div>
                     <div class="sideBarForm">
-                        <button class="btn btn-aside-menu" title="Form"><i class="fa fa-file-code-o"></i></button>
-                        <button class="btn btn-aside-menu" title="Form Group"><i class="fa fa-object-group"></i></button>
+                        <button disabled class="btn btn-aside-menu" title="Form"><i class="fa fa-file-code-o"></i></button>
+                        <button disabled class="btn btn-aside-menu" title="Form Group" ><i class="fa fa-object-group"></i></button>
                     </div>
                     <div class="asise-separator" id="sideBarLayout">Layout <i class="fa fa-caret-down" aria-hidden="true"></i></div>
                     <div class="sideBarLayout">
-                        <button class="btn btn-aside-menu" title="Row"><i class="fa fa-th-list"></i></button>
+                        <button class="btn btn-aside-menu" title="Row"><i class="fa fa-th-list" ></i></button>
                         <button class="btn btn-aside-menu" title="Column"><i class="fa fa-columns"></i></button>
-                        <button class="btn btn-aside-menu" title="Panel"><i class="fa fa-square-o"></i></button>
-                        <button class="btn btn-aside-menu" title="Nav Tab"><i class="fa fa-folder-o"></i></button>
-                        <button class="btn btn-aside-menu" title="Accordion"><i class="fa fa-list-alt"></i></button>
-                        <button class="btn btn-aside-menu" title="DataTable"><i class="fa fa-table"></i></button>
+                        <button disabled class="btn btn-aside-menu" title="Panel"><i class="fa fa-square-o" ></i></button>
+                        <button disabled class="btn btn-aside-menu" title="Nav Tab"><i class="fa fa-folder-o" ></i></button>
+                        <button disabled class="btn btn-aside-menu" title="Accordion"><i class="fa fa-list-alt" ></i></button>
+                        <button disabled class="btn btn-aside-menu" title="DataTable"><i class="fa fa-table" ></i></button>
                     </div>
                     <div class="asise-separator" id="sideBarComponents">Components <i class="fa fa-caret-down" aria-hidden="true"></i></div>
                     <div class="sideBarComponents">
                         <button class="btn btn-aside-menu" title="Label"><i class="fa fa-font"></i></button>
                         <button class="btn btn-aside-menu" title="Input Text"><i class="fa fa-terminal"></i></button>
-                        <button class="btn btn-aside-menu" title="Input Email"><i class="fa fa-envelope-o"></i></button>
-                        <button class="btn btn-aside-menu" title="Input Password"><i class="fa fa-ellipsis-h"></i></button>
-                        <button class="btn btn-aside-menu" title="Input Number"><i class="fa fa-sort"></i></button>
-                        <button class="btn btn-aside-menu" title="Input Checkbox"><i class="fa fa-check-square-o"></i></button>
-                        <button class="btn btn-aside-menu" title="Input Radio"><i class="fa fa-dot-circle-o"></i></button>
-                        <button class="btn btn-aside-menu" title="Textarea"><i class="fa fa-pencil-square-o"></i></button>
-                        <button class="btn btn-aside-menu" title="Select"><i class="fa fa-chevron-down"></i></button>
-                        <button class="btn btn-aside-menu" title="Button"><i class="fa fa-square"></i></button>
+                        <button class="btn btn-aside-menu" title="Input Email"><i class="fa fa-envelope-o" ></i></button>
+                        <button class="btn btn-aside-menu" title="Input Password"><i class="fa fa-ellipsis-h" ></i></button>
+                        <button class="btn btn-aside-menu" title="Input Number"><i class="fa fa-sort" ></i></button>
+                        <button class="btn btn-aside-menu" title="Input Checkbox"><i class="fa fa-check-square-o" ></i></button>
+                        <button class="btn btn-aside-menu" title="Input Radio"><i class="fa fa-dot-circle-o" ></i></button>
+                        <button class="btn btn-aside-menu" title="Textarea"><i class="fa fa-pencil-square-o" ></i></button>
+                        <button class="btn btn-aside-menu" title="Select"><i class="fa fa-chevron-down" ></i></button>
+                        <button class="btn btn-aside-menu" title="Button"><i class="fa fa-square" ></i></button>
                     </div>                    
                 </aside>
 
@@ -144,14 +144,14 @@
         </div>
 
         <div class="dropdown-menu dropdown-menu-sm" id="context-menu" style="min-width:250px">
-            <a class="dropdown-item" href="#" onclick="toggleCol();">
+            <a class="dropdown-item" href="#" onclick="changeColSize();">
                 <i class="mdi mdi-compare-arrows"></i> <span style="position:absolute;margin:5px 10px">Switch Column Size</span>
             </a>
             <a class="dropdown-item" href="#">Bla bla bla</a>
             <a class="dropdown-item" href="#">Bla bla bla</a>
             <a class="dropdown-item" href="#">Bla bla bla</a>
         </div>
-
+        <div id="snackbar">...</div>
         <div class="main-menu"></div>
         <div class="right-menu"></div>         
         <button id="toggleRightMenu" class="btn btn-light"><i class="mdi mdi-first-page"></i></button>
@@ -161,10 +161,7 @@
         <script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>
         <script src="/assets/jquery-confirm/dist/jquery-confirm.min.js"></script>
         <script src="/assets/dragula/dragula.min.js"></script>
-        <script src="/assets/ww/js/layout.js"></script>
-        <script src="/assets/ww/js/object-inspector.js"></script>
         <script src="/assets/ww/js/core.js"></script>
-        <script src="/assets/ww/js/events.js"></script>
         <script src="/source/js/htmlVisualEditor.js"></script>
         <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.5.0/js/bootstrap4-toggle.min.js"></script>
         <script src="/source/js/app.js"></script>
