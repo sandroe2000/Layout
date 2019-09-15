@@ -1,0 +1,109 @@
+html,
+body {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+main.central {
+    /*margin-left: 200px;*/
+    float: left;
+    width: 100%;
+    height: calc(100vh - 106px);
+    z-index: 1000;
+    margin-bottom: 10px;
+}
+
+aside.left {
+    position: absolute;
+    top: 0px;
+    float: left;
+    width: 200px;
+    height: 100vh;
+    background-color: #F5F5F5;
+    padding: 10px;
+    /*border: 1px solid red;*/
+}
+aside.left .card-header {
+    padding: 0px;
+    margin-top: -1px;
+    margin-bottom: -1px;
+    border-bottom: none;
+}
+aside.left .card-body {
+    padding: 0px;
+}
+
+aside.left .card-body .list-group-item {
+    position: relative;
+    display: block;
+    padding: 5px 10px;
+    margin-bottom: -1px;
+    background-color: #fff;
+    border: 1px solid rgba(0,0,0,.125);
+}
+
+section.top {
+    width: 100%;
+    height: calc(50vh - 67px);
+    z-index: 1001;
+    /*border: 1px solid green;*/
+}
+section.top div.content {
+    position: absolute;
+    /*left: 200px;*/
+    width: calc(100vw - 200px);
+    height: calc(50vh - 67px);
+    /*background-color: cyan;*/
+    padding: 10px;
+    overflow-y: auto;
+}
+section.bottom {
+    position: relative;
+    /*left: 200px;*/
+    width: calc(100vw - 200px);
+    height: calc(50vh - 67px);
+    z-index: 1002;
+    /*border: 1px solid blue;*/
+}
+
+section.bottom div.tab-content div.tab-pane {
+    height: calc(50vh - 67px);
+    padding: 10px;
+    overflow-y: auto;
+}
+
+#smartwizard {
+    margin-left: 200px;
+}
+.sw-theme-arrows>ul.step-anchor>li>a,
+.sw-theme-arrows>ul.step-anchor>li>a:hover {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.sw-theme-arrows .step-content {
+    padding: 0;
+}
+
+div.btn-toolbar.sw-toolbar.sw-toolbar-bottom.justify-content-end {
+    position: relative;
+    /*left: 200px;*/
+    width: calc(100vw - 200px);
+}
+
+section.bottom .nav-tabs .nav-link {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+section.bottom .nav-tabs .nav-item.show .nav-link, 
+section.bottom .nav-tabs .nav-link {
+    margin-left: 10px;
+}
+
+section.bottom .nav-tabs .nav-item.show .nav-link, 
+section.bottom .nav-tabs .nav-link.active {
+    color: #495057;
+    background-color: #fff;
+    border-color: #dee2e6 #dee2e6 #fff;
+    margin-left: 10px;
+}

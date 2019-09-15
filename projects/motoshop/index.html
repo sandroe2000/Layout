@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="stylesheet" href="../../assets/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../assets/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="../../assets/material-design-icons/css/material-icons.min.css" />
+    <link rel="stylesheet" href="../../assets/smartWizard/dist/css/smart_wizard.min.css" />
+    <link rel="stylesheet" href="../../assets/smartWizard/dist/css/smart_wizard_theme_arrows.min.css" />
+    <link rel="stylesheet" href="css/motoshop.css" />
+    <title>CRM Lite</title>
+  </head>
+  <body>    
+    <aside class="left">
+      <div class="input-group mb-2">
+        <input type="text" class="form-control" id="search">
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button" id="button-addon2">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </button>
+        </div>
+      </div>
+      <div id="accordion">
+
+        <div class="card">
+          <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+              <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Telefony
+              </button>
+            </h5>
+          </div>      
+          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+            <div class="card-body">
+                <ul class="list-group">
+                  <li class="list-group-item">Dial</li>
+                  <li class="list-group-item">On/Off</li>
+                  <li class="list-group-item">Hold</li>
+                  <li class="list-group-item">Mote</li>
+                  <li class="list-group-item">Transfer</li>
+                </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header" id="headingTwo">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                Operations
+              </button>
+            </h5>
+          </div>
+          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+            <div class="card-body">
+                <ul class="list-group">
+                  <li class="list-group-item">Bla</li>
+                  <li class="list-group-item">Bla</li>
+                  <li class="list-group-item">Bla</li>
+                </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header" id="headingThree">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                Customizations
+              </button>
+            </h5>
+          </div>
+          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">Bla</li>
+                <li class="list-group-item">Bla</li>
+                <li class="list-group-item">Bla</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </aside>
+    <div id="smartwizard">
+      <ul>
+        <li><a href="#step-1">Dados da Pessoa</a></li>
+        <li><a href="#step-2">Manifesto</a></li>
+        <li><a href="#step-3">Informações</a></li>
+      </ul>
+      <div>
+        <div id="step-1" class="pessoa">
+          <main class="central">            
+            <section class="top">
+              <div class="content">
+                <p style="height:450px">&nbsp;</p>
+              </div>
+            </section>
+            <section class="bottom">
+              <!-- Nav tabs -->
+              <ul class="nav nav-tabs" id="myTab" role="tablist">
+                  <li class="nav-item">
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="messages-tab" data-toggle="tab" href="#messages" role="tab" aria-controls="messages" aria-selected="false">Messages</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="settings-tab" data-toggle="tab" href="#settings" role="tab" aria-controls="settings" aria-selected="false">Settings</a>
+                  </li>
+                </ul>                
+                <!-- Tab panes -->
+                <div class="tab-content">
+                  <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <p style="height:450px">&nbsp;</p>
+                  </div>
+                  <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
+                  <div class="tab-pane" id="messages" role="tabpanel" aria-labelledby="messages-tab">...</div>
+                  <div class="tab-pane" id="settings" role="tabpanel" aria-labelledby="settings-tab">...</div>
+                </div>
+            </section>
+          </main>
+        </div>
+        <div id="step-2" class="">
+            <main class="central">
+              <section class="top">
+                <div class="content">manifesto</div>
+              </section>
+              <section class="bottom"></section>
+            </main>
+        </div>
+        <div id="step-3" class="">
+            <main class="central">
+              <section class="top">
+                  <div class="content">informação</div>
+              </section>
+              <section class="bottom"></section>
+            </main>
+        </div>
+      </div>
+    </div>
+    <script src="../../assets/jquery/dist/jquery.min.js"></script>
+    <script src="../../assets/popper.js/dist/umd/popper.min.js"></script>
+    <script src="../../assets/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../../assets/smartWizard/dist/js/jquery.smartWizard.min.js"></script>
+    <script src="js/motoshop.js"></script>
+  </body>
+</html>

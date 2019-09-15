@@ -3,12 +3,12 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="icon" href="/img/favicons/favicon.ico" />
-        <link rel="stylesheet" href="/assets/bootstrap/dist/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="/assets/font-awesome/css/font-awesome.min.css" />
-        <link rel="stylesheet" href="/assets/material-design-icons/css/material-icons.min.css" />
-        <link rel="stylesheet" href="/assets/monaco-editor/min/vs/editor/editor.main.css" data-name="vs/editor/editor.main" />
-        <link rel="stylesheet" href="/source/css/app.css" />
+        <link rel="icon" href="img/favicons/favicon.ico" />
+        <link rel="stylesheet" href="assets/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="assets/material-design-icons/css/material-icons.min.css" />
+        <link rel="stylesheet" href="assets/monaco-editor/min/vs/editor/editor.main.css" data-name="vs/editor/editor.main" />
+        <link rel="stylesheet" href="source/css/app.css" />
         <title>Layout</title>
     </head>
     <body>
@@ -21,12 +21,12 @@
             <button class="btn btn-light btn-sm" type="button">
                 <i class="mdi mdi-add-circle-outline"></i>
             </button>
-            <a href="/project.html">
+            <a href="project.html">
                 <button class="btn btn-light btn-sm" type="button">
                     <i class="mdi mdi-code"></i>
                 </button>
             </a>
-            <a href="/profile.html">               
+            <a href="profile.html">               
                 <button class="btn btn-light btn-sm" type="button">
                     <i class="mdi mdi-person"></i>
                 </button>
@@ -35,7 +35,7 @@
                 <button class="btn btn-light btn-sm" type="button">
                     <i class="mdi mdi-report-problem"></i>
                 </button>
-                <a href="/index.html">
+                <a href="index.html">
                     <button class="btn btn-light btn-sm" type="button">
                         <i class="mdi mdi-exit-to-app"></i>
                     </button>
@@ -58,9 +58,9 @@
                 <i class="fa fa-folder" aria-hidden="true"></i>
 
                 <ol class="breadcrumb breadcrumb-folder">
-                    <li class="breadcrumb-item"><a href="/source.html?folderId=1">woolaweaver</a></li>
-                    <li class="breadcrumb-item"><a href="/source.html?folderId=2">node_modules</a></li>
-                    <li class="breadcrumb-item"><a href="/source.html?folderId=3">ansi-regex</a></li>
+                    <li class="breadcrumb-item"><a href="source.html?folderId=1">woolaweaver</a></li>
+                    <li class="breadcrumb-item"><a href="source.html?folderId=2">node_modules</a></li>
+                    <li class="breadcrumb-item"><a href="source.html?folderId=3">ansi-regex</a></li>
                 </ol>
 
             </nav>
@@ -117,14 +117,20 @@
                 </div>
             </div>
         </div>
+
+        <div id="msgContainer"></div>
+        <div class="main-menu"></div> 
+        <div class="right-menu"></div>         
+        <button id="toggleRightMenu" class="btn btn-light"><i class="mdi mdi-first-page"></i></button>
         
-	    <script src="/assets/jquery/dist/jquery.min.js"></script>
-        <script src="/assets/popper.js/dist/umd/popper.min.js"></script>
-        <script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script>var require = { paths: { 'vs': '/assets/monaco-editor/min/vs' } };</script>
-        <script src="/assets/monaco-editor/min/vs/loader.js"></script>
-        <script src="/assets/monaco-editor/min/vs/editor/editor.main.nls.js"></script>
-        <script src="/assets/monaco-editor/min/vs/editor/editor.main.js"></script>
-        <script src="/source/js/textEditorDiff.js"></script>
+	    <script src="assets/jquery/dist/jquery.min.js"></script>
+        <script src="assets/popper.js/dist/umd/popper.min.js"></script>
+        <script src="assets/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script>var require = { paths: { 'vs': 'assets/monaco-editor/min/vs' } };</script>
+        <script src="assets/monaco-editor/min/vs/loader.js"></script>
+        <script src="assets/monaco-editor/min/vs/editor/editor.main.nls.js"></script>
+        <script src="assets/monaco-editor/min/vs/editor/editor.main.js"></script>
+        <script src="source/js/textEditorDiff.js"></script>
+        <script src="source/js/app.js"></script>
     </body>
 </html>

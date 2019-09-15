@@ -92,7 +92,7 @@ function getModelId(file){
 }
 
 $('#btnVisualEditor').on('click', function(event){
-    window.location.href = '/htmlVisualEditor.html?fileId=0';
+    window.location.href = 'htmlVisualEditor.html?fileId=0';
 });
 
 $('#menuTextEditor').on('change', function(event){
