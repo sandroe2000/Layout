@@ -482,3 +482,7 @@ div.main-content.container-fluid.edit [class*="checkbox"] {
     }
 }
 /* End - Snackbar */
+
+.form-check {
+	width: min-content !important;
+}

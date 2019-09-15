@@ -4,7 +4,11 @@ let editor = null;
 
 $(document).ready(function() {
 
+    $('#chkRowBorders').prop('indeterminate', true);
+    $('#chkColBorders').prop('indeterminate', true);
+
     let fileUrl = '/source/css/app.css';
+
     fetch(fileUrl)
         .then(function(response) {
             return response.text();

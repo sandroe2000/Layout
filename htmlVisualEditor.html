@@ -9,7 +9,6 @@
         <link rel="stylesheet" href="/assets/material-design-icons/css/material-icons.min.css" />
         <link rel="stylesheet" href="/assets/dragula/dragula.min.css" />
         <link rel="stylesheet" href="/assets/jquery-confirm/dist/jquery-confirm.min.css">
-        <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.5.0/css/bootstrap4-toggle.min.css" rel="stylesheet">
         <link rel="stylesheet" href="/source/css/app.css" />
         <style>
             .hide {
@@ -85,13 +84,13 @@
                 <div class="topbar-buttons">
                     <form class="form-inline">
 
-                        <div class="form-check form-check-inline">
-                            <label for="chkColBorders" class="form-check-label mr-2">Col Borders</label>
-                            <input id="chkColBorders" type="checkbox" checked data-toggle="toggle" data-width="50" data-style="fast" />
+                        <div class="custom-control custom-control-inline custom-switch">
+                            <input id="chkColBorders" type="checkbox" class="custom-control-input" checked />
+                            <label for="chkColBorders" class="custom-control-label mr-2">Col Borders</label>
                         </div>
-                        <div class="form-check form-check-inline">
-                            <label for="chkRowBorders" class="form-check-label mr-2">Row Borders</label>
-                            <input id="chkRowBorders" type="checkbox" checked data-toggle="toggle" data-width="40" data-style="fast" />
+                        <div class="custom-control custom-control-inline custom-switch">
+                            <input id="chkRowBorders" type="checkbox" class="custom-control-input" checked />
+                            <label for="chkRowBorders" class="custom-control-label mr-2">Row Borders</label>
                         </div>
 
                         <button class="btn btn-light mr-2" type="button" style="border: 1px solid #CECECE; width:100px">Cancel</button>
@@ -123,9 +122,9 @@
                         <button class="btn btn-aside-menu" title="Input Email"><i class="fa fa-envelope-o" ></i></button>
                         <button class="btn btn-aside-menu" title="Input Password"><i class="fa fa-ellipsis-h" ></i></button>
                         <button class="btn btn-aside-menu" title="Input Number"><i class="fa fa-sort" ></i></button>
-                        <button class="btn btn-aside-menu" title="Input Checkbox"><i class="fa fa-check-square-o" ></i></button>
+                        <button class="btn btn-aside-menu" title="Textarea"><i class="fa fa-text-width" aria-hidden="true"></i></button>
                         <button class="btn btn-aside-menu" title="Input Radio"><i class="fa fa-dot-circle-o" ></i></button>
-                        <button class="btn btn-aside-menu" title="Textarea"><i class="fa fa-pencil-square-o" ></i></button>
+                        <button class="btn btn-aside-menu" title="Input Checkbox"><i class="fa fa-check-square-o" ></i></button>
                         <button class="btn btn-aside-menu" title="Select"><i class="fa fa-chevron-down" ></i></button>
                         <button class="btn btn-aside-menu" title="Button"><i class="fa fa-square" ></i></button>
                     </div>                    
@@ -143,14 +142,7 @@
             </div>            
         </div>
 
-        <div class="dropdown-menu dropdown-menu-sm" id="context-menu" style="min-width:250px">
-            <a class="dropdown-item" href="#" onclick="changeColSize();">
-                <i class="mdi mdi-compare-arrows"></i> <span style="position:absolute;margin:5px 10px">Switch Column Size</span>
-            </a>
-            <a class="dropdown-item" href="#">Bla bla bla</a>
-            <a class="dropdown-item" href="#">Bla bla bla</a>
-            <a class="dropdown-item" href="#">Bla bla bla</a>
-        </div>
+        <div class="dropdown-menu dropdown-menu-sm" id="context-menu" style="min-width:300px"></div>
         <div id="snackbar">...</div>
         <div class="main-menu"></div>
         <div class="right-menu"></div>         
@@ -161,9 +153,9 @@
         <script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>
         <script src="/assets/jquery-confirm/dist/jquery-confirm.min.js"></script>
         <script src="/assets/dragula/dragula.min.js"></script>
+        <script src="/assets/ww/js/contexmenu.js"></script>
         <script src="/assets/ww/js/core.js"></script>
         <script src="/source/js/htmlVisualEditor.js"></script>
-        <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.5.0/js/bootstrap4-toggle.min.js"></script>
         <script src="/source/js/app.js"></script>
     </body>
 </html>

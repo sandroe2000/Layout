@@ -47,16 +47,22 @@ function getLabel() {
 
 function getInput(type) {
 
-    //For input type: checkbox, radio
-    if (type == 'checkbox' || type == 'radio') {
-
-        return  `<div>
+    if (type == 'radio') {
+        
+        return  `<div class="form-check">
                     <input id="inp${getId()}" type="${type}" class="form-check-input" />
-                    <label id="lbl${getId()}">Label</label>
+                    <label id="lbl${getId()}" class="form-check-label">Label</label>
                 </div>`;
     }
 
-    //For input type: text, password, date, number 
+    if (type == 'checkbox') {
+        let ipnId = getId();
+        return `<div class="custom-control custom-switch">
+                    <input id="${ipnId}" type="checkbox" class="custom-control-input" />
+                    <label id="inp${getId()}" for="${ipnId}" class="custom-control-label mr-2">Label</label>
+                </div>`;
+    }
+
     return `<input id="inp${getId()}" type="${type}" class="form-control" />`;
 }
 
@@ -268,43 +274,21 @@ String.prototype.toDomElement = function() {
 function setEventToDOM(node){
     setEventsRow(node);
     setEventsCol(node);
+    setEventsInput(node);
 }
 
 function setEventsCol(node) { 
-
-    if (node.hasAttribute && (node.classList.contains("col-md-6") || node.classList.contains("col-md-12")) ){        
-
+    if (node.hasAttribute && (node.classList.contains("col-md-6") || node.classList.contains("col-md-12")) ){     
         drakeMenu.containers.push(node);
-
-        $(node).on('contextmenu', function(event) {
-
-            if(!event.target.classList.contains("col-md-6") && !event.target.classList.contains("col-md-12")) return false;
-
-            var top = event.pageY - 10;
-            var left = event.pageX - 90;
-
-            $("#context-menu").attr('idCol', event.target.id);
-            $("#context-menu").css({
-                display: "block",
-                top: top,
-                left: left
-            }).addClass("show");            
-            return false; 
-        }).on("click", function() {
-            $("#context-menu").removeClass("show").hide();
-        });
+        //setContextmenu(node);        
     }
 }
 
-function changeColSize(){
-    let col = $("#context-menu").attr('idCol');
-    $(`#${col}`).toggleClass('col-md-6 col-md-12');
-    domHasChanged();
+function setEventsInput(node) { 
+    if (node.hasAttribute && (node.classList.contains("form-control") || node.classList.contains("custom-control-input")) ){     
+        //setContextmenu(node);        
+    }
 }
-
-$("#context-menu a").on("click", function() {
-    $(this).parent().removeClass("show").hide();
-});
 
 function setEventsRow(node) {    
   
@@ -414,6 +398,7 @@ function undoRedo(action) {
     pushContainer(document.querySelector('.edit'));
     
     listDOM(document.querySelector('.main-content.container-fluid.edit'), setEventToDOM);
+    setContextmenu();
     domHasChanged();
 }
 
@@ -530,4 +515,5 @@ function setSnakBar(msg) {
 (function() {
     dragFromMenu();
     setRuler();
+    setContextmenu();
 })();
