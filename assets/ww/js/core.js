@@ -29,20 +29,20 @@ function setRuler(){
     }
 }
 
-function getId(){
-    return contId++;
+function getId(prefix){
+    return `${prefix}${Date.now()}`;
 }
 
 function getRow() {
-    return `<div id="row${getId()}" class="row"></div>`;
+    return `<div id="${getId('row')}" class="row"></div>`;
 }
 
 function getColumn() {
-    return `<div id="col${getId()}" class="col-md-6"></div>`;
+    return `<div id="${getId('col')}" class="col-md-6"></div>`;
 }
 
 function getLabel() {
-    return `<label id="lbl${getId()}">Label</label>`;
+    return `<label id="${getId('lbl')}">Label</label>`;
 }
 
 function getInput(type) {
@@ -50,20 +50,20 @@ function getInput(type) {
     if (type == 'radio') {
         
         return  `<div class="form-check">
-                    <input id="inp${getId()}" type="${type}" class="form-check-input" />
-                    <label id="lbl${getId()}" class="form-check-label">Label</label>
+                    <input id="${getId('inp')}" type="${type}" class="form-check-input" />
+                    <label id="${getId('lbl')}" class="form-check-label">Label</label>
                 </div>`;
     }
 
     if (type == 'checkbox') {
-        let ipnId = getId();
+        let ipnId = getId('ipn');
         return `<div class="custom-control custom-switch">
                     <input id="${ipnId}" type="checkbox" class="custom-control-input" />
-                    <label id="inp${getId()}" for="${ipnId}" class="custom-control-label mr-2">Label</label>
+                    <label id="${getId('lbl')}" for="${ipnId}" class="custom-control-label mr-2">Label</label>
                 </div>`;
     }
 
-    return `<input id="inp${getId()}" type="${type}" class="form-control" />`;
+    return `<input id="${getId('inp')}" type="${type}" class="form-control" />`;
 }
 
 function getSideMenuSnippet(code) {
@@ -73,17 +73,17 @@ function getSideMenuSnippet(code) {
 }
 
 function getSelect() {
-    return `<select id="sel${getId()}" class="form-control">
+    return `<select id="${getId('sel')}" class="form-control">
                 <option>Selecione uma opção</option>
             </select>`;
 }
 
 function getTextarea(){
-    return `<textarea id="txt${getId()}" class="form-control" rows="3"></textarea>`;
+    return `<textarea id="${getId('txt')}" class="form-control" rows="3"></textarea>`;
 }
 
 function getButton(){
-    return `<button id="btn${getId()}" type="button" class="btn btn-light">Light</button>`;
+    return `<button id="${getId('btn')}" type="button" class="btn btn-light">Light</button>`;
 }
 
 function setElementDrag(el) {
@@ -99,7 +99,7 @@ function setElementDrag(el) {
         case 'Input Text':
             node = getInput('text');
             break;
-        case 'Input E-mail':
+        case 'Input Email':
             node = getInput('email');
             break;
         case 'Input Password':
@@ -258,7 +258,7 @@ function replaceNodeId(node) {
     if (id.indexOf('btn') > -1) prefixId = 'btn';
     //TODO - OUTROS ID.....
 
-    node.setAttribute('id', prefixId.concat(getId()));
+    node.setAttribute('id', getId(prefixId));
 }
 
 function pushContainer(el) {

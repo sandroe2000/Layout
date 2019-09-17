@@ -1,54 +1,87 @@
 ;
 'use strict';
 
-function setContextmenu(){
-    
-    $('.main-content.container-fluid.edit').on('contextmenu', function(event) {
-        debugger;
-        let template = '';
+function setContextmenu() {
 
-        let LabelTemplate = `<div class="form-row mb-2">
+    $('.main-content.container-fluid.edit').on('contextmenu', createContexMenu);
+
+    $('.main-content.container-fluid.edit').on("click", function () {
+        $("#context-menu").hide('fast', changeOnClose);
+    });
+}
+
+function createContexMenu(event){
+    let template = '';
+        let inputArr = ['text', 'password', 'number', 'email', 'tel', 'url', 'search', 'date', 'datetime', 'datetime-local', 'time', 'month', 'week'];
+
+        let numberTemplate = `<div class="form-row mb-2">
+                                <div class="col-4 text-right">
+                                    <label class="mb-2" for="idInput">Min:</label>
+                                </div>
+                                <div class="col-8">
+                                    <input id="min" type="number" class="form-control" value="0" />
+                                </div>
+                            </div>
+                            <div class="form-row mb-2">
+                                <div class="col-4 text-right">
+                                    <label class="mb-2" for="idInput">Max:</label>
+                                </div>
+                                <div class="col-8">
+                                    <input id="min" type="number" class="form-control" value="0" />
+                                </div>
+                            </div>`;
+
+        let rowsTemplate = `<div class="form-row mb-2">
+                                <div class="col-4 text-right">
+                                    <label class="mb-2" for="idInput">Rows:</label>
+                                </div>
+                                <div class="col-8">
+                                    <input id="rows" type="number" class="form-control" value="0" min="3" max="30" />
+                                </div>
+                            </div>`;
+
+        let labelTemplate = `<div class="form-row mb-2">
                                 <div class="col-4 text-right">
                                     <label class="mb-2" for="idInput">Label:</label>
                                 </div>
                                 <div class="col-8">
-                                    <input id="LabelInput" type="text" class="form-control" />
+                                    <input id="labelInput" type="text" class="form-control" />
                                 </div>
                             </div>`;
 
         let orientationTemplate = `<div class="form-row mb-2">
-                                      <div class="col-4 text-right">
-                                          <label class="mb-2" for="idInput">Orientation:</label>
-                                      </div>
-                                      <div class="col-8">
-                                        <div class="custom-control custom-radio">
-                                          <input type="radio" id="vertical" name="orientation" class="custom-control-input" />
-                                          <label class="custom-control-label" for="vertical">Vertical</label>
+                                        <div class="col-4 text-right">
+                                            <label class="mb-2" for="idInput">Orientation:</label>
                                         </div>
-                                        <div class="custom-control custom-radio">
-                                          <input type="radio" id="horizontal" name="orientation" class="custom-control-input" checked />
-                                          <label class="custom-control-label" for="horizontal">Horizontal</label>
+                                        <div class="col-8">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="vertical" name="orientation" class="custom-control-input" />
+                                            <label class="custom-control-label" for="vertical">Vertical</label>
                                         </div>
-                                      </div>
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="horizontal" name="orientation" class="custom-control-input" checked />
+                                                <label class="custom-control-label" for="horizontal">Horizontal</label>
+                                            </div>
+                                        </div>
                                   </div>`;
 
         let idTemplate = `<div class="form-row mb-2">
                             <div class="col-4 text-right">
-                              <label class="mb-2" for="idInput">Id:</label>
+                                <label class="mb-2" for="idInput">Id:</label>
                             </div>
                             <div class="col-8">
-                              <input id="idInput" type="text" class="form-control" />
+                                <input id="elementId" type="text" class="form-control" />
                             </div>
-                          </div>`;
+                        </div>`;
 
         let placeholderTemplate = `<div class="form-row mb-2">
-                                      <div class="col-4 text-right">
-                                        <label class="mb-2" for="idInput">Placeholder:</label>
-                                      </div>
-                                      <div class="col-8">
-                                        <input id="idInput" type="text" class="form-control" />
-                                      </div>
-                                  </div>`;
+                                        <div class="col-4 text-right">
+                                            <label class="mb-2" for="idInput">Placeholder:</label>
+                                        </div>
+                                        <div class="col-8">
+                                            <input id="idInput" type="text" class="form-control" />
+                                        </div>
+                                    </div>`;
 
         let marginTemplate = `<div class="form-row mb-2">
                                 <div class="col-4 text-right">
@@ -83,33 +116,147 @@ function setContextmenu(){
                                     </div>
                                 </div>
                             </div>`;
-        
-        
+
+        let btnTemplate = `<div class="form-row">
+                                <div class="col-4 text-right">
+                                    <label>Outline:</label>
+                                </div>
+                                <div class="col-8">
+                                    <div class="custom-control custom-switch">
+                                        <input id="outline" type="checkbox" class="custom-control-input" />
+                                        <label for="outline" class="custom-control-label mr-2"></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-4 text-right">
+                                    <label for="idInput" style="margin-bottom:0px;">Colors:</label>
+                                </div>
+                                <div class="col-4">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" id="light" name="colors" class="custom-control-input" checked />
+                                        <label class="custom-control-label" for="light">Light</label>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" id="secondary" name="colors" class="custom-control-input" />
+                                        <label class="custom-control-label" for="secondary">Secondary</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-4 text-right"></div>
+                                <div class="col-4">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" id="success" name="colors" class="custom-control-input" />
+                                        <label class="custom-control-label" for="success">Success</label>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" id="danger" name="colors" class="custom-control-input" />
+                                        <label class="custom-control-label" for="danger">Danger</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-4 text-right"></div>
+                                <div class="col-4">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" id="warning" name="colors" class="custom-control-input" />
+                                        <label class="custom-control-label" for="warning">Warning</label>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" id="info" name="colors" class="custom-control-input" />
+                                        <label class="custom-control-label" for="info">Info</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row mb-2">
+                                <div class="col-4 text-right"></div>
+                                <div class="col-4">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" id="primary" name="colors" class="custom-control-input" />
+                                        <label class="custom-control-label" for="primary">Primary</label>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" id="dark" name="colors" class="custom-control-input" />
+                                        <label class="custom-control-label" for="dark">Dark</label>
+                                    </div>
+                                </div>
+                            </div>`;
+
         let col = `<a class="dropdown-item" href="#" onclick="changeColSize();">
                     <i class="mdi mdi-compare-arrows"></i> <span style="position:absolute;margin:5px 10px">Switch Column Size</span>
-                  </a>`;        
+                  </a>`;
+
         let input = `<form style="margin:10px">
+                        <h5>Input ${event.target.type}</h5>
+                        <hr />
                         ${idTemplate}
                         ${placeholderTemplate}
                         ${marginTemplate}
                     </form>`;
-        let check = `<form style="margin:10px">
+        let textarea = `<form style="margin:10px">
+                        <h5>Textarea</h5>
+                        <hr />
                         ${idTemplate}
-                        ${LabelTemplate}
+                        ${rowsTemplate}
+                        ${marginTemplate}
+                    </form>`;
+        let checkOrRadio = `<form style="margin:10px">
+                        <h5>Input ${event.target.type || 'checkbox'}</h5>
+                        <hr />
+                        ${idTemplate}
+                        ${labelTemplate}
                         ${orientationTemplate}
                         ${marginTemplate}
                     </form>`;
+        let number = `<form style="margin:10px">
+                        <h5>Input ${event.target.type}</h5>
+                        <hr />
+                        ${idTemplate}
+                        ${numberTemplate}
+                        ${marginTemplate}
+                    </form>`;
+        let btn = `<form style="margin:10px">
+                      <h5>button btn-light</h5>
+                      <hr />
+                        ${idTemplate}
+                        ${labelTemplate}
+                        ${btnTemplate}
+                        ${marginTemplate}
+                    </form>`;
 
-        if(event.target.classList.contains("form-control")){
+
+        if (event.target.type == 'textarea') {
+            template = textarea;
+        }
+        if (inputArr.indexOf(event.target.type) >= 0) {
             template = input;
         }
-        if(event.target.classList.contains("custom-control-label")){
-            template = check;
+        if (event.target.classList.contains("custom-control-label")) {
+            template = checkOrRadio;
         }
-        if(event.target.classList.contains("col-md-6") || event.target.classList.contains("col-md-12")){
+        if (event.target.type == 'radio') {
+            template = checkOrRadio;
+        }
+        if (event.target.type == 'number') {
+            template = number;
+        }
+        if (event.target.classList.contains("col-md-6") || event.target.classList.contains("col-md-12")) {
             template = col;
         }
-        if(!template){
+        if (event.target.classList.contains("btn")) {
+            template = btn;            
+        }
+        if (!template) {
+            $("#context-menu").hide('fast', changeOnClose);
             return false;
         }
 
@@ -118,27 +265,134 @@ function setContextmenu(){
         let top = event.pageY + 5;
         let left = event.pageX + 5;
 
-        $("#context-menu").attr('idCol', event.target.id);
+        $("#context-menu").attr('clickedId', event.target.id);
         $("#context-menu").css({
             display: "block",
             top: top,
             left: left
         });
-        $("#context-menu").addClass("show");            
-        return false; 
+        $("#context-menu").show('fast');
 
-    });
-    $('.main-content.container-fluid.edit').on("click", function() {
-        $("#context-menu").removeClass("show").hide();
-    });
+        //-- elemento html que iniciou o contexmenu
+        let clicked = $("#context-menu").attr('clickedId');
+
+        //--CARREGA ID
+        $('#elementId').val($(`#${clicked}`).attr('id'));
+
+        //--CARREGA LABEL
+        $('#labelInput').val($(`#${clicked}`).text());
+
+        //CARREGA MARGIN
+        if(findClass('mt-')){ 
+            $('#mt').val(findClass('mt-').replace('mt-', ''));
+        }
+        if(findClass('mr-')){ 
+            $('#mr').val(findClass('mr-').replace('mr-', ''));
+        }
+        if(findClass('mb-')){ 
+            $('#mb').val(findClass('mb-').replace('mb-', ''));
+        }
+        if(findClass('ml-')){ 
+            $('#ml').val(findClass('ml-').replace('ml-', ''));
+        }
+
+        //--CARREGA OUTLINE
+        if(findClass('btn-outline-')){
+            $('#outline').attr('checked', true);
+        }
+
+        //-- CARREGA BTN COLOR   
+        let btnClassId = '';
+        let isBtn = findClass('btn-')
+        if(isBtn){
+            btnClassId = isBtn.replace('btn-', '').replace('outline-', '');
+            $(`#${btnClassId}`).attr('checked', true);
+        }
+
+        //-- CARREGA BTN HEADER
+        $("#context-menu").find('h5').html(`button btn-${btnClassId}`);
+
+        //-- CONTEXMENU SET CHANGES
+
+        //--CHANGE LABEL
+        $('#labelInput').change(function(event){
+            $(`#${clicked}`).text( $('#labelInput').val() );
+        });
+
+        //-- MARGIN CHANGE
+        $('#mt').change(function(event){ 
+            if(findClass('mt-')){           
+                document.querySelector(`#${clicked}`).classList.remove(findClass('mt-'));
+            }
+            document.querySelector(`#${clicked}`).classList.add(`${'mt-'}${event.target.value}`);            
+        });
+        $('#mr').change(function(event){ 
+            if(findClass('mr-')){           
+                document.querySelector(`#${clicked}`).classList.remove(findClass('mr-'));
+            }
+            document.querySelector(`#${clicked}`).classList.add(`${'mr-'}${event.target.value}`);            
+        });
+        $('#mb').change(function(event){ 
+            if(findClass('mb-')){           
+                document.querySelector(`#${clicked}`).classList.remove(findClass('mb-'));
+            }
+            document.querySelector(`#${clicked}`).classList.add(`${'mb-'}${event.target.value}`);            
+        });
+        $('#ml').change(function(event){ 
+            if(findClass('ml-')){           
+                document.querySelector(`#${clicked}`).classList.remove(findClass('ml-'));
+            }
+            document.querySelector(`#${clicked}`).classList.add(`${'ml-'}${event.target.value}`);            
+        });
+
+        //--OUTLINE CHANGE
+        $('#outline').click(function(event){
+            $('input[name="colors"]:checked').click();
+        });
+
+        //--COLOR CHANGE
+        $('input[name="colors"]').click(function(event){
+            
+            let prefix = 'btn-';
+            let find = 'btn-';
+            
+            if($('#outline').prop('checked')==true){
+                prefix = 'btn-outline-';
+            }
+
+            if(findClass(find)){
+                document.querySelector(`#${clicked}`).classList.remove(findClass(find));
+                document.querySelector(`#${clicked}`).classList.add(`${prefix}${event.target.id}`);
+                $("#context-menu").find('h5').html(`button ${prefix}${event.target.id}`);
+            }
+        });
+
+        return false;
 }
 
-function changeColSize(){
-    let col = $("#context-menu").attr('idCol');
-    $(`#${col}`).toggleClass('col-md-6 col-md-12');
+function changeColSize() {
+    let clicked = $("#context-menu").attr('clickedId');
+    $(`#${clicked}`).toggleClass('col-md-6 col-md-12');
     domHasChanged();
 }
 
-$("#context-menu a").click(function() {
-    $(this).parent().removeClass("show").hide();
-});
+function changeOnClose(){
+    //CHANGE ID
+    if($('#elementId').val() != ''){
+        let clicked = $("#context-menu").attr('clickedId');
+        $(`#${clicked}`).attr('id', $('#elementId').val());            
+    }
+}
+
+function findClass(partial){
+    let clicked = $("#context-menu").attr('clickedId');
+    let obj = document.querySelector(`#${clicked}`);
+    let ret = "";
+
+    for(let i=0; i<obj.classList.length; i++){
+        if(obj.classList.item(i).indexOf(partial)>=0){
+            ret = obj.classList.item(i);
+        }
+    }
+    return ret;
+}

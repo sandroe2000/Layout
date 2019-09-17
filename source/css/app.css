@@ -483,6 +483,15 @@ div.main-content.container-fluid.edit [class*="checkbox"] {
 }
 /* End - Snackbar */
 
-.form-check {
+.form-check,
+.custom-control.custom-switch {
 	width: min-content !important;
+}
+
+label {
+	white-space: nowrap;
+}
+
+.btn.btn-light {
+	border:1px solid #CECECE;
 }
