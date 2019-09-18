@@ -36,7 +36,7 @@ function createContexMenu(event){
                                     <label class="mb-2" for="idInput">Rows:</label>
                                 </div>
                                 <div class="col-8">
-                                    <input id="rows" type="number" class="form-control" value="0" min="3" max="30" />
+                                    <input id="txtRows" type="number" class="form-control" value="0" min="3" max="30" />
                                 </div>
                             </div>`;
 
@@ -55,11 +55,11 @@ function createContexMenu(event){
                                         </div>
                                         <div class="col-8">
                                             <div class="custom-control custom-radio">
-                                                <input type="radio" id="vertical" name="orientation" class="custom-control-input" />
+                                                <input type="radio" id="vertical" name="orientation" class="custom-control-input" checked />
                                             <label class="custom-control-label" for="vertical">Vertical</label>
                                         </div>
                                             <div class="custom-control custom-radio">
-                                                <input type="radio" id="horizontal" name="orientation" class="custom-control-input" checked />
+                                                <input type="radio" id="horizontal" name="orientation" class="custom-control-input" />
                                                 <label class="custom-control-label" for="horizontal">Horizontal</label>
                                             </div>
                                         </div>
@@ -76,16 +76,16 @@ function createContexMenu(event){
 
         let placeholderTemplate = `<div class="form-row mb-2">
                                         <div class="col-4 text-right">
-                                            <label class="mb-2" for="idInput">Placeholder:</label>
+                                            <label class="mb-2" for="placeholder">Placeholder:</label>
                                         </div>
                                         <div class="col-8">
-                                            <input id="idInput" type="text" class="form-control" />
+                                            <input id="placeholder" type="text" class="form-control" />
                                         </div>
                                     </div>`;
 
         let marginTemplate = `<div class="form-row mb-2">
                                 <div class="col-4 text-right">
-                                    <label class="mb-2" for="idInput">Margin:</label>
+                                    <label class="mb-2">Margin:</label>
                                 </div>
                                 <div class="col-4">
                                     <div class="input-group mb-2">
@@ -193,6 +193,9 @@ function createContexMenu(event){
 
         let col = `<a class="dropdown-item" href="#" onclick="changeColSize();">
                     <i class="mdi mdi-compare-arrows"></i> <span style="position:absolute;margin:5px 10px">Switch Column Size</span>
+                  </a>
+                  <a class="dropdown-item" href="#" onclick="changeColAlign();">
+                    <i class="mdi mdi-compare-arrows"></i> <span style="position:absolute;margin:5px 10px">Switch Column Align</span>
                   </a>`;
 
         let input = `<form style="margin:10px">
@@ -225,7 +228,7 @@ function createContexMenu(event){
                         ${marginTemplate}
                     </form>`;
         let btn = `<form style="margin:10px">
-                      <h5>button btn-light</h5>
+                      <h5>button</h5>
                       <hr />
                         ${idTemplate}
                         ${labelTemplate}
@@ -309,8 +312,13 @@ function createContexMenu(event){
             $(`#${btnClassId}`).attr('checked', true);
         }
 
-        //-- CARREGA BTN HEADER
-        $("#context-menu").find('h5').html(`button btn-${btnClassId}`);
+        //-- CARREGA TEXTAREA ROWS
+        $('#txtRows').val($(`#${clicked}`).attr('rows'));
+        
+        //-- CHANGE TEXTAREA ROWS
+        $('#txtRows').change(function(event){
+            $(`#${clicked}`).attr('rows', $('#txtRows').val());
+        });
 
         //-- CONTEXMENU SET CHANGES
 
@@ -318,6 +326,13 @@ function createContexMenu(event){
         $('#labelInput').change(function(event){
             $(`#${clicked}`).text( $('#labelInput').val() );
         });
+
+        //--PLACEHOLDER
+        $('#placeholder').val($(`#${clicked}`).val());
+        $('#placeholder').change(function(event){
+            $(`#${clicked}`).attr('placeholder', $('#placeholder').val());
+        });
+
 
         //-- MARGIN CHANGE
         $('#mt').change(function(event){ 
@@ -363,7 +378,23 @@ function createContexMenu(event){
             if(findClass(find)){
                 document.querySelector(`#${clicked}`).classList.remove(findClass(find));
                 document.querySelector(`#${clicked}`).classList.add(`${prefix}${event.target.id}`);
-                $("#context-menu").find('h5').html(`button ${prefix}${event.target.id}`);
+                //$("#context-menu").find('h5').html(`button ${prefix}${event.target.id}`);
+            }
+        });
+
+        //-- CHANGE CHECKBOX/RADIO ORIENTATION
+        $('input[name="orientation"]').click(function(event){
+            
+            if($('#vertical').prop('checked')==true){
+                if(findClass('custom-control-inline')){
+                    document.querySelector(`#${clicked}`).classList.remove('custom-control-inline');
+                }
+            }
+
+            if($('#horizontal').prop('checked')==true){
+                if(!findClass('custom-control-inline')){
+                    document.querySelector(`#${clicked}`).classList.add('custom-control-inline');
+                }
             }
         });
 
@@ -382,6 +413,11 @@ function changeOnClose(){
         let clicked = $("#context-menu").attr('clickedId');
         $(`#${clicked}`).attr('id', $('#elementId').val());            
     }
+}
+
+function changeColAlign(){
+    let clicked = $("#context-menu").attr('clickedId');
+    $(`#${clicked}`).toggleClass('text-right text-left'); 
 }
 
 function findClass(partial){

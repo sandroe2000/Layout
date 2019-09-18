@@ -7,7 +7,7 @@ let ruler = document.querySelector('.main-ruler.container-fluid').childNodes[1];
 let footerBreadcrumb = document.querySelector('div.main-footer > ol.breadcrumb');
 let currentNodeInEdit = null;
 let currentCopyedNode = null;
-let maxLen = 100;
+let maxLen = 10;
 let currentContentNode = 0;
 
 window.addEventListener('keydown', function(event) {
@@ -403,6 +403,10 @@ function undoRedo(action) {
 }
 
 function removeNode(){
+
+    if($('.active').hasClass('edit')){
+        return false;
+    }
 
     $.confirm({
         title: 'Confirmação!',
