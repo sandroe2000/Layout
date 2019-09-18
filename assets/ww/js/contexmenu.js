@@ -383,17 +383,21 @@ function createContexMenu(event){
         });
 
         //-- CHANGE CHECKBOX/RADIO ORIENTATION
-        $('input[name="orientation"]').click(function(event){
-            
+        $('#vertical').click(function(event){
+            //debugger;
             if($('#vertical').prop('checked')==true){
-                if(findClass('custom-control-inline')){
-                    document.querySelector(`#${clicked}`).classList.remove('custom-control-inline');
+                let div = document.querySelector(`#${clicked}`).parentElement
+                if(div.classList.contains('custom-control-inline')){
+                    div.classList.remove('custom-control-inline');
                 }
             }
-
+        });
+        $('#horizontal').click(function(event){
+            //debugger;
+            let div = document.querySelector(`#${clicked}`).parentElement
             if($('#horizontal').prop('checked')==true){
-                if(!findClass('custom-control-inline')){
-                    document.querySelector(`#${clicked}`).classList.add('custom-control-inline');
+                if(!div.classList.contains('custom-control-inline')){
+                    div.classList.add('custom-control-inline');
                 }
             }
         });
