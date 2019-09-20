@@ -1,0 +1,421 @@
+;
+'use strict';
+
+function setContextmenu() {
+
+    $('.main-content.container-fluid.edit').on('contextmenu', createContexMenu);
+
+    $('.main-content.container-fluid.edit').on("click", function(event) {
+        $("#context-menu").hide('fast', setId);
+    });
+}
+
+function createContexMenu(event){
+    let template = '';
+    let inputArr = ['text', 'password', 'number', 'email', 'tel', 'url', 'search', 'date', 'datetime', 'datetime-local', 'time', 'month', 'week'];
+
+    let numberTemplate = `<div class="form-row mb-2">
+                            <div class="col-4 text-right">
+                                <label class="mb-2" for="idInput">Min:</label>
+                            </div>
+                            <div class="col-8">
+                                <input id="min" type="number" class="form-control" value="0" />
+                            </div>
+                        </div>
+                        <div class="form-row mb-2">
+                            <div class="col-4 text-right">
+                                <label class="mb-2" for="idInput">Max:</label>
+                            </div>
+                            <div class="col-8">
+                                <input id="min" type="number" class="form-control" value="0" />
+                            </div>
+                        </div>`;
+
+    let rowsTemplate = `<div class="form-row mb-2">
+                            <div class="col-4 text-right">
+                                <label class="mb-2" for="idInput">Rows:</label>
+                            </div>
+                            <div class="col-8">
+                                <input id="rows" type="number" class="form-control" value="0" min="3" max="30" />
+                            </div>
+                        </div>`;
+
+    let labelTemplate = `<div class="form-row mb-2">
+                            <div class="col-4 text-right">
+                                <label class="mb-2" for="idInput">Label:</label>
+                            </div>
+                            <div class="col-8">
+                                <input id="labelInput" type="text" class="form-control" />
+                            </div>
+                        </div>`;
+
+    let orientationTemplate = `<div class="form-row mb-2">
+                                    <div class="col-4 text-right">
+                                        <label class="mb-2" for="idInput">Orientation:</label>
+                                    </div>
+                                    <div class="col-8">
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" id="vertical" name="orientation" class="custom-control-input" />
+                                        <label class="custom-control-label" for="vertical">Vertical</label>
+                                    </div>
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" id="horizontal" name="orientation" class="custom-control-input" checked />
+                                            <label class="custom-control-label" for="horizontal">Horizontal</label>
+                                        </div>
+                                    </div>
+                                </div>`;
+
+    let idTemplate = `<div class="form-row mb-2">
+                        <div class="col-4 text-right">
+                            <label class="mb-2" for="idInput">Id:</label>
+                        </div>
+                        <div class="col-8">
+                            <input id="elementId" type="text" class="form-control" />
+                        </div>
+                    </div>`;
+
+    let placeholderTemplate = `<div class="form-row mb-2">
+                                    <div class="col-4 text-right">
+                                        <label class="mb-2" for="idInput">Placeholder:</label>
+                                    </div>
+                                    <div class="col-8">
+                                        <input id="idInput" type="text" class="form-control" />
+                                    </div>
+                                </div>`;
+
+    let marginTemplate = `<div class="form-row mb-2">
+                            <div class="col-4 text-right">
+                                <label class="mb-2" for="idInput">Margin:</label>
+                            </div>
+                            <div class="col-4">
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="mdi mdi-arrow-upward" style="font-size:20px"></i></div>
+                                    </div>
+                                    <input id="mt" type="number" class="form-control" value="0" min="0" max="4" />
+                                </div>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="mdi mdi-arrow-downward" style="font-size:20px"></i></div>
+                                    </div>
+                                    <input id="mb" type="number" class="form-control" value="0" min="0" max="4" />
+                                </div>                                
+                            </div>
+                            <div class="col-4">
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="mdi mdi-arrow-back" style="font-size:20px"></i></div>
+                                    </div>
+                                    <input id="ml" type="number" class="form-control" value="0" min="0" max="4" />
+                                </div>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="mdi mdi-arrow-forward" style="font-size:20px"></i></div>
+                                    </div>
+                                    <input id="mr" type="number" class="form-control" value="0" min="0" max="4" />
+                                </div>
+                            </div>
+                        </div>`;
+
+    let btnTemplate = `<div class="form-row">
+                            <div class="col-4 text-right">
+                                <label>Outline:</label>
+                            </div>
+                            <div class="col-8">
+                                <div class="custom-control custom-switch">
+                                    <input id="outline" type="checkbox" class="custom-control-input" />
+                                    <label for="outline" class="custom-control-label mr-2"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-4 text-right">
+                                <label for="idInput" style="margin-bottom:0px;">Colors:</label>
+                            </div>
+                            <div class="col-4">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" id="light" name="colors" class="custom-control-input" checked />
+                                    <label class="custom-control-label" for="light">Light</label>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" id="secondary" name="colors" class="custom-control-input" />
+                                    <label class="custom-control-label" for="secondary">Secondary</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-4 text-right"></div>
+                            <div class="col-4">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" id="success" name="colors" class="custom-control-input" />
+                                    <label class="custom-control-label" for="success">Success</label>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" id="danger" name="colors" class="custom-control-input" />
+                                    <label class="custom-control-label" for="danger">Danger</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-4 text-right"></div>
+                            <div class="col-4">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" id="warning" name="colors" class="custom-control-input" />
+                                    <label class="custom-control-label" for="warning">Warning</label>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" id="info" name="colors" class="custom-control-input" />
+                                    <label class="custom-control-label" for="info">Info</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row mb-2">
+                            <div class="col-4 text-right"></div>
+                            <div class="col-4">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" id="primary" name="colors" class="custom-control-input" />
+                                    <label class="custom-control-label" for="primary">Primary</label>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" id="dark" name="colors" class="custom-control-input" />
+                                    <label class="custom-control-label" for="dark">Dark</label>
+                                </div>
+                            </div>
+                        </div>`;
+
+    let col = `<a class="dropdown-item" href="#" onclick="setColSize();">
+                <i class="mdi mdi-compare-arrows"></i> <span style="position:absolute;margin:5px 10px">Switch Column Size</span>
+                </a>`;
+
+    let input = `<form style="margin:10px">
+                    <h5>Input ${event.target.type}</h5>
+                    <hr />
+                    ${idTemplate}
+                    ${placeholderTemplate}
+                    ${marginTemplate}
+                </form>`;
+    let textarea = `<form style="margin:10px">
+                    <h5>Textarea</h5>
+                    <hr />
+                    ${idTemplate}
+                    ${rowsTemplate}
+                    ${marginTemplate}
+                </form>`;
+    let checkOrRadio = `<form style="margin:10px">
+                    <h5>Input ${event.target.type || 'checkbox'}</h5>
+                    <hr />
+                    ${idTemplate}
+                    ${labelTemplate}
+                    ${orientationTemplate}
+                    ${marginTemplate}
+                </form>`;
+    let number = `<form style="margin:10px">
+                    <h5>Input ${event.target.type}</h5>
+                    <hr />
+                    ${idTemplate}
+                    ${numberTemplate}
+                    ${marginTemplate}
+                </form>`;
+    let btn = `<form style="margin:10px">
+                    <h5>button</h5>
+                    <hr />
+                    ${idTemplate}
+                    ${labelTemplate}
+                    ${btnTemplate}
+                    ${marginTemplate}
+                </form>`;
+
+    if (event.target.type == 'textarea') {
+        template = textarea;
+    }
+    if (inputArr.indexOf(event.target.type) >= 0) {
+        template = input;
+    }
+    if (event.target.classList.contains("custom-control-label")) {
+        template = checkOrRadio;
+    }
+    if (event.target.type == 'radio') {
+        template = checkOrRadio;
+    }
+    if (event.target.type == 'number') {
+        template = number;
+    }
+    if (event.target.classList.contains("col-md-6") || event.target.classList.contains("col-md-12")) {
+        template = col;
+    }
+    if (event.target.classList.contains("btn")) {
+        template = btn;            
+    }
+    if (!template) {
+        $("#context-menu").hide('fast');
+        return false;
+    }
+
+    $("#context-menu").html(template);
+
+    let top = event.pageY + 5;
+    let left = event.pageX + 5;
+
+    $("#context-menu").attr('clickedId', event.target.id);
+
+    $("#context-menu").css({
+        display: "block",
+        top: top,
+        left: left
+    });
+
+    //$("#context-menu").show('fast');
+    
+    let clicked = $("#context-menu").attr('clickedId');
+
+    getDomId(clicked);
+    /*
+    getLabel(clicked);
+    getMargin(clicked);
+    getOutline(clicked);
+    getBtnColor(clicked);
+
+    setId();
+    setLabel(clicked);
+    setMargin(clicked);
+    setOutline();
+    setBtnColor(clicked);
+    */
+
+    return false;
+}
+
+function getDomId(clicked){
+    $('#elementId').val($(`#${clicked}`).attr('id'));
+}
+
+function getLabel(clicked){
+    $('#labelInput').val($(`#${clicked}`).text());
+}
+
+function getMargin(clicked){
+    if(findClass('mt-', clicked)){ 
+        $('#mt').val(findClass('mt-', clicked).replace('mt-', ''));
+    }
+    if(findClass('mr-', clicked)){ 
+        $('#mr').val(findClass('mr-', clicked).replace('mr-', ''));
+    }
+    if(findClass('mb-', clicked)){ 
+        $('#mb').val(findClass('mb-', clicked).replace('mb-', ''));
+    }
+    if(findClass('ml-', clicked)){ 
+        $('#ml').val(findClass('ml-', clicked).replace('ml-', ''));
+    }
+}
+
+function getOutline(clicked){
+    if(findClass('btn-outline-', clicked)){
+        $('#outline').attr('checked', true);
+    }
+}
+
+function getBtnColor(clicked){
+    let btnClassId = '';
+    let isBtn = findClass('btn-', clicked)
+    if(isBtn){
+        btnClassId = isBtn.replace('btn-', '').replace('outline-', '');
+        $(`#${btnClassId}`).attr('checked', true);
+    }
+}
+
+function setColSize(clicked) {
+    $(`#${clicked}`).toggleClass('col-md-6 col-md-12');
+    domHasChanged();
+}
+
+function setId(){
+    let clicked = $("#context-menu").attr('clickedId');
+    if($('#elementId').val() != ''){
+        $(`#${clicked}`).attr('id', $('#elementId').val());  
+        domHasChanged();        
+    }
+}
+
+function setLabel(clicked){
+    $('#labelInput').change(function(event){
+        $(`#${clicked}`).text( $('#labelInput').val() );
+        domHasChanged();
+    });
+}
+
+function setMargin(clicked){
+    $('#mt').change(function(event){ 
+        if(findClass('mt-', clicked)){           
+            document.querySelector(`#${clicked}`).classList.remove(findClass('mt-', clicked));
+        }
+        document.querySelector(`#${clicked}`).classList.add(`${'mt-'}${event.target.value}`); 
+        domHasChanged();           
+    });
+    $('#mr').change(function(event){ 
+        if(findClass('mr-', clicked)){           
+            document.querySelector(`#${clicked}`).classList.remove(findClass('mr-', clicked));
+        }
+        document.querySelector(`#${clicked}`).classList.add(`${'mr-'}${event.target.value}`); 
+        domHasChanged();           
+    });
+    $('#mb').change(function(event){ 
+        if(findClass('mb-', clicked)){           
+            document.querySelector(`#${clicked}`).classList.remove(findClass('mb-', clicked));
+        }
+        document.querySelector(`#${clicked}`).classList.add(`${'mb-'}${event.target.value}`);
+        domHasChanged();            
+    });
+    $('#ml').change(function(event){ 
+        if(findClass('ml-', clicked)){           
+            document.querySelector(`#${clicked}`).classList.remove(findClass('ml-', clicked));
+        }
+        document.querySelector(`#${clicked}`).classList.add(`${'ml-'}${event.target.value}`); 
+        domHasChanged();           
+    });
+}
+
+function setOutline(){
+    $('#outline').click(function(event){
+        $('input[name="colors"]:checked').click();
+        domHasChanged();
+    });
+}
+
+function setBtnColor(clicked){
+    $('input[name="colors"]').click(function(event){
+        
+        let prefix = 'btn-';
+        let find = 'btn-';
+        
+        if($('#outline').prop('checked')==true){
+            prefix = 'btn-outline-';
+        }
+
+        if(findClass(find, clicked)){
+            document.querySelector(`#${clicked}`).classList.remove(findClass(find, clicked));
+            document.querySelector(`#${clicked}`).classList.add(`${prefix}${event.target.id}`);
+            $("#context-menu").find('h5').html(`button ${prefix}${event.target.id}`);
+        }
+        domHasChanged();
+    });
+}
+
+function findClass(partial, clicked){
+    let obj = document.querySelector(`#${clicked}`);
+    let ret = "";
+
+    for(let i=0; i<obj.classList.length; i++){
+        if(obj.classList.item(i).indexOf(partial)>=0){
+            ret = obj.classList.item(i);
+        }
+    }
+    return ret;
+}

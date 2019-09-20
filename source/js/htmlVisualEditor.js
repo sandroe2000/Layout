@@ -24,3 +24,9 @@ $('#sideBarLayout').click(function(event){
 $('#sideBarComponents').click(function(event){
     $('.sideBarComponents').toggleClass('hide');
 });
+
+$('#sideBarData').click(function(event){
+    $('main').toggleClass('data-active');
+    //$('.main-footer').toggleClass('data-active');
+    $('data').toggleClass('data-on');
+});

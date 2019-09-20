@@ -244,6 +244,23 @@ transform: rotate(180deg);
 }
 
 /*--------------*/
+data {
+	display: none;
+	padding: 10px;
+	position: absolute;
+	background-color: #F4F5F7;
+	top: 0px;
+	bottom: 34px;
+	right: 0px;
+	width: 244px;
+	border: 1px solid #dfe1e6;
+}
+.data-on {
+	display: block;
+}
+.data-active {
+	width: Calc(100% - 326px) !important;
+}
 aside {
 	position: absolute;
 	background-color: #F4F5F7;
@@ -251,6 +268,8 @@ aside {
 	bottom: 0px;
 	width: 82px;
 	border-right: 1px solid #dfe1e6;
+	padding-left: 1px;
+	float: left;
 }
 
 .btn-aside-menu {
