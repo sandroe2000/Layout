@@ -2,7 +2,7 @@
 'use strict';
 
 $(document).ready(function(){
-   
+
 });
 
 $('#btnTextEditor').on('click', function(event){
@@ -25,8 +25,7 @@ $('#sideBarComponents').click(function(event){
     $('.sideBarComponents').toggleClass('hide');
 });
 
-$('#sideBarData').click(function(event){
+$('#closeRightmenu').click(function(event){
     $('main').toggleClass('data-active');
-    //$('.main-footer').toggleClass('data-active');
     $('data').toggleClass('data-on');
 });

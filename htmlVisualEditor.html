@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="/assets/font-awesome/css/font-awesome.min.css" />
         <link rel="stylesheet" href="/assets/material-design-icons/css/material-icons.min.css" />
         <link rel="stylesheet" href="/assets/dragula/dragula.min.css" />
-        <link rel="stylesheet" href="/assets/jquery-confirm/dist/jquery-confirm.min.css">
+        <link rel="stylesheet" href="/assets/jquery-confirm/dist/jquery-confirm.min.css" />
         <link rel="stylesheet" href="/source/css/app.css" />
         <style>
             .hide {
@@ -75,7 +75,7 @@
             </nav>
 
             <div class="topbar">
-                <button id="btnTextEditor" class="btn btn-light ml-2" type="button" style="float:left;margin-top:9px;border:1px solid #CECECE;width:67px">
+                <button id="btnTextEditor" class="btn btn-light ml-2" type="button" style="float:left;margin-top:9px;border:1px solid #CECECE;width:75px">
                     <i class="fa fa-code" aria-hidden="true"></i>
                 </button>
                 <div class="topbar-title">                    
@@ -93,8 +93,9 @@
                             <label for="chkRowBorders" class="custom-control-label mr-2">Row Borders</label>
                         </div>
 
-                        <button class="btn btn-light mr-2" type="button" style="border: 1px solid #CECECE; width:110px">Cancel</button>
-                        <button class="btn btn-primary mr-2" type="button" style="width:110px">Commit</button>
+                        <button id="btnCleanClipboardHistory" class="btn btn-light mr-2" type="button">Clean Clipboard History</button>
+                        <button class="btn btn-light mr-2" type="button">Cancel</button>
+                        <button class="btn btn-primary mr-2" type="button">Commit</button>
 
                     </form>
                 </div>
@@ -131,7 +132,7 @@
                     <div class="asise-separator" id="sideBarData">Data <i class="fa fa-caret-right" aria-hidden="true"></i></div>                   
                 </aside>
 
-                <main>
+                <main class="data-active">
                     <div class="main-ruler container-fluid">
                         <div class="row"></div>
                     </div>
@@ -140,15 +141,51 @@
                 <div class="main-footer">
                     <ol class="breadcrumb"></ol>
                 </div>
-                <data></data>
+                <data class="data-on">
+                    <i id="closeRightmenu" class="mdi mdi-last-page"></i>
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="formSpector-tab" data-toggle="tab" href="#formSpector" role="tab" aria-controls="formSpector" aria-selected="true">
+                                <i class="fa fa-file-text" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="fromValidate-tab" data-toggle="tab" href="#fromValidate" role="tab" aria-controls="fromValidate" aria-selected="false">
+                                <i class="fa fa-cog" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="fromData-tab" data-toggle="tab" href="#fromData" role="tab" aria-controls="fromData" aria-selected="false">
+                                <i class="fa fa-database" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="menuTab">
+                        <div class="tab-pane fade show active" id="formSpector" role="tabpanel" aria-labelledby="formSpector-tab">
+                            <form>
+                                <div id="menuForm"></div>
+                            </form>
+                        </div>
+                        <div class="tab-pane fade" id="fromValidate" role="tabpanel" aria-labelledby="fromValidate-tab">
+                            <form>
+                                <div id="menuValidate"></div>
+                            </form>
+                        </div>
+                        <div class="tab-pane fade" id="fromData" role="tabpanel" aria-labelledby="fromData-tab">
+                            <form>
+                                <div id="menuData"></div>
+                            </form>
+                        </div>
+                    </div>
+                </data>
             </div>            
         </div>
 
-        <div class="card shadow-lg p-2 mb-5 bg-white rounded" id="context-menu" style="width:260px;background: #FFFFFF;"></div>
+        <div class="card shadow-lg p-2 mb-5 bg-white rounded" id="context-menu" style="display:none;width:260px;background:#FFFFFF;"></div>
         <div id="snackbar">...</div>
         <div class="main-menu"></div>
-        <div class="right-menu"></div>         
-        <button id="toggleRightMenu" class="btn btn-light"><i class="mdi mdi-first-page"></i></button>
+        <!--div class="right-menu"></div-->         
+        <!--button id="toggleRightMenu" class="btn btn-light"><i class="mdi mdi-first-page"></i></button-->
         
 	    <script src="/assets/jquery/dist/jquery.min.js"></script>
         <script src="/assets/popper.js/dist/umd/popper.min.js"></script>

@@ -7,11 +7,19 @@ let ruler = document.querySelector('.main-ruler.container-fluid').childNodes[1];
 let footerBreadcrumb = document.querySelector('div.main-footer > ol.breadcrumb');
 let currentNodeInEdit = null;
 let currentCopyedNode = null;
-let maxLen = 10;
+let maxLen = 100;
 let currentContentNode = 0;
 
 window.addEventListener('keydown', function(event) {
-    if (event.keyCode == 46) { removeNode(); }
+    if (event.keyCode == 46) { 
+        if($('.actived').hasClass('edit')){
+            return false;
+        }
+        confirmDelete({
+            msg:"Deseja realmente exluir este item?",
+            callback: removeNode
+        });
+    }
     if (event.ctrlKey && event.keyCode == 90) { undoRedo('UNDO'); }
     if (event.ctrlKey && event.keyCode == 89) { undoRedo('REDO'); }
     if (event.ctrlKey && event.keyCode == 67) { copySelectdNode(); }
@@ -204,10 +212,10 @@ function isAcceptable(el, target) {
 function cuteSelectdNode() {
     if (!isCopyAcceptable()) return false;
     var template = document.createElement('div');
-    template.innerHTML = currentNodeInEdit.outerHTML.replace('active', '');
+    template.innerHTML = currentNodeInEdit.outerHTML.replace('actived', '');
     listDOM(template, replaceNodeId);
     currentCopyedNode = template.firstChild;
-    $('.active').remove();
+    $('.actived').remove();
     domHasChanged();
     setSnakBar('Cuted!');
 }
@@ -215,7 +223,7 @@ function cuteSelectdNode() {
 function copySelectdNode() {
     if (!isCopyAcceptable()) return false;
     var template = document.createElement('div');
-    template.innerHTML = currentNodeInEdit.outerHTML.replace('active', '');
+    template.innerHTML = currentNodeInEdit.outerHTML.replace('actived', '');
     listDOM(template, replaceNodeId);
     currentCopyedNode = template.firstChild;
     setSnakBar('Copied!');
@@ -291,7 +299,7 @@ function setEventsInput(node) {
 }
 
 function setEventsRow(node) {    
-  
+
     if (node.hasAttribute && node.classList.contains("row")) { 
         drakeMenu.containers.push(node);             
         return;
@@ -304,9 +312,7 @@ function setBreadcrumb(event) {
     cleanBreadcrumb();
     listDOM(document.querySelector('.main-content.container-fluid.edit'), removeClicked);
     addBreadcrumb(event.target);
-    //if (event.target !== mainContent) {
-    event.target.classList.add('active');
-    //}
+    event.target.classList.add('actived');
     currentNodeInEdit = event.target;
 }
 
@@ -332,7 +338,7 @@ function addBreadcrumb(node) {
         if (el.getAttribute('class')) {
             var cls = el.getAttribute('class').split(' ');
             for (var i = 0; i < cls.length; i++) {
-                if (cls[i] !== 'active') txt += "." + cls[i];
+                if (cls[i] !== 'actived') txt += "." + cls[i];
             }
         }
         var txtNode = document.createTextNode(txt);
@@ -350,8 +356,8 @@ function clickOnBreadcrumb(el) {
 }
 
 function removeClicked(node) {
-    if (node.hasAttribute && node.classList.contains('active')) {
-        node.classList.remove('active');
+    if (node.hasAttribute && node.classList.contains('actived')) {
+        node.classList.remove('actived');
     }
     if (node.hasAttribute && node.classList.contains('node-selected')) {
         node.classList.remove('node-selected');
@@ -359,6 +365,10 @@ function removeClicked(node) {
 }
 
 function listDOM(node, func) {
+
+    document.querySelector('.main-content.container-fluid.edit').removeEventListener('click', setBreadcrumb, false);
+    document.querySelector('.main-content.container-fluid.edit').addEventListener('click', setBreadcrumb, false);
+
     func(node);
     node = node.firstChild;
     while (node) {
@@ -399,18 +409,13 @@ function undoRedo(action) {
     
     listDOM(document.querySelector('.main-content.container-fluid.edit'), setEventToDOM);
     setContextmenu();
-    domHasChanged();
 }
 
-function removeNode(){
-
-    if($('.active').hasClass('edit')){
-        return false;
-    }
-
+function confirmDelete(options){
+    
     $.confirm({
         title: 'Confirmação!',
-        content: 'Deseja remover este item?',
+        content: options.msg,
         draggable: true,
         closeIcon: true,
         buttons: {
@@ -418,10 +423,7 @@ function removeNode(){
                 keys: ['enter'],
                 text: 'Ok',
                 btnClass: 'btn-blue',
-                action: function () {
-                    $('.active').remove();
-                    domHasChanged();
-                }
+                action: options.callback
             },
             cancel: {
                 keys: ['esc'],
@@ -433,6 +435,11 @@ function removeNode(){
             }
         }       
     });
+}
+
+function removeNode(){
+    $('.actived').remove();
+    domHasChanged();
 }
 
 $('#chkRowBorders').change(function(event){
@@ -455,18 +462,24 @@ function domHasChanged(){
         $('div.main-content.container-fluid.edit [class*="col-md-"]').addClass('showBorder');
     }
 
-    document.querySelector('.main-content.container-fluid.edit').addEventListener('click', setBreadcrumb, false);
-
     setVersionContentNode();
-    if (currentNodeInEdit) currentNodeInEdit.click();
+    //if (currentNodeInEdit) currentNodeInEdit.click();
 }
+
+$('#btnCleanClipboardHistory').click(function(event){
+    let options = {
+        msg: "Deseja realmente limpar o histórico da área de transferência?",
+        callback: cleanVersionContentNode
+    };
+    confirmDelete(options);    
+});
 
 function cleanVersionContentNode() {
     localStorage.setItem("versionContentNode", "");
 }
 
 function setVersionContentNode() {
-
+    
     let mainContent = document.querySelector('.main-content.container-fluid.edit');
 
     if (typeof(Storage) == "undefined") return false;
@@ -480,17 +493,17 @@ function setVersionContentNode() {
     var clone = mainContent.cloneNode(true);
 
     //NÃO GRAVA CONTEÚDO IGUAL AO ÚLTIMO NÓ
-    if(versionContentNode[0]==clone.outerHTML.replace('active', '').replace(/\n/g, '')) return false;
+    if(versionContentNode[0]==clone.outerHTML.replace('actived', '').replace(/\n/g, '')) return false;
 
     if (versionContentNode.length == 0) {
         versionContentNode.unshift('<div class="main-content container-fluid edit "></div>');
     }
 
     if (versionContentNode.length < maxLen) {
-        versionContentNode.unshift(clone.outerHTML.replace('active', '').replace(/\n/g, ''));
+        versionContentNode.unshift(clone.outerHTML.replace('actived', '').replace(/\n/g, ''));
     } else {
         versionContentNode.pop();
-        versionContentNode.unshift(clone.outerHTML.replace('active', '').replace(/\n/g, ''));
+        versionContentNode.unshift(clone.outerHTML.replace('actived', '').replace(/\n/g, ''));
     }
 
     localStorage.setItem("versionContentNode", JSON.stringify(versionContentNode));
