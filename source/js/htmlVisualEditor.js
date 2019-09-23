@@ -70,7 +70,7 @@ let row = `<div class="form-row" id="${contador}">
                     <button class="btn btn-light btn-sm mt-2" type="button">
                         <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
                     </button>
-                    <button class="btn btn-light btn-sm mt-2" type="button">
+                    <button class="btn btn-light btn-sm mt-2" type="button" onclick="removeRow(this)">
                         <i class="fa fa-trash" aria-hidden="true"></i>
                     </button>
                 </div>
@@ -83,15 +83,13 @@ $('.modal').on('show.bs.modal', function (event) {
     let clazz = $(button).children().attr('class') || $(button).attr('class');
     let titleTemplate = `<i class="${clazz}"></i> ${$(button).text().trim()}`;
     let bodytemplate = `<div class="row">
-                            <div class="col-md-12 fieldsContainer">
-                                <a class="btn btn-sm btn-light mb-2 mt-2" href="#" id="addField">Add Field</a>
-                            </div>
+                            <div class="col-md-12 fieldsContainer"></div>
                         </div>`;
     modal.find('.modal-title').html(titleTemplate);
     modal.find('.modal-body form').html(bodytemplate);
 
     $('#addField').on('click', function(event){
-        $('.fieldsContainer a').before(row);
+        $('.fieldsContainer').append(row);
     });
     
     $('#menuToggle').on('click', function(event){
@@ -99,12 +97,12 @@ $('.modal').on('show.bs.modal', function (event) {
         $(this).find('i').toggleClass('mdi-last-page mdi-first-page');
     });
 
-    $('.form-row').click('i.fa.fa-trash', function(){ 
-        $(this).parent('.form-row').remove();
-    });
-
     $('#addField').trigger('click');
 });
+
+function removeRow(btn){ 
+    $(btn).parents('.form-row').remove();
+}
 
 $('div.modal-footer > button.btn.btn-primary').on('click', function(event){
    
