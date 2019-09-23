@@ -356,8 +356,6 @@ function createContexMenu(event){
         return false;
     }
 
-    //debugger;
-
     $('#menuForm').html('');
     $("#context-menu").html(template);
 
@@ -397,6 +395,14 @@ function createContexMenu(event){
 }
 
 function changeClick(container, clicked){
+
+    //CHANGE ID
+    $('#elementId').change(function(event){     
+        let newId = $('#elementId').val();
+        $(container).attr('clickedId', newId);
+        $(`#${clicked}`).attr('id', newId);  
+        $(`#${newId}`).click();          
+    });
     
     //--CHANGE LABEL
     $('#labelInput').change(function(event){
@@ -410,7 +416,6 @@ function changeClick(container, clicked){
     });
 
     //--PLACEHOLDER
-    $('#placeholder').val($(`#${clicked}`).val());
     $('#placeholder').change(function(event){
         $(`#${clicked}`).attr('placeholder', $('#placeholder').val());
     });
@@ -487,15 +492,14 @@ function changeClick(container, clicked){
         }
         domHasChanged();
     });
+
+    //-- CHANGE TEXTAREA ROWS
+    $('#txtRows').change(function(event){
+        $(`#${clicked}`).attr('rows', $('#txtRows').val());
+        domHasChanged();
+    });
 }
 
-function changeOnClose(){
-    //CHANGE ID
-    if($('#elementId').val() != ''){
-        let clicked = $("#context-menu").attr('clickedId');
-        $(`#${clicked}`).attr('id', $('#elementId').val());            
-    }
-}
 function changeColSize() {
     let clicked = $("#context-menu").attr('clickedId');
     $(`#${clicked}`).toggleClass('col-md-6 col-md-12');
@@ -510,6 +514,9 @@ function changeColAlign(){
 function loadClicked(container, clicked){
     //--CARREGA ID
     $('#elementId').val($(`#${clicked}`).attr('id'));
+
+    //--CARREGA PLACEHOLDER
+    $('#placeholder').val($(`#${clicked}`).attr('placeholder'));
 
     //--CARREGA LABEL
     $('#labelInput').val($(`#${clicked}`).text());
@@ -548,11 +555,6 @@ function loadClicked(container, clicked){
 
     //-- CARREGA TEXTAREA ROWS
     $('#txtRows').val($(`#${clicked}`).attr('rows'));
-    
-    //-- CHANGE TEXTAREA ROWS
-    $('#txtRows').change(function(event){
-        $(`#${clicked}`).attr('rows', $('#txtRows').val());
-    });
 }
 
 function findClass(container, partial){

@@ -12,7 +12,8 @@ let currentContentNode = 0;
 
 window.addEventListener('keydown', function(event) {
     if (event.keyCode == 46) { 
-        if($('.actived').hasClass('edit')){
+
+        if($(event.target).parents('#menuTab')[0] ||  event.target.classList.contains('edit')){
             return false;
         }
         confirmDelete({
@@ -313,6 +314,7 @@ function setBreadcrumb(event) {
     listDOM(document.querySelector('.main-content.container-fluid.edit'), removeClicked);
     addBreadcrumb(event.target);
     event.target.classList.add('actived');
+    event.target.focus();
     currentNodeInEdit = event.target;
 }
 

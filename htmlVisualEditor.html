@@ -102,12 +102,12 @@
             </div>
             <div id="editor">                
                 <aside>
-                    <div class="asise-separator" id="sideBarForm">Form <i class="fa fa-caret-down" aria-hidden="true"></i></div>
+                    <!--div class="aside-separator" id="sideBarForm">Form <i class="fa fa-caret-down" aria-hidden="true"></i></div-->
                     <div class="sideBarForm">
                         <button disabled class="btn btn-aside-menu" title="Form"><i class="fa fa-file-code-o"></i></button>
                         <button disabled class="btn btn-aside-menu" title="Form Group" ><i class="fa fa-object-group"></i></button>
                     </div>
-                    <div class="asise-separator" id="sideBarLayout">Layout <i class="fa fa-caret-down" aria-hidden="true"></i></div>
+                    <!--div class="aside-separator" id="sideBarLayout">Layout <i class="fa fa-caret-down" aria-hidden="true"></i></div-->
                     <div class="sideBarLayout">
                         <button class="btn btn-aside-menu" title="Row"><i class="fa fa-th-list" ></i></button>
                         <button class="btn btn-aside-menu" title="Column"><i class="fa fa-columns"></i></button>
@@ -116,7 +116,7 @@
                         <button disabled class="btn btn-aside-menu" title="Accordion"><i class="fa fa-list-alt" ></i></button>
                         <button disabled class="btn btn-aside-menu" title="DataTable"><i class="fa fa-table" ></i></button>
                     </div>
-                    <div class="asise-separator" id="sideBarComponents">Components <i class="fa fa-caret-down" aria-hidden="true"></i></div>
+                    <!--div class="aside-separator" id="sideBarComponents">itens <i class="fa fa-caret-down" aria-hidden="true"></i></div-->
                     <div class="sideBarComponents">
                         <button class="btn btn-aside-menu" title="Label"><i class="fa fa-font"></i></button>
                         <button class="btn btn-aside-menu" title="Input Text"><i class="fa fa-terminal"></i></button>
@@ -213,8 +213,8 @@
                                     <div class="form-row mb-2">
                                         <div class="col-12">
                                             <label for="entity">Entity:</label>
-                                            <div class="input-group">
-                                                <select class="custom-select" id="entity" aria-label="Example select with button addon">
+                                            <div class="input-group input-group-sm">
+                                                <select class="custom-select" id="entity" aria-describedby="inputGroup-sizing-sm">
                                                     <option selected>Selecione uma opção.</option>
                                                 </select>
                                                 <div class="input-group-append">
@@ -230,7 +230,7 @@
                                     <div class="form-row mb-2">
                                         <div class="col-12">
                                             <label for="field">Field:</label>
-                                            <select class="form-control" id="field">
+                                            <select class="form-control form-control-sm" id="field">
                                                 <option selected>Selecione uma opção.</option>
                                             </select>                                                
                                         </div>                                                                                
@@ -243,7 +243,7 @@
             </div>            
         </div>
 
-        <div class="card shadow-lg p-2 mb-5 bg-white rounded menu-data" id="context-menu" style="display:none;width:254px;background:#FFFFFF;"></div>
+        <div id="context-menu" class="card shadow-lg p-2 mb-5 bg-white rounded menu-data" style="display:none;width:254px;background:#FFFFFF;"></div>
         <div id="snackbar">...</div>
         <div class="main-menu"></div>
         <i id="closeRightmenu" class="mdi mdi-last-page closeRightmenu"></i>
@@ -257,7 +257,7 @@
                         <h5 class="modal-title" id="modalLabel">...</h5>
                         <i id="closeRightmenu" class="mdi mdi-close closeRightmodal" data-dismiss="modal" aria-label="Close"></i>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body" style="max-height: 350px; overflow-x: hidden; overflow-y: auto">
                         <form></form>
                     </div>
                     <div class="modal-footer">

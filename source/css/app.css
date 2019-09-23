@@ -278,13 +278,36 @@ aside {
 	border-right: 1px solid #dfe1e6;
 	padding-left: 1px;
 	float: left;
+	text-align: center;
+	overflow-y: auto;
+}
+aside::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+    border-radius: 12px;
+}
+
+aside::-webkit-scrollbar-track {
+    background: #F1F1F1;
+    border-radius: 12px;
+}
+
+aside::-webkit-scrollbar-thumb {
+    border-radius: 12px;
+    background: #C1C1C1;
+    border: 3px solid #F1F1F1;
+    cursor: pointer;
+}
+
+aside::-webkit-scrollbar-corner {
+    background: #C1C1C1;
 }
 
 .btn-aside-menu {
-    width: 32px;
-    height: 32px;
+    width: 30px;
+    height: 30px;
     padding: 0px;
-    margin: 4px 0px 0px 4px;
+    margin: 4px 0px 0px 0px;
     color: #7d838f;
     background-color: #fff;
     border-color: #cacbce;
@@ -297,7 +320,6 @@ aside {
     color: #FFF;
     background-color: #cacbce;
     border-color: #cacbce;
-    margin: 4px 0px 0px 4px;
 }
 
 .btn-active {
@@ -307,7 +329,7 @@ aside {
     margin: 4px 0px 0px 4px;
 }
 
-.asise-separator {
+.aside-separator {
     display: block;
     margin-top: 5px;
 	width: 100%;
@@ -318,7 +340,7 @@ aside {
 	text-align: center;
 	cursor: pointer;
 }
-.asise-separator:hover {
+.aside-separator:hover {
 	color: #FFF;
 	background-color: #cacbce;
 	border-radius: 6px;
@@ -328,7 +350,7 @@ main {
     position: absolute;
     top: 0px;
     left: 82px;
-    right: 0px;
+	right: 0px;
     bottom: 0px;
     background-color: #f2f4f8;
 }
@@ -529,6 +551,7 @@ label {
 	border-bottom: 1px solid #dee2e6;
 	background-color: #FFF;
 	min-height: 30px;
+	overflow-y: auto;
 }
 .menu-data hr {
 	margin-top: 5px;
@@ -539,6 +562,27 @@ label {
 }
 .modal-content {
 	border:1px solid #ced4da;
+}
+.menu-data::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+    border-radius: 12px;
+}
+
+.menu-data::-webkit-scrollbar-track {
+    background: #F1F1F1;
+    border-radius: 12px;
+}
+
+.menu-data::-webkit-scrollbar-thumb {
+    border-radius: 12px;
+    background: #C1C1C1;
+    border: 3px solid #F1F1F1;
+    cursor: pointer;
+}
+
+.menu-data::-webkit-scrollbar-corner {
+    background: #C1C1C1;
 }
 
 .closeRightmenu {
