@@ -12,7 +12,7 @@ let inputArr = ['text', 'password', 'number', 'email', 'tel', 'url', 'search', '
 
 let numberTemplate = `<div class="form-row mb-2">
                         <div class="col-4 text-right">
-                            <label class="mb-2" for="idInput">Min:</label>
+                            <label for="idInput">Min:</label>
                         </div>
                         <div class="col-8">
                             <input id="min" type="number" class="form-control" value="0" />
@@ -20,7 +20,7 @@ let numberTemplate = `<div class="form-row mb-2">
                     </div>
                     <div class="form-row mb-2">
                         <div class="col-4 text-right">
-                            <label class="mb-2" for="idInput">Max:</label>
+                            <label for="idInput">Max:</label>
                         </div>
                         <div class="col-8">
                             <input id="min" type="number" class="form-control" value="0" />
@@ -29,15 +29,22 @@ let numberTemplate = `<div class="form-row mb-2">
 
 let rowsTemplate = `<div class="form-row mb-2">
                         <div class="col-12">
-                            <label class="mb-2" for="idInput">Rows:</label>
+                            <label for="idInput">Rows:</label>
                             <input id="txtRows" type="number" class="form-control" value="0" min="3" max="30" />
                         </div>
                     </div>`;
 
 let labelTemplate = `<div class="form-row mb-2">
                         <div class="col-12">
-                            <label class="mb-2" for="idInput">Label:</label>
-                            <input id="labelInput" type="text" class="form-control" />
+                            <label for="idInput">Label:</label>                            
+                            <div class="input-group input-group-sm">
+                                <input id="labelInput" type="text" class="form-control" aria-describedby="inputGroup-sizing-sm" />
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="button">
+                                        <i class="fa fa-check" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="form-row mb-2">
@@ -64,45 +71,59 @@ let orientationTemplate = `<div class="form-row mb-2">
 
 let idTemplate = `<div class="form-row mb-2">
                     <div class="col-12">
-                        <label class="mb-2" for="idInput">Id:</label>
-                        <input id="elementId" type="text" class="form-control" />
+                        <label for="idInput">Id:</label>                        
+                        <div class="input-group input-group-sm">
+                            <input id="elementId" type="text" class="form-control" aria-describedby="inputGroup-sizing-sm" />
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="fa fa-check" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>`;
 
 let placeholderTemplate = `<div class="form-row mb-2">
                                 <div class="col-12">
-                                    <label class="mb-2" for="placeholder">Placeholder:</label>
-                                    <input id="placeholder" type="text" class="form-control" />
+                                    <label for="placeholder">Placeholder:</label>                                    
+                                    <div class="input-group input-group-sm">
+                                        <input id="placeholder" type="text" class="form-control" aria-describedby="inputGroup-sizing-sm" />
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="button">
+                                                <i class="fa fa-check" aria-hidden="true"></i>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>`;
 
 let marginTemplate = `<div class="form-row mb-2">
                         <div class="col-6">
-                            <div class="input-group mb-2">
+                            <div class="input-group input-group-sm mb-2">
                                 <div class="input-group-prepend">
-                                    <div class="input-group-text"><i class="mdi mdi-arrow-upward" style="font-size:20px"></i></div>
+                                    <div class="input-group-text"><i class="mdi mdi-arrow-upward" style="font-size:16px"></i></div>
                                 </div>
-                                <input id="mt" type="number" class="form-control" value="0" min="0" max="4" />
+                                <input id="mt" type="number" class="form-control" value="0" min="0" max="4" aria-describedby="inputGroup-sizing-sm" />
                             </div>
-                            <div class="input-group mb-2">
+                            <div class="input-group input-group-sm mb-2">
                                 <div class="input-group-prepend">
-                                    <div class="input-group-text"><i class="mdi mdi-arrow-downward" style="font-size:20px"></i></div>
+                                    <div class="input-group-text"><i class="mdi mdi-arrow-downward" style="font-size:16px"></i></div>
                                 </div>
-                                <input id="mb" type="number" class="form-control" value="0" min="0" max="4" />
+                                <input id="mb" type="number" class="form-control" value="0" min="0" max="4" aria-describedby="inputGroup-sizing-sm" />
                             </div>                                
                         </div>
                         <div class="col-6">
-                            <div class="input-group mb-2">
+                            <div class="input-group input-group-sm mb-2">
                                 <div class="input-group-prepend">
-                                    <div class="input-group-text"><i class="mdi mdi-arrow-back" style="font-size:20px"></i></div>
+                                    <div class="input-group-text"><i class="mdi mdi-arrow-back" style="font-size:16px"></i></div>
                                 </div>
-                                <input id="ml" type="number" class="form-control" value="0" min="0" max="4" />
+                                <input id="ml" type="number" class="form-control" value="0" min="0" max="4" aria-describedby="inputGroup-sizing-sm" />
                             </div>
-                            <div class="input-group mb-2">
+                            <div class="input-group input-group-sm mb-2">
                                 <div class="input-group-prepend">
-                                    <div class="input-group-text"><i class="mdi mdi-arrow-forward" style="font-size:20px"></i></div>
+                                    <div class="input-group-text"><i class="mdi mdi-arrow-forward" style="font-size:16px"></i></div>
                                 </div>
-                                <input id="mr" type="number" class="form-control" value="0" min="0" max="4" />
+                                <input id="mr" type="number" class="form-control" value="0" min="0" max="4" aria-describedby="inputGroup-sizing-sm" />
                             </div>
                         </div>
                     </div>`;
@@ -173,10 +194,8 @@ let btnTemplate = `<div class="form-row">
                     </div>`;
 
 function setContextmenu() {
-
     document.querySelector('.main-content.container-fluid.edit').removeEventListener('contextmenu', initContextMenu, false);
     document.querySelector('.main-content.container-fluid.edit').removeEventListener("click", initRightMenu, false);
-
     document.querySelector('.main-content.container-fluid.edit').addEventListener('contextmenu', initContextMenu, false);
     document.querySelector('.main-content.container-fluid.edit').addEventListener("click", initRightMenu, false);
 }
@@ -208,7 +227,8 @@ function showMenuLabel(event){
             <h5>Label</h5>
             <hr />
             ${idTemplate}
-            ${labelTemplate}`;    
+            ${labelTemplate}
+            ${marginTemplate}`;    
     $('#menuForm').html(label);
     $('#menuForm').attr('clickedId', clicked);    
     loadClicked('#menuForm', clicked);
@@ -220,7 +240,7 @@ function showMenuButton(event){
     showRightMenu();
     let clicked = event.target.id;
     let menuH = $('data').height() - 40;
-    let btn = `<h5>button</h5>
+    let btn = `<h5>Button</h5>
             <hr />
             ${idTemplate}
             ${labelTemplate}
@@ -292,7 +312,7 @@ function createContexMenu(event){
                     ${marginTemplate}
                 </form>`;
     let btn = `<form style="margin:10px">
-                    <h5>button</h5>
+                    <h5>Button</h5>
                     <hr />
                     ${idTemplate}
                     ${labelTemplate}
@@ -304,6 +324,7 @@ function createContexMenu(event){
                     <hr />
                     ${idTemplate}
                     ${labelTemplate}
+                    ${marginTemplate}
                 </form>`;
 
     if (event.target.tagName == 'LABEL') {

@@ -28,4 +28,21 @@ $('#sideBarComponents').click(function(event){
 $('#closeRightmenu').click(function(event){
     $('main').toggleClass('data-active');
     $('data').toggleClass('data-on');
+    $(this).toggleClass('mdi-last-page mdi-first-page');
+});
+
+$('.modal').on('show.bs.modal', function (event) {
+    debugger;
+    let button = $(event.relatedTarget);
+    let modal = $(this);
+    let clazz = $(button).children().attr('class') || $(button).attr('class');
+    let template = `<i class="${clazz}"></i> ${$(button).text().trim()}`;
+    modal.find('.modal-title').html(template);
+});
+
+$('div.modal-footer > button.btn.btn-primary').on('click', function(event){
+   
+    //--TODO
+
+    $('#modalCreateFolder').modal('hide');
 });

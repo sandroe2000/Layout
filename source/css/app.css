@@ -230,7 +230,7 @@ transform: rotate(180deg);
 .topbar div.topbar-buttons button.btn {
 	padding-left: 30px;
 	padding-right: 30px;
-	min-width: 110px
+	min-width: 115px
 }
 .topbar div.topbar-buttons button.btn.btn-light {
 	border: 1px solid #CECECE; 
@@ -254,7 +254,7 @@ transform: rotate(180deg);
 /*--------------*/
 data {
 	display: none;
-	padding: 10px;
+	padding: 8px;
 	position: absolute;
 	background-color: #F4F5F7;
 	top: -1px;
@@ -522,44 +522,57 @@ label {
 	border:1px solid #CECECE;
 }
 
-#menuForm {
+.menu-data {
 	padding:10px;
 	border-left: 1px solid #dee2e6;
 	border-right: 1px solid #dee2e6;
 	border-bottom: 1px solid #dee2e6;
 	background-color: #FFF;
-	min-height: 100px;
-	overflow-y: auto;
+	min-height: 30px;
+}
+.menu-data hr {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+.menu-data label {
+	margin-bottom: -5px;
+}
+.modal-content {
+	border:1px solid #ced4da;
 }
 
-#menuValidate {
-	padding:10px;
-	border-left: 1px solid #dee2e6;
-	border-right: 1px solid #dee2e6;
-	border-bottom: 1px solid #dee2e6;
-	background-color: #FFF;
-	min-height: 100px;
+.closeRightmenu {
+	position: absolute;
+	right: 15px;
+	top: 216px;
+	cursor: pointer;
+	color: rgb(143, 143, 143);
+	background-color: rgb(255, 255, 255, 0.3);
+	font-size: 18px;
+	border:1px solid #dee2e6;
+	border-radius: 0px 0px 0px 6px; 
+	padding: 2px 5px;
+	width: 30px;
+	height: 24px;
+}
+.closeRightmenu:hover {
+	background-color: #dee2e6;
+	border:1px solid #ced4da;
 }
 
-#menuData {
-	padding:10px;
-	border-left: 1px solid #dee2e6;
-	border-right: 1px solid #dee2e6;
-	border-bottom: 1px solid #dee2e6;
-	background-color: #FFF;
-	min-height: 100px;
-}
-
-#closeRightmenu {
+.closeRightmodal {
 	position: absolute;
 	right: -1px;
 	top: -1px;
 	cursor: pointer;
-	color: rgb(143, 143, 143);
-	background-color: #FFF;
+	color: #666666;
 	font-size: 18px;
-	border:1px solid #dee2e6;
-	border-radius: 0px 0px 0px 6px; 
+	border:1px solid #ced4da;
+	border-radius: 0px 4px 0px 4px; 
 	padding: 2px 10px;
 	width: 40px;
+	height: 24px;
+}
+.closeRightmodal:hover {
+	background-color: #dee2e6;
 }

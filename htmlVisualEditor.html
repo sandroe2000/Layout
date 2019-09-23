@@ -95,7 +95,7 @@
 
                         <button id="btnCleanClipboardHistory" class="btn btn-light mr-2" type="button">Clean Clipboard History</button>
                         <button class="btn btn-light mr-2" type="button">Cancel</button>
-                        <button class="btn btn-primary mr-2" type="button">Commit</button>
+                        <button class="btn btn-primary" type="button">Commit</button>
 
                     </form>
                 </div>
@@ -128,8 +128,7 @@
                         <button class="btn btn-aside-menu" title="Input Checkbox"><i class="fa fa-check-square-o" ></i></button>
                         <button class="btn btn-aside-menu" title="Select"><i class="fa fa-chevron-down" ></i></button>
                         <button class="btn btn-aside-menu" title="Button"><i class="fa fa-square" ></i></button>
-                    </div> 
-                    <div class="asise-separator" id="sideBarData">Data <i class="fa fa-caret-right" aria-hidden="true"></i></div>                   
+                    </div>                    
                 </aside>
 
                 <main class="data-active">
@@ -141,8 +140,7 @@
                 <div class="main-footer">
                     <ol class="breadcrumb"></ol>
                 </div>
-                <data class="data-on">
-                    <i id="closeRightmenu" class="mdi mdi-last-page"></i>
+                <data class="data-on">                    
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item">
                             <a class="nav-link active" id="formSpector-tab" data-toggle="tab" href="#formSpector" role="tab" aria-controls="formSpector" aria-selected="true">
@@ -163,17 +161,81 @@
                     <div class="tab-content" id="menuTab">
                         <div class="tab-pane fade show active" id="formSpector" role="tabpanel" aria-labelledby="formSpector-tab">
                             <form>
-                                <div id="menuForm"></div>
+                                <div class="menu-data" id="menuForm"></div>
                             </form>
                         </div>
                         <div class="tab-pane fade" id="fromValidate" role="tabpanel" aria-labelledby="fromValidate-tab">
                             <form>
-                                <div id="menuValidate"></div>
+                                <div class="menu-data" id="menuValidate">
+                                    <h5>Validate</h5>
+                                    <hr />
+                                    <div class="form-row mb-2">
+                                        <div class="col-12">
+                                            <div class="custom-control custom-switch mt-2">
+                                                <input id="required" type="checkbox" class="custom-control-input" />
+                                                <label for="required" class="custom-control-label mr-2">Required</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row mb-2">
+                                        <div class="col-12">
+                                            <label for="placeholder">Message:</label>
+                                            <textarea class="form-control" rows="3"></textarea>                                            
+                                        </div>
+                                    </div>
+                                    <div class="form-row mb-2">
+                                        <div class="col-6">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="notify" name="colors" class="custom-control-input" />
+                                                <label class="custom-control-label" for="notify">Notify</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="alertify" name="colors" class="custom-control-input" />
+                                                <label class="custom-control-label" for="alertify">Alertify</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row mb-2">
+                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalCreateFolder">
+                                            <i class="fa fa-check mr-2" aria-hidden="true"></i><span>Custom Validade</span>
+                                        </a>
+                                    </div>
+                                </div>
                             </form>
                         </div>
                         <div class="tab-pane fade" id="fromData" role="tabpanel" aria-labelledby="fromData-tab">
                             <form>
-                                <div id="menuData"></div>
+                                <div class="menu-data" id="menuData">
+                                    <h5>Data</h5>
+                                    <hr />
+                                    <div class="form-row mb-2">
+                                        <div class="col-12">
+                                            <label for="entity">Entity:</label>
+                                            <div class="input-group">
+                                                <select class="custom-select" id="entity" aria-label="Example select with button addon">
+                                                    <option selected>Selecione uma opção.</option>
+                                                </select>
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-light" type="button" style="border: 1px solid #dfe1e6">
+                                                        <i class="fa fa-database" aria-hidden="true" data-toggle="modal" data-target="#modalCreateFolder">
+                                                            <span style="display:none">Entity</span>
+                                                        </i>
+                                                    </button>
+                                                </div>
+                                            </div>                                            
+                                        </div>
+                                    </div>
+                                    <div class="form-row mb-2">
+                                        <div class="col-12">
+                                            <label for="field">Field:</label>
+                                            <select class="form-control" id="field">
+                                                <option selected>Selecione uma opção.</option>
+                                            </select>                                                
+                                        </div>                                                                                
+                                    </div>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -181,11 +243,30 @@
             </div>            
         </div>
 
-        <div class="card shadow-lg p-2 mb-5 bg-white rounded" id="context-menu" style="display:none;width:260px;background:#FFFFFF;"></div>
+        <div class="card shadow-lg p-2 mb-5 bg-white rounded menu-data" id="context-menu" style="display:none;width:254px;background:#FFFFFF;"></div>
         <div id="snackbar">...</div>
         <div class="main-menu"></div>
+        <i id="closeRightmenu" class="mdi mdi-last-page closeRightmenu"></i>
         <!--div class="right-menu"></div-->         
         <!--button id="toggleRightMenu" class="btn btn-light"><i class="mdi mdi-first-page"></i></button-->
+
+        <div class="modal fade" id="modalCreateFolder" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalLabel">...</h5>
+                        <i id="closeRightmenu" class="mdi mdi-close closeRightmodal" data-dismiss="modal" aria-label="Close"></i>
+                    </div>
+                    <div class="modal-body">
+                        <form></form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary">Ok</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         
 	    <script src="/assets/jquery/dist/jquery.min.js"></script>
         <script src="/assets/popper.js/dist/umd/popper.min.js"></script>
