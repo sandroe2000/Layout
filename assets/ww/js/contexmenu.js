@@ -30,7 +30,7 @@ let numberTemplate = `<div class="form-row mb-2">
 let rowsTemplate = `<div class="form-row mb-2">
                         <div class="col-12">
                             <label for="idInput">Rows:</label>
-                            <input id="txtRows" type="number" class="form-control" value="0" min="3" max="30" />
+                            <input id="txtRows" type="number" class="form-control" value="0" min="2" max="30" />
                         </div>
                     </div>`;
 
@@ -97,7 +97,12 @@ let placeholderTemplate = `<div class="form-row mb-2">
                                 </div>
                             </div>`;
 
-let marginTemplate = `<div class="form-row mb-2">
+let marginTemplate = `<div class="form-row">
+                        <div class="col-6">
+                            <label>Margins:</label>
+                        </div>
+                    </div>                        
+                    <div class="form-row">
                         <div class="col-6">
                             <div class="input-group input-group-sm mb-2">
                                 <div class="input-group-prepend">
@@ -105,6 +110,8 @@ let marginTemplate = `<div class="form-row mb-2">
                                 </div>
                                 <input id="mt" type="number" class="form-control" value="0" min="0" max="4" aria-describedby="inputGroup-sizing-sm" />
                             </div>
+                        </div>
+                        <div class="col-6">
                             <div class="input-group input-group-sm mb-2">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text"><i class="mdi mdi-arrow-downward" style="font-size:16px"></i></div>
@@ -112,6 +119,8 @@ let marginTemplate = `<div class="form-row mb-2">
                                 <input id="mb" type="number" class="form-control" value="0" min="0" max="4" aria-describedby="inputGroup-sizing-sm" />
                             </div>                                
                         </div>
+                    </div>
+                    <div class="form-row mb-2">
                         <div class="col-6">
                             <div class="input-group input-group-sm mb-2">
                                 <div class="input-group-prepend">
@@ -119,6 +128,8 @@ let marginTemplate = `<div class="form-row mb-2">
                                 </div>
                                 <input id="ml" type="number" class="form-control" value="0" min="0" max="4" aria-describedby="inputGroup-sizing-sm" />
                             </div>
+                        </div>
+                        <div class="col-6">
                             <div class="input-group input-group-sm mb-2">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text"><i class="mdi mdi-arrow-forward" style="font-size:16px"></i></div>
@@ -210,6 +221,10 @@ function initRightMenu(event){
     showMenuLabel(event);
     showMenuButton(event);
     showMenuInput(event);
+    showMenuTextarea(event);
+    showMenuSelect(event);
+    showMenuRadioCheck(event);
+
 }
 
 function showRightMenu(){
@@ -268,6 +283,40 @@ function showMenuInput(event){
     $('#menuForm').attr('clickedId', clicked);    
     loadClicked('#menuForm', clicked);
     changeClick('#menuForm', clicked);
+}
+
+function showMenuTextarea(event){
+    if (event.target.type != 'textarea') return false;
+    showRightMenu();
+    let clicked = event.target.id;
+    let input = `<h5>Textarea</h5>
+            <hr />
+            ${idTemplate}
+            ${rowsTemplate}
+            ${marginTemplate}`;    
+    $('#menuForm').html(input);
+    $('#menuForm').attr('clickedId', clicked);    
+    loadClicked('#menuForm', clicked);
+    changeClick('#menuForm', clicked);
+}
+
+function showMenuSelect(event){
+    if (event.target.type != 'select') return false;
+    showRightMenu();
+    let clicked = event.target.id;
+    let input = `<h5>Input ${event.target.type}</h5>
+            <hr />
+            ${idTemplate}
+            ${placeholderTemplate}
+            ${marginTemplate}`;    
+    $('#menuForm').html(input);
+    $('#menuForm').attr('clickedId', clicked);    
+    loadClicked('#menuForm', clicked);
+    changeClick('#menuForm', clicked);
+}
+
+function showMenuRadioCheck(event){
+
 }
 
 function createContexMenu(event){
@@ -352,7 +401,7 @@ function createContexMenu(event){
         template = btn;  
     }
     if (!template) {
-        $("#context-menu").hide('fast', changeOnClose);
+        $("#context-menu").hide('fast');
         return false;
     }
 
