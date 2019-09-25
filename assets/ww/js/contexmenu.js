@@ -82,18 +82,57 @@ let idTemplate = `<div class="form-row mb-2">
                         </div>
                     </div>
                 </div>`;
-                
-let selectTemplate = `<div class="form-row mb-2">
+
+let colTemplate = `<div class="form-row mb-2">
                 <div class="col-12">
-                    <label for="selectEndpoint">Endpoint:</label>                        
+                    <label for="colGrid">Col Grid:</label>                        
                     <div class="input-group input-group-sm">
-                        <input id="selectEndpoint" type="text" class="form-control" aria-describedby="inputGroup-sizing-sm" />
+                        <select id="colGrid" class="form-control" aria-describedby="inputGroup-sizing-sm">
+                            <option value="col-md-1">col-md-1</option>
+                            <option value="col-md-2">col-md-2</option>
+                            <option value="col-md-3">col-md-3</option>
+                            <option value="col-md-4">col-md-4</option>
+                            <option value="col-md-5">col-md-5</option>
+                            <option value="col-md-6">col-md-6</option>
+                            <option value="col-md-7">col-md-7</option>
+                            <option value="col-md-8">col-md-8</option>
+                            <option value="col-md-9">col-md-9</option>
+                            <option value="col-md-10">col-md-10</option>
+                            <option value="col-md-11">col-md-11</option>
+                            <option value="col-md-12">col-md-12</option>
+                        </select>
                         <div class="input-group-append">
                             <button class="btn btn-primary" type="button">
                                 <i class="fa fa-check" aria-hidden="true"></i>
                             </button>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="form-row mb-2">
+                <div class="col-12">
+                    <div class="custom-control custom-switch mt-2">
+                        <input id="colAlign" type="checkbox" class="custom-control-input" />
+                        <label for="colAlign" class="custom-control-label mr-2">Align Right</label>
+                    </div>
+                </div>
+            </div>`;
+                
+let selectTemplate = `<div class="form-row mb-2">
+                <div class="col-12">
+                    <label for="endPoint">EndPoint:</label>
+                    <div class="input-group input-group-sm">
+                        <select class="custom-select" id="endPoint" aria-describedby="inputGroup-sizing-sm">
+                            <option selected>Selecione uma opção</option>
+                        </select>
+                        <div class="input-group-append">
+                            <button class="btn btn-light" type="button" style="border: 1px solid #dfe1e6">
+                                <i class="fa fa-link" aria-hidden="true" data-toggle="modal" data-target="#modalCreateFolder">
+                                    <span style="display:none">Entity</span>
+                                </i>
+                            </button>
+                        </div>
+                    </div>                                            
                 </div>
             </div>
             <div class="form-row mb-2">
@@ -127,13 +166,13 @@ let selectTemplate = `<div class="form-row mb-2">
                 </div>
             </div>
             <div class="form-row">                        
-                        <div class="col-12">
-                            <div class="custom-control custom-switch">
-                                <input id="multiple" type="checkbox" class="custom-control-input" />
-                                <label for="multiple" class="custom-control-label mr-2">Multiple</label>
-                            </div>
-                        </div>
-                    </div>`;
+                <div class="col-12">
+                    <div class="custom-control custom-switch">
+                        <input id="multiple" type="checkbox" class="custom-control-input" />
+                        <label for="multiple" class="custom-control-label mr-2">Multiple</label>
+                    </div>
+                </div>
+            </div>`;
 
 let placeholderTemplate = `<div class="form-row mb-2">
                                 <div class="col-12">
@@ -276,6 +315,7 @@ function initRightMenu(event){
     showMenuTextarea(event);
     showMenuSelect(event);
     showMenuRadioCheck(event);
+    showMenuColumn(event);
 
 }
 
@@ -284,6 +324,22 @@ function showRightMenu(){
         $('main').toggleClass('data-active');
         $('data').toggleClass('data-on');
     }
+}
+
+function showMenuColumn(event){
+    if (!event.target.getAttribute('class').includes('col-md-')) return false;
+    showRightMenu();
+    let clicked = event.target.id;
+    let label = `<form><div style="padding:10px">
+            <h5>Col Grid</h5>
+            <hr />
+            ${idTemplate}
+            ${colTemplate}
+            ${marginTemplate}`;    
+    $('#menuForm').html(label);
+    $('#menuForm').attr('clickedId', clicked);    
+    loadClicked('#menuForm', clicked);
+    changeClick('#menuForm', clicked);
 }
 
 function showMenuLabel(event){
@@ -540,6 +596,25 @@ function createContexMenu(event){
 
 function changeClick(container, clicked){
 
+    //CHANGE SELECT MULTIPLE
+    $('#multiple').click(function(event){
+        document.querySelector(`#${clicked}`).toggleAttribute('multiple');
+        domHasChanged();
+    });
+
+    //CHANGE COL GRID
+    $('#colGrid').change(function(event){
+        let atual = findClass(container, 'col-md-');
+        let nova = $('#colGrid').val()
+        $(`#${clicked}`).toggleClass(`${atual} ${nova}`);
+        domHasChanged();
+    });
+    //--CHANGE COL GRID LEFT/RIGHT/???CENTER??? *** 'text-right text-left text-center'
+    $('#colAlign').click(function(event){
+        $(`#${clicked}`).toggleClass('text-right');
+        domHasChanged();
+    });
+
     //CHANGE ID
     $('#elementId').change(function(event){     
         let newId = $('#elementId').val();
@@ -609,14 +684,11 @@ function changeClick(container, clicked){
 
     //--COLOR CHANGE
     $('input[name="colors"]').click(function(event){
-        
         let prefix = 'btn-';
-        let find = 'btn-';
-        
+        let find = 'btn-';        
         if($('#outline').prop('checked')==true){
             prefix = 'btn-outline-';
         }
-
         if(findClass(container, find)){
             document.querySelector(`#${clicked}`).classList.remove(findClass(container, find));
             document.querySelector(`#${clicked}`).classList.add(`${prefix}${event.target.id}`);
@@ -663,6 +735,19 @@ function changeColAlign(){
 }
 
 function loadClicked(container, clicked){
+    //--COL GRID
+    $('#colGrid').val(findClass(container, 'col-md-'));
+
+    //--COL GRID LEFT/RIGHT *** 'text-right text-left'
+    if($(`#${clicked}`).hasClass('text-right')){
+        $('#colAlign').attr('checked', true);
+    }
+
+    //--SELECT MULTIPLE
+    if( document.querySelector(`#${clicked}`).hasAttribute('multiple') ){
+        $('#multiple').attr('checked', true);
+    }
+
     //--CARREGA ID
     $('#elementId').val($(`#${clicked}`).attr('id'));
 
