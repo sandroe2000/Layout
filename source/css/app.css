@@ -534,6 +534,7 @@ div.main-content.container-fluid.edit [class*="checkbox"] {
 .form-check,
 .custom-control.custom-switch {
 	width: min-content !important;
+	padding-right: 60px !important;
 }
 
 label {

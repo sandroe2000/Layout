@@ -57,10 +57,10 @@ function getLabel() {
 function getInput(type) {
 
     if (type == 'radio') {
-        
+        let ipnId = getId('ipn');
         return  `<div class="form-check">
-                    <input id="${getId('inp')}" type="${type}" class="form-check-input" />
-                    <label id="${getId('lbl')}" class="form-check-label">Label</label>
+                    <input id="${ipnId}" type="radio" class="form-check-input" />
+                    <label id="${getId('lbl')}" for="${ipnId}" class="form-check-label">Label</label>
                 </div>`;
     }
 
@@ -68,7 +68,7 @@ function getInput(type) {
         let ipnId = getId('ipn');
         return `<div class="custom-control custom-switch">
                     <input id="${ipnId}" type="checkbox" class="custom-control-input" />
-                    <label id="${getId('lbl')}" for="${ipnId}" class="custom-control-label mr-2">Label</label>
+                    <label id="${getId('lbl')}" for="${ipnId}" class="custom-control-label">Label</label>
                 </div>`;
     }
 

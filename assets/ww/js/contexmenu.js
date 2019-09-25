@@ -301,14 +301,20 @@ function showMenuTextarea(event){
 }
 
 function showMenuSelect(event){
-    if (event.target.type != 'select') return false;
+
+    if (event.target.type == undefined){
+        return false;
+    } 
+    if(event.target.type != 'select-one' && event.target.type != 'select-multiple'){ 
+        return false;
+    }
+
     showRightMenu();
     let clicked = event.target.id;
-    let input = `<h5>Input ${event.target.type}</h5>
-            <hr />
-            ${idTemplate}
-            ${placeholderTemplate}
-            ${marginTemplate}`;    
+    let input = `<h5>Select</h5>
+        <hr />
+        ${idTemplate}
+        ${marginTemplate}`;    
     $('#menuForm').html(input);
     $('#menuForm').attr('clickedId', clicked);    
     loadClicked('#menuForm', clicked);
@@ -316,7 +322,33 @@ function showMenuSelect(event){
 }
 
 function showMenuRadioCheck(event){
+    
+    let valid = false;
+    if (event.target.classList.contains("custom-control-label")) {
+        valid = true;
+    }
+    if(event.target.type == 'radio'){
+        valid = true;
+    } 
+    let clicked = event.target.id;
+    if(event.target.classList.contains("custom-switch") || event.target.classList.contains("form-check")){
+        valid = true;
+        clicked = event.target.firstElementChild.id;
+    }
+    if(!valid) return false;
 
+    showRightMenu();
+    let type = document.querySelector(`#${clicked}`).type || 'checkbox';
+    let input = `<h5>Input ${type}</h5>
+        <hr />
+        ${idTemplate}
+        ${labelTemplate}
+        ${orientationTemplate}
+        ${marginTemplate}`;    
+    $('#menuForm').html(input);
+    $('#menuForm').attr('clickedId', clicked);    
+    loadClicked('#menuForm', clicked);
+    changeClick('#menuForm', clicked);
 }
 
 function createContexMenu(event){
@@ -450,12 +482,18 @@ function changeClick(container, clicked){
         let newId = $('#elementId').val();
         $(container).attr('clickedId', newId);
         $(`#${clicked}`).attr('id', newId);  
-        $(`#${newId}`).click();          
+        $(`#${newId}`).click();  
+        domHasChanged();        
     });
     
     //--CHANGE LABEL
     $('#labelInput').change(function(event){
-        $(`#${clicked}`).text( $('#labelInput').val() );
+        if($(`#${clicked}`).text()){
+            $(`#${clicked}`).text( $('#labelInput').val() );
+        }
+        if($(`#${clicked}`).parent().find('label').text()){
+            $(`#${clicked}`).parent().find('label').text( $('#labelInput').val() );
+        }
         domHasChanged();
     });
     //--CHANGE LABEL BOLD
@@ -467,6 +505,7 @@ function changeClick(container, clicked){
     //--PLACEHOLDER
     $('#placeholder').change(function(event){
         $(`#${clicked}`).attr('placeholder', $('#placeholder').val());
+        domHasChanged();
     });
 
     //-- MARGIN CHANGE
@@ -568,7 +607,8 @@ function loadClicked(container, clicked){
     $('#placeholder').val($(`#${clicked}`).attr('placeholder'));
 
     //--CARREGA LABEL
-    $('#labelInput').val($(`#${clicked}`).text());
+    let label = $(`#${clicked}`).text() || $(`#${clicked}`).parent().find('label').text();
+    $('#labelInput').val(label);
     
     //--CARREGA LABEL BOLD
     if(findClass(container, 'font-weight-bold')){
