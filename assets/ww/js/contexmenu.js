@@ -82,6 +82,58 @@ let idTemplate = `<div class="form-row mb-2">
                         </div>
                     </div>
                 </div>`;
+                
+let selectTemplate = `<div class="form-row mb-2">
+                <div class="col-12">
+                    <label for="selectEndpoint">Endpoint:</label>                        
+                    <div class="input-group input-group-sm">
+                        <input id="selectEndpoint" type="text" class="form-control" aria-describedby="inputGroup-sizing-sm" />
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button">
+                                <i class="fa fa-check" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row mb-2">
+                <div class="col-12">
+                    <label for="selectValue">Value:</label>                        
+                    <div class="input-group input-group-sm">
+                        <select id="selectValue" class="form-control" aria-describedby="inputGroup-sizing-sm">
+                            <option value="">Selecione uma opção</option>
+                        </select>
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button">
+                                <i class="fa fa-check" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row mb-2">
+                <div class="col-12">
+                    <label for="selectText">Text:</label>                        
+                    <div class="input-group input-group-sm">
+                        <select id="selectText" class="form-control" aria-describedby="inputGroup-sizing-sm">
+                            <option value="">Selecione uma opção</option>
+                        </select>
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button">
+                                <i class="fa fa-check" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">                        
+                        <div class="col-12">
+                            <div class="custom-control custom-switch">
+                                <input id="multiple" type="checkbox" class="custom-control-input" />
+                                <label for="multiple" class="custom-control-label mr-2">Multiple</label>
+                            </div>
+                        </div>
+                    </div>`;
 
 let placeholderTemplate = `<div class="form-row mb-2">
                                 <div class="col-12">
@@ -314,6 +366,7 @@ function showMenuSelect(event){
     let input = `<h5>Select</h5>
         <hr />
         ${idTemplate}
+        ${selectTemplate}
         ${marginTemplate}`;    
     $('#menuForm').html(input);
     $('#menuForm').attr('clickedId', clicked);    
@@ -407,6 +460,13 @@ function createContexMenu(event){
                     ${labelTemplate}
                     ${marginTemplate}
                 </form>`;
+    let select = `<form style="margin:10px">
+                <h5>Select</h5>
+                <hr />
+                ${idTemplate}
+                ${selectTemplate}
+                ${marginTemplate}
+            </form>`;
 
     if (event.target.tagName == 'LABEL') {
         template = label;
@@ -431,6 +491,9 @@ function createContexMenu(event){
     }
     if (event.target.classList.contains("btn")) {
         template = btn;  
+    }
+    if(event.target.type == 'select-one' && event.target.type == 'select-multiple'){
+        template = select;  
     }
     if (!template) {
         $("#context-menu").hide('fast');
