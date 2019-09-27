@@ -1,14 +1,6 @@
 ;
 'use strict';
 
-$(document).ready(function(){
-
-});
-
-$('#btnTextEditor').on('click', function(event){
-    window.location.href = '/textEditorSource.html?fileId=0';
-});
-
 $('#menuTextEditor').on('change', function(event){
     window.location.href=$(this).val();
 });
@@ -109,4 +101,85 @@ $('div.modal-footer > button.btn.btn-primary').on('click', function(event){
     //--TODO
 
     $('#modalCreateFolder').modal('hide');
+});
+
+////////////////// MONACO /////////////////////
+let monacoEditor = null;
+
+$(document).ready(function() {
+
+    let content = `<div id="row1569535848096" class="row">
+        <div id="col1569535852611" class="col-md-12">
+            <label id="lbl1569535857424" for="inp1569535859190" class="">Titulo</label>
+            <input id="inp1569535859190" type="text" class="form-control">
+        </div>
+    </div>
+    <div id="row1569535864060" class="row">
+        <div id="col1569535864060" class="col-md-12">
+            <label id="lbl1569535864060" for="sel1569535877656" class="">Categoria</label>
+            <select id="sel1569535877656" class="form-control">
+                <option>Selecione uma opção</option>            
+            </select>
+        </div>
+    </div>
+    <div id="row1569535918338" class="row">
+        <div id="col1569535920500" class="col-md-12">
+            <div class="custom-control custom-switch">
+                <input id="ipn1569535926182" type="checkbox" class="custom-control-input" />
+                <label id="lbl1569535926182" for="ipn1569535926182" class="custom-control-label mt-1">Label</label>
+            </div>
+        </div>
+    </div>
+    <div id="row1569535916163" class="row">
+        <div id="col1569535916163" class="col-md-12 text-right">
+            <button id="btn1569535980355" type="button" class="btn btn-light">Cancel</button>
+            <button id="btn1569535987469" type="button" class="btn ml-2 btn-primary">Save</button>
+        </div>
+    </div>`;
+    
+    setMonaEditor(content, 'template.html');    
+});
+
+function setMonaEditor(content, url){
+    monacoEditor = monaco.editor.create(document.querySelector('.main-editor'), {
+        model: monaco.editor.createModel(content, getModelId(url))
+    });
+
+    window.onresize = function () {
+        if (monacoEditor) {
+            monacoEditor.layout();
+        }
+    };
+
+    if(monacoEditor) monaco.editor.setTheme('vs');
+}
+
+function getModelId(file){    
+    let fileExt = file.split('.').pop();    
+    if(fileExt=='js') {
+        return 'javascript';
+    }
+    return fileExt;
+}
+
+$('#btnTextEditor').on('click', function(event){
+    //window.location.href = '/textEditorSource.html?fileId=0';
+    $('div.main-content').toggleClass('block');
+    $('div.main-editor').toggleClass('hide');
+    
+    if($('div.main-content').hasClass('block')){
+        $('div.main-content').click();
+        let edit = document.createElement('div');
+            edit.setAttribute('class', 'main-content container-fluid edit block');
+            edit.innerHTML = monacoEditor.getValue();
+        loadContentNode(edit); 
+    }
+
+    if(!$('div.main-editor').hasClass('hide')){
+        //TODO -- DISABLE DRAG N DROP MENU, COL BORDER, ROW BORDERS;
+        //TODO -- CLEAR AND COLAPSE RIGHT MENU
+        //TODO -- RESIZE "div.main-editor"
+        let content = $('div.main-content').html();
+        monacoEditor.setValue(content);
+    }
 });

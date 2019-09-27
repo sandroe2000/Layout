@@ -7,12 +7,16 @@
         <link rel="stylesheet" href="/assets/bootstrap/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" href="/assets/font-awesome/css/font-awesome.min.css" />
         <link rel="stylesheet" href="/assets/material-design-icons/css/material-icons.min.css" />
+        <link rel="stylesheet" href="/assets/monaco-editor/min/vs/editor/editor.main.css" data-name="vs/editor/editor.main" />
         <link rel="stylesheet" href="/assets/dragula/dragula.min.css" />
         <link rel="stylesheet" href="/assets/jquery-confirm/dist/jquery-confirm.min.css" />
         <link rel="stylesheet" href="/source/css/app.css" />
         <style>
             .hide {
                 display: none;
+            }
+            .block{
+                display: block;
             }
         </style>
         <title>Layout</title>
@@ -127,6 +131,7 @@
                         <div class="row"></div>
                     </div>
                     <div class="main-content container-fluid edit"></div>
+                    <div class="main-editor"></div>
                 </main>
                 <div class="main-footer">
                     <ol class="breadcrumb"></ol>
@@ -189,7 +194,7 @@
                                         </div>
                                     </div>
                                     <div class="form-row mb-2">
-                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalCreateFolder">
+                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalCreate">
                                             <i class="fa fa-check mr-2" aria-hidden="true"></i><span>Custom Validade</span>
                                         </a>
                                     </div>
@@ -210,7 +215,7 @@
                                                 </select>
                                                 <div class="input-group-append">
                                                     <button class="btn btn-light" type="button" style="border: 1px solid #dfe1e6">
-                                                        <i class="fa fa-database" aria-hidden="true" data-toggle="modal" data-target="#modalCreateFolder">
+                                                        <i class="fa fa-database" aria-hidden="true" data-toggle="modal" data-target="#modalCreate">
                                                             <span style="display:none">Entity</span>
                                                         </i>
                                                     </button>
@@ -241,7 +246,7 @@
         <!--div class="right-menu"></div-->         
         <!--button id="toggleRightMenu" class="btn btn-light"><i class="mdi mdi-first-page"></i></button-->
 
-        <div class="modal fade" id="modalCreateFolder" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal fade" id="modalCreate" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -269,9 +274,15 @@
         <script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>
         <script src="/assets/jquery-confirm/dist/jquery-confirm.min.js"></script>
         <script src="/assets/dragula/dragula.min.js"></script>
+        
+        <script>var require = { paths: { 'vs': '/assets/monaco-editor/min/vs' } };</script>
+        <script src="/assets/monaco-editor/min/vs/loader.js"></script>
+        <script src="/assets/monaco-editor/min/vs/editor/editor.main.nls.js"></script>
+        <script src="/assets/monaco-editor/min/vs/editor/editor.main.js"></script>
+        
+        <script src="/source/js/app.js"></script>
+        <script src="/source/js/htmlVisualEditor.js"></script>
         <script src="/assets/ww/js/contexmenu.js"></script>
         <script src="/assets/ww/js/core.js"></script>
-        <script src="/source/js/htmlVisualEditor.js"></script>
-        <script src="/source/js/app.js"></script>
     </body>
 </html>

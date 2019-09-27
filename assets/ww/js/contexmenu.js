@@ -127,7 +127,7 @@ let selectTemplate = `<div class="form-row mb-2">
                         </select>
                         <div class="input-group-append">
                             <button class="btn btn-light" type="button" style="border: 1px solid #dfe1e6">
-                                <i class="fa fa-link" aria-hidden="true" data-toggle="modal" data-target="#modalCreateFolder">
+                                <i class="fa fa-link" aria-hidden="true" data-toggle="modal" data-target="#modalCreate">
                                     <span style="display:none">Entity</span>
                                 </i>
                             </button>

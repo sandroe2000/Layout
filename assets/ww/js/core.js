@@ -244,6 +244,17 @@ function pastSelectdNode() {
     domHasChanged();
 }
 
+function loadContentNode(content) {
+    let mainContent = document.querySelector('.main-content');
+    let div = document.createElement('div');
+        div.appendChild(content);
+    let node = div.firstChild;
+    mainContent.parentNode.replaceChild(node, mainContent);
+    listDOM(node, setEventToDOM);
+    setContextmenu();
+    domHasChanged();
+}
+
 function isPastAcceptable() {
     if (!currentCopyedNode || !currentNodeInEdit) return false;
     if (currentCopyedNode == currentNodeInEdit) return false;
@@ -368,8 +379,8 @@ function removeClicked(node) {
 
 function listDOM(node, func) {
 
-    document.querySelector('.main-content.container-fluid.edit').removeEventListener('click', setBreadcrumb, false);
-    document.querySelector('.main-content.container-fluid.edit').addEventListener('click', setBreadcrumb, false);
+    document.querySelector('.main-content.container-fluid.edit.block').removeEventListener('click', setBreadcrumb, false);
+    document.querySelector('.main-content.container-fluid.edit.block').addEventListener('click', setBreadcrumb, false);
 
     func(node);
     node = node.firstChild;

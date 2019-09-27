@@ -391,8 +391,21 @@ div.main-ruler div.col-md-1 {
     left: 0px;
     right: 0px;
     bottom: 35px;
-    background: #FFF;
+	background: #FFF;
     overflow: auto;
+	display: none;
+}
+
+.main-editor {
+	position: absolute;
+    margin: 5px 0 0px 0;
+    padding-top: 10px;
+    padding-bottom: 30px;
+	top: 10px;
+    left: 0px;
+    right: 0px;
+    bottom: 35px;
+    background: #FFF;
 }
 
 .main-footer {
