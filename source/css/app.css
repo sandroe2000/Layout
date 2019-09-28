@@ -451,11 +451,16 @@ div.main-content.container-fluid.edit [class*="col-md-"],
 div.main-content.container-fluid.edit form,
 div.main-content.container-fluid.edit .form-group,
 div.main-content.container-fluid.edit .panel-body {
-    /*margin-top: 7px;
-    margin-bottom: 7px;*/
+	margin-top: 7px;
+    margin-bottom: 7px;
     min-height: 30px;
 	background: #FFFFFF;
 	border: 1px dashed #FFFFFF;
+}
+
+.grid-space {
+	margin-top: 0px !important;
+    margin-bottom: 0px !important;
 }
 
 div.main-content.container-fluid.edit div.row:hover,
@@ -547,7 +552,7 @@ div.main-content.container-fluid.edit [class*="checkbox"] {
 .form-check,
 .custom-control.custom-switch {
 	width: min-content !important;
-	padding-right: 60px !important;
+	padding-right: 20px !important;
 }
 
 label {

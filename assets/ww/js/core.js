@@ -16,6 +16,9 @@ window.addEventListener('keydown', function(event) {
         if($(event.target).parents('#menuTab')[0] ||  event.target.classList.contains('edit')){
             return false;
         }
+        if(!$('div.main-editor').hasClass('hide')){
+            return false;
+        }
         confirmDelete({
             msg:"Deseja realmente exluir este item?",
             callback: removeNode
@@ -57,18 +60,16 @@ function getLabel() {
 function getInput(type) {
 
     if (type == 'radio') {
-        let ipnId = getId('ipn');
         return  `<div class="form-check">
-                    <input id="${ipnId}" type="radio" class="form-check-input" />
-                    <label id="${getId('lbl')}" for="${ipnId}" class="form-check-label">Label</label>
+                    <input id="${getId('ipn')}" type="radio" class="form-check-input" />
+                    <label id="${getId('lbl')}" class="form-check-label">Label</label>
                 </div>`;
     }
 
     if (type == 'checkbox') {
-        let ipnId = getId('ipn');
         return `<div class="custom-control custom-switch">
-                    <input id="${ipnId}" type="checkbox" class="custom-control-input" />
-                    <label id="${getId('lbl')}" for="${ipnId}" class="custom-control-label">Label</label>
+                    <input id="${getId('ipn')}" type="checkbox" class="custom-control-input" />
+                    <label id="${getId('lbl')}" class="custom-control-label">Label</label>
                 </div>`;
     }
 
@@ -194,7 +195,8 @@ function isAcceptable(el, target) {
     if (target.classList.contains('row')) {
         if (el.getAttribute("title") == "Column"){ return true; }
     }
-    if (target.classList.contains('col-md-6') || target.classList.contains('col-md-12')) {
+    //if (target.classList.contains('col-md-6') || target.classList.contains('col-md-12')) {
+    if(target.hasAttribute && target.getAttribute("id") && findInObj(target.getAttribute("id"), 'col-md-')){
         if (el.getAttribute("title") == "Row"){ return true; }
         if (el.getAttribute("title") == "Label"){ return true; }
         if (el.getAttribute("title") == "Input Text"){ return true; }
@@ -208,6 +210,19 @@ function isAcceptable(el, target) {
         if (el.getAttribute("title") == "Button"){ return true; }
     }
     return false;
+}
+
+function findInObj(id, clazz){
+    //debugger;
+    let el = document.querySelector(`#${id}`);
+    let ret = '';
+
+    for(let i=0; i<el.classList.length; i++){
+        if(el.classList.item(i).indexOf(clazz)>=0){
+            ret = el.classList.item(i);
+        }
+    }
+    return ret;
 }
 
 function cuteSelectdNode() {
@@ -249,7 +264,9 @@ function loadContentNode(content) {
     let div = document.createElement('div');
         div.appendChild(content);
     let node = div.firstChild;
+    
     mainContent.parentNode.replaceChild(node, mainContent);
+    pushContainer(document.querySelector('.edit'));
     listDOM(node, setEventToDOM);
     setContextmenu();
     domHasChanged();
@@ -259,7 +276,13 @@ function isPastAcceptable() {
     if (!currentCopyedNode || !currentNodeInEdit) return false;
     if (currentCopyedNode == currentNodeInEdit) return false;
     if (currentNodeInEdit.classList.contains('edit') && !currentCopyedNode.classList.contains('row')) return false;
-    if (currentNodeInEdit.classList.contains('row') && (!currentCopyedNode.classList.contains('col-md-6') && !currentCopyedNode.classList.contains('col-md-12') )) return false;
+    //if (currentNodeInEdit.classList.contains('row') && (!currentCopyedNode.classList.contains('col-md-6') && !currentCopyedNode.classList.contains('col-md-12') )) return false;
+    if (currentNodeInEdit.classList.contains('row') && !findInClass(currentCopyedNode.getAttribute("class"), 'col-md-') ) return false;
+    return true;
+}
+
+function findInClass(clazz, partial){
+    if(clazz.indexOf(partial) < 0) return false;
     return true;
 }
 
@@ -461,6 +484,11 @@ $('#chkRowBorders').change(function(event){
 
 $('#chkColBorders').change(function(event){
     $('div.main-content.container-fluid.edit [class*="col-md-"]').toggleClass('showBorder');
+});
+
+$('#chkGridSpace').change(function(event){
+    $('div.main-content.container-fluid.edit [class*="col-md-"]').toggleClass('grid-space');
+    $('div.main-content.container-fluid.edit div.row').toggleClass('grid-space');
 });
 
 function domHasChanged(){
