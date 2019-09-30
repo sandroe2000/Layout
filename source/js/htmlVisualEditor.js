@@ -69,7 +69,7 @@ let row = `<div class="form-row" id="${contador}">
                 </div>
             </div>`;
 
-$('.modal').on('show.bs.modal', function (event) {
+$('#modalCreate').on('show.bs.modal', function (event) {
     
     let button = $(event.relatedTarget);
     let modal = $(this);
@@ -97,26 +97,19 @@ function removeRow(btn){
     $(btn).parents('.form-row').remove();
 }
 
-$('div.modal-footer > button.btn.btn-primary').on('click', function(event){
-   
-    //--TODO
-
-    $('#modalCreateFolder').modal('hide');
-});
-
 ////////////////// MONACO /////////////////////
 let monacoEditor = null;
 
 $(document).ready(function() {
 
 let content = `<div id="row1569535848096" class="row">
-    <div id="col1569535852611" class="col-md-12">
+    <div id="col1569535852611" class="col-md-6">
         <label id="lbl1569535857424" class="">Titulo</label>
         <input id="inp1569535859190" type="text" class="form-control">
     </div>
 </div>
 <div id="row1569535864060" class="row">
-    <div id="col1569535864060" class="col-md-12">
+    <div id="col1569535864060" class="col-md-6">
         <label id="lbl1569535864060" class="">Categoria</label>
         <select id="sel1569535877656" class="form-control">
             <option>Selecione uma opção</option>            
@@ -124,7 +117,7 @@ let content = `<div id="row1569535848096" class="row">
     </div>
 </div>
 <div id="row1569535918338" class="row">
-    <div id="col1569535920500" class="col-md-12">
+    <div id="col1569535920500" class="col-md-6">
         <div class="custom-control custom-switch">
             <input id="ipn1569535926182" type="checkbox" class="custom-control-input" />
             <label id="lbl1569535926183" class="custom-control-label mt-1">Label</label>
@@ -132,7 +125,7 @@ let content = `<div id="row1569535848096" class="row">
     </div>
 </div>
 <div id="row1569535916163" class="row">
-    <div id="col1569535916163" class="col-md-12 text-right">
+    <div id="col1569535916163" class="col-md-6 text-right">
         <button id="btn1569535980355" type="button" class="btn btn-light">Cancel</button>
         <button id="btn1569535987469" type="button" class="btn ml-2 btn-primary">Save</button>
     </div>
@@ -182,4 +175,12 @@ $('#btnTextEditor').on('click', function(event){
         monacoEditor.setValue(content);
         monacoEditor.layout();
     }
+});
+
+$('#modalEndPoint').on('show.bs.modal', function (event) {
+    wwEndpoint.init();
+});
+
+$('#btnOkEndpointFiels').click(function(event){
+    console.log('Gravando EndpointFiels...');
 });

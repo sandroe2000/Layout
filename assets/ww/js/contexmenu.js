@@ -126,8 +126,8 @@ let selectTemplate = `<div class="form-row mb-2">
                             <option selected>Selecione uma opção</option>
                         </select>
                         <div class="input-group-append">
-                            <button class="btn btn-light" type="button" style="border: 1px solid #dfe1e6">
-                                <i class="fa fa-link" aria-hidden="true" data-toggle="modal" data-target="#modalCreate">
+                            <button class="btn btn-light" type="button" style="border: 1px solid #dfe1e6" data-toggle="modal" data-target="#modalEndPoint">
+                                <i class="fa fa-link" aria-hidden="true">
                                     <span style="display:none">Entity</span>
                                 </i>
                             </button>
@@ -548,7 +548,7 @@ function createContexMenu(event){
     if (event.target.classList.contains("btn")) {
         template = btn;  
     }
-    if(event.target.type == 'select-one' && event.target.type == 'select-multiple'){
+    if(event.target.type == 'select-one' || event.target.type == 'select-multiple'){
         template = select;  
     }
     if (!template) {
@@ -735,6 +735,14 @@ function changeColAlign(){
 }
 
 function loadClicked(container, clicked){
+    //--CHECKBOX ORIENTATION  
+    let div = document.querySelector(`#${clicked}`).parentElement; 
+    if(div.classList.contains('custom-control-inline')){
+        $('#horizontal').attr('checked', true);   
+    }else{
+        $('#vertical').attr('checked', true);
+    }
+    
     //--COL GRID
     $('#colGrid').val(findClass(container, 'col-md-'));
 
