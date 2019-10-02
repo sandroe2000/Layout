@@ -179,8 +179,36 @@ $('#btnTextEditor').on('click', function(event){
 
 $('#modalEndPoint').on('show.bs.modal', function (event) {
     wwEndpoint.init();
+    transformJson(event);
 });
 
 $('#btnOkEndpointFiels').click(function(event){
     console.log('Gravando EndpointFiels...');
 });
+
+//////////////////////////////////////////////////////////////////
+
+const $pathTarget = document.querySelectorAll('.path');
+const $source = document.querySelector('#json-renderer');
+
+const defaultOpts = {
+    pathNotation: 'dots',
+    pathQuotesType: 'single',
+    pickerIcon: '#x7f7'
+};
+
+function transformJson(event) {
+    let jsonData = null;
+    try {
+        jsonData = document.querySelector('#json-input').value;
+        jsonData = JSON.parse(jsonData);
+    } catch (error) {
+        alert(`Cannot eval JSON: ${error}`);
+        return;
+    }
+
+    JPPicker.render($source, jsonData, $pathTarget, defaultOpts);
+    //event.preventDefault();
+}
+
+document.querySelector('#btn-json-path-picker').addEventListener('click', transformJson);

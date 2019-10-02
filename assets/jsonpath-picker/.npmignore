@@ -1,0 +1,12 @@
+# Editor, babel ... config
+.editorconfig
+.babelrc
+.scannerwork
+
+# node_modules
+node_modules
+
+# only keep lib for package
+src
+public
+build
