@@ -179,7 +179,6 @@ $('#btnTextEditor').on('click', function(event){
 
 $('#modalEndPoint').on('show.bs.modal', function (event) {
     wwEndpoint.init();
-    transformJson(event);
 });
 
 $('#btnOkEndpointFiels').click(function(event){
@@ -198,19 +197,45 @@ const defaultOpts = {
 };
 
 function transformJson(event) {
-    let jsonData = null;
-    try {
-        jsonData = document.querySelector('#json-input').value;
-        jsonData = JSON.parse(jsonData);
-    } catch (error) {
-        alert(`Cannot eval JSON: ${error}`);
-        return;
-    }
 
-    JPPicker.render($source, jsonData, $pathTarget, defaultOpts);
+    let url = $('#inpEndpointURI').val();
+
+    fetch(url).then(function(response) {
+        return response.text();
+    }).then(function(data) {
+        JPPicker.render($source, JSON.parse(data), $pathTarget, defaultOpts);
+    }).catch(function(error) {
+        console.log('There has been a problem with your fetch operation: ' + error.message);
+    });
+
     //event.preventDefault();
 }
 
-if(document.querySelector('#btn-json-path-picker')){
-    document.querySelector('#btn-json-path-picker').addEventListener('click', transformJson);
+function setEndpointField(){
+
+    let inpEndpointField = $('#inpEndpointField').val();
+    let selEndpointFieldType = $('#selEndpointFieldType').val();
+
+    if(!inpEndpointField || !selEndpointFieldType){
+        return false;
+    }
+
+    let tr = `<tr>
+        <td class="col-w-10"></td>
+        <td class="col-w-20">${selEndpointFieldType}</trd>
+        <td class="col-w-50">${inpEndpointField}</td>
+        <td class="text-nowrap text-right">
+            <i class="ml-3 fa fa-lg fa-trash" aria-hidden="true"></i>
+            <i class="ml-3 fa fa-lg fa-pencil-square-o" aria-hidden="true"></i>
+        </td>
+    </tr>`;
+    
+    $('#tableEndpointFields tbody').append(tr);
+
+    $('#inpEndpointField').val('');
+    $('#selEndpointFieldType').val('');
 }
+
+//if(document.querySelector('#btn-json-path-picker')){
+//    document.querySelector('#btn-json-path-picker').addEventListener('click', transformJson);
+//}

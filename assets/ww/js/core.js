@@ -12,14 +12,13 @@ let currentContentNode = 0;
 
 window.addEventListener('keydown', function(event) {
     if (event.keyCode == 46) { 
-
         if(event.target.classList.contains('edit')){
+            return false;
+        }        
+        if(!$('div.main-editor').hasClass('hide')){
             return false;
         }
         if(!$(event.target).parents('div.main-content').length){
-            return false;
-        }
-        if(!$('div.main-editor').hasClass('hide')){
             return false;
         }
         confirmDelete({
@@ -573,8 +572,19 @@ function setSnakBar(msg) {
     }, 2000);
 }
 
+function getData(url){
+    return fetch(url).then(function(response) {
+        return response.text();
+    }).then(function(data) {
+        return data;
+    }).catch(function(error) {
+        console.log('There has been a problem with your fetch operation: ' + error.message);
+    });
+}
+
 (function() {
     dragFromMenu();
     setRuler();
     setContextmenu();
 })();
+

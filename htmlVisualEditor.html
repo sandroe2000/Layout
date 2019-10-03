@@ -408,11 +408,11 @@
                                 <form id="formEndpoint">
                                     <div id="row1569535848095" class="row mt-2">
                                         <div id="col1569535852610" class="col-md-7"> 
-                                            <label id="lbl1569535857423" class="mb-0">Uri</label>
+                                            <label id="lblEndpointURI" class="mb-0">Uri</label>
                                             <div class="path-container input-group">
-                                                <input id="inp08967898687" class="form-control" type="text" aria-describedby="inputGroup" />
+                                                <input id="inpEndpointURI" class="form-control" type="text" aria-describedby="inputGroup" />
                                                 <div class="input-group-append">
-                                                    <button class="btn btn-primary" type="button">
+                                                    <button class="btn btn-primary" type="button" onclick="transformJson(event)">
                                                         <i class="fa fa-arrow-down" aria-hidden="true"></i>
                                                     </button>
                                                 </div>
@@ -426,43 +426,24 @@
                                     <hr />
                                     <div id="row1569535848096" class="row">
                                         <div id="col1569535852611" class="col-md-7">                                             
-                                            <textarea id="json-input" class="json-input" autofocus style="width:1px;height:1px;display:none">
-                                                {
-                                                    "endpoints": [
-                                                        {
-                                                            "id": 1,
-                                                            "descricao": "categorias",
-                                                            "uri": "http://localhost:3000/data/categorias",
-                                                            "fields": [
-                                                                {
-                                                                    "field": "id",
-                                                                    "type": "NUMBER"
-                                                                },
-                                                                {
-                                                                    "field": "text",
-                                                                    "type": "TEXT"
-                                                                }
-                                                            ]
-                                                        }
-                                                    ]
-                                                }
-                                            </textarea>
+                                            <textarea id="json-input" class="json-input" autofocus style="width:1px;height:1px;display:none"></textarea>
                                             <pre id="json-renderer" class="json-tree tableResponsiveEndpointFiels"></pre>
                                             <div class="row mb-2">
                                                 <div class="col-md-6">
-                                                    <label>Type</label>
-                                                    <select class="form-control">
-                                                        <option value="">Text</option>
-                                                        <option value="">Long</option>
-                                                        <option value="">Date</option>
+                                                    <label class="mb-0">Type</label>
+                                                    <select id="selEndpointFieldType" class="form-control">
+                                                        <option value="">Selecione uma opção</option>
+                                                        <option value="Text">Text</option>
+                                                        <option value="Long">Long</option>
+                                                        <option value="Date">Date</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <label>Field</label>
+                                                    <label class="mb-0">Field</label>
                                                     <div class="path-container input-group">
-                                                        <input class="path form-control" type="text" aria-describedby="inputGroup" />
+                                                        <input id="inpEndpointField" class="path form-control" type="text" aria-describedby="inputGroup" />
                                                         <div class="input-group-append">
-                                                            <button class="btn btn-primary" type="button">
+                                                            <button class="btn btn-primary" type="button" onclick="setEndpointField()">
                                                                 <i class="fa fa-arrow-right" aria-hidden="true"></i>
                                                             </button>
                                                         </div>
@@ -472,7 +453,7 @@
                                         </div>       
                                         <div id="col1569769203742" class="col-md-5 text-left">                                             
                                             <div class="table-responsive-sm tableTypeField">
-                                                <table id="tableEndpointFiels" class="table table-hover table-sm" style="width:100%">
+                                                <table id="tableEndpointFields" class="table table-hover table-sm" style="width:100%">
                                                     <thead>
                                                         <tr>
                                                             <th class="col-w-10" data-column="id">#<i class="ml-1" aria-hidden="true"></i></th>
@@ -481,98 +462,7 @@
                                                             <th class="col-w-10" data-icon="_TRASH,_EDIT">&nbsp;</th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td class="col-w-10">1</td>
-                                                            <td class="col-w-20">Long</trd>
-                                                            <td class="col-w-50">Id</td>
-                                                            <td class="text-nowrap text-right">
-                                                                <i class="ml-3 fa fa-lg fa-trash" aria-hidden="true"></i>
-                                                                <i class="ml-3 fa fa-lg fa-pencil-square-o" aria-hidden="true"></i>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="col-w-10">2</td>
-                                                            <td class="col-w-20">Text</trd>
-                                                            <td class="col-w-50">Descr</td>
-                                                            <td class="text-nowrap text-right">
-                                                                <i class="ml-3 fa fa-lg fa-trash" aria-hidden="true"></i>
-                                                                <i class="ml-3 fa fa-lg fa-pencil-square-o" aria-hidden="true"></i>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="col-w-10">3</td>
-                                                            <td class="col-w-20">Text</trd>
-                                                            <td class="col-w-50">Name</td>
-                                                            <td class="text-nowrap text-right">
-                                                                <i class="ml-3 fa fa-lg fa-trash" aria-hidden="true"></i>
-                                                                <i class="ml-3 fa fa-lg fa-pencil-square-o" aria-hidden="true"></i>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="col-w-10">4</td>
-                                                            <td class="col-w-20">Long</trd>
-                                                            <td class="col-w-50">Size</td>
-                                                            <td class="text-nowrap text-right">
-                                                                <i class="ml-3 fa fa-lg fa-trash" aria-hidden="true"></i>
-                                                                <i class="ml-3 fa fa-lg fa-pencil-square-o" aria-hidden="true"></i>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="col-w-10">4</td>
-                                                            <td class="col-w-20">Long</trd>
-                                                            <td class="col-w-50">Size</td>
-                                                            <td class="text-nowrap text-right">
-                                                                <i class="ml-3 fa fa-lg fa-trash" aria-hidden="true"></i>
-                                                                <i class="ml-3 fa fa-lg fa-pencil-square-o" aria-hidden="true"></i>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="col-w-10">4</td>
-                                                            <td class="col-w-20">Long</trd>
-                                                            <td class="col-w-50">Size</td>
-                                                            <td class="text-nowrap text-right">
-                                                                <i class="ml-3 fa fa-lg fa-trash" aria-hidden="true"></i>
-                                                                <i class="ml-3 fa fa-lg fa-pencil-square-o" aria-hidden="true"></i>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="col-w-10">4</td>
-                                                            <td class="col-w-20">Long</trd>
-                                                            <td class="col-w-50">Size</td>
-                                                            <td class="text-nowrap text-right">
-                                                                <i class="ml-3 fa fa-lg fa-trash" aria-hidden="true"></i>
-                                                                <i class="ml-3 fa fa-lg fa-pencil-square-o" aria-hidden="true"></i>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="col-w-10">4</td>
-                                                            <td class="col-w-20">Long</trd>
-                                                            <td class="col-w-50">Size</td>
-                                                            <td class="text-nowrap text-right">
-                                                                <i class="ml-3 fa fa-lg fa-trash" aria-hidden="true"></i>
-                                                                <i class="ml-3 fa fa-lg fa-pencil-square-o" aria-hidden="true"></i>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="col-w-10">4</td>
-                                                            <td class="col-w-20">Long</trd>
-                                                            <td class="col-w-50">Size</td>
-                                                            <td class="text-nowrap text-right">
-                                                                <i class="ml-3 fa fa-lg fa-trash" aria-hidden="true"></i>
-                                                                <i class="ml-3 fa fa-lg fa-pencil-square-o" aria-hidden="true"></i>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="col-w-10">4</td>
-                                                            <td class="col-w-20">Long</trd>
-                                                            <td class="col-w-50">Size</td>
-                                                            <td class="text-nowrap text-right">
-                                                                <i class="ml-3 fa fa-lg fa-trash" aria-hidden="true"></i>
-                                                                <i class="ml-3 fa fa-lg fa-pencil-square-o" aria-hidden="true"></i>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
+                                                    <tbody></tbody>
                                                 </table>
                                             </div>
                                         </div>
