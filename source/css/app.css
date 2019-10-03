@@ -196,6 +196,11 @@ p {
 	border-top: none;
 }
 
+.table-sm tr td {
+	white-space: nowrap;
+	padding: .35rem 1.4rem .35rem 0rem;
+	border-top: none;
+}
 .table td {
 	white-space: nowrap;
 	padding: .75rem 1.4rem .75rem 0rem;

@@ -13,7 +13,10 @@ let currentContentNode = 0;
 window.addEventListener('keydown', function(event) {
     if (event.keyCode == 46) { 
 
-        if($(event.target).parents('#menuTab')[0] ||  event.target.classList.contains('edit')){
+        if(event.target.classList.contains('edit')){
+            return false;
+        }
+        if(!$(event.target).parents('div.main-content').length){
             return false;
         }
         if(!$('div.main-editor').hasClass('hide')){

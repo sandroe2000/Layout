@@ -211,4 +211,6 @@ function transformJson(event) {
     //event.preventDefault();
 }
 
-document.querySelector('#btn-json-path-picker').addEventListener('click', transformJson);
+if(document.querySelector('#btn-json-path-picker')){
+    document.querySelector('#btn-json-path-picker').addEventListener('click', transformJson);
+}

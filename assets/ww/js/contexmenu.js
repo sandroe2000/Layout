@@ -169,7 +169,7 @@ let selectTemplate = `<div class="form-row mb-2">
                 <div class="col-12">
                     <div class="custom-control custom-switch">
                         <input id="multiple" type="checkbox" class="custom-control-input" />
-                        <label for="multiple" class="custom-control-label mr-2">Multiple</label>
+                        <label for="multiple" class="custom-control-label mb-2 mt-2 mr-2">Multiple</label>
                     </div>
                 </div>
             </div>`;

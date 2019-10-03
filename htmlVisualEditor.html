@@ -409,7 +409,14 @@
                                     <div id="row1569535848095" class="row mt-2">
                                         <div id="col1569535852610" class="col-md-7"> 
                                             <label id="lbl1569535857423" class="mb-0">Uri</label>
-                                            <input id="inp1569535859189" type="url" class="form-control" required> 
+                                            <div class="path-container input-group">
+                                                <input id="inp08967898687" class="form-control" type="text" aria-describedby="inputGroup" />
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-primary" type="button">
+                                                        <i class="fa fa-arrow-down" aria-hidden="true"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div id="col1569535852609" class="col-md-5"> 
                                             <label id="lbl1569535857422" class="mb-0">Description</label>
@@ -418,28 +425,7 @@
                                     </div>
                                     <hr />
                                     <div id="row1569535848096" class="row">
-                                        <div id="col1569535852611" class="col-md-7">
-                                            <div class="row mb-2">
-                                                <div class="col-md-6">
-                                                    <label>Type</label>
-                                                    <select class="form-control">
-                                                        <option value="">Text</option>
-                                                        <option value="">Long</option>
-                                                        <option value="">Date</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label>Field</label>
-                                                    <div class="path-container input-group">
-                                                        <input class="path form-control" type="text" aria-describedby="inputGroup" />
-                                                        <div class="input-group-append">
-                                                            <button class="btn btn-primary" type="button">
-                                                                <i class="fa fa-arrow-right" aria-hidden="true"></i>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div> 
+                                        <div id="col1569535852611" class="col-md-7">                                             
                                             <textarea id="json-input" class="json-input" autofocus style="width:1px;height:1px;display:none">
                                                 {
                                                     "endpoints": [
@@ -461,7 +447,28 @@
                                                     ]
                                                 }
                                             </textarea>
-                                            <pre id="json-renderer" class="json-tree tableResponsiveEndpointFiels"></pre>                                            
+                                            <pre id="json-renderer" class="json-tree tableResponsiveEndpointFiels"></pre>
+                                            <div class="row mb-2">
+                                                <div class="col-md-6">
+                                                    <label>Type</label>
+                                                    <select class="form-control">
+                                                        <option value="">Text</option>
+                                                        <option value="">Long</option>
+                                                        <option value="">Date</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label>Field</label>
+                                                    <div class="path-container input-group">
+                                                        <input class="path form-control" type="text" aria-describedby="inputGroup" />
+                                                        <div class="input-group-append">
+                                                            <button class="btn btn-primary" type="button">
+                                                                <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>                                            
                                         </div>       
                                         <div id="col1569769203742" class="col-md-5 text-left">                                             
                                             <div class="table-responsive-sm tableTypeField">
