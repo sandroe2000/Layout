@@ -6,14 +6,15 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
-@Table(name="files", indexes = {@Index(name="idx_files", columnList="id")})
 public @Data
-class File implements Serializable {
+class Folder implements Serializable {
 
-    private static final long serialVersionUID = 4321999624810655248L;
+    private static final long serialVersionUID = 719273511930043421L;
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -21,11 +22,6 @@ class File implements Serializable {
 
     @Column(nullable = false, unique = true)
     private String name;
-    private String extension;
-    private Long size;
-
-    @Lob
-    private String content;
 
     @Column(nullable = false)
     private boolean visible = true;
@@ -42,6 +38,9 @@ class File implements Serializable {
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date modified;
 
-    @ManyToOne
-    private Folder folder;
+    @OneToMany(cascade = CascadeType.PERSIST)
+    private List<File> files = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.PERSIST)
+    private List<Folder> folders = new ArrayList<>();
 }

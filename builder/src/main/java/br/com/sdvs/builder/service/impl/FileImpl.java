@@ -4,6 +4,7 @@ import br.com.sdvs.builder.service.FileService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -20,26 +21,25 @@ public class FileImpl implements FileService {
     @Value("${app.base.constants}")
     private String constantsPath;
 
-    private String fileName;
+    private String name;
     private String content;
 
     @Override
-    public boolean createFile(br.com.sdvs.builder.model.File file) {
+    public boolean createFile(br.com.sdvs.builder.model.File newFile) {
 
+        BufferedWriter output = null;
         boolean isCreated = false;
-        this.fileName = file.getKey();
-        this.content = file.getValue();
+        this.name = newFile.getName();
+        this.content = newFile.getContent();
 
-        try{
-            File newFile = new File(path.concat(fileName));
-            FileWriter fw=new FileWriter(path.concat(fileName));
-            fw.write(content);
-            fw.close();
+        try {
+            File file = new File(path.concat(name));
+            output = new BufferedWriter(new FileWriter(file));
+            output.write(content);
+            output.close();
             isCreated = true;
-        }catch(IOException ex){
-            System.out.println(ex);
-        }catch(Exception ex){
-            System.out.println(ex);
+        } catch (IOException ex){
+            ex.printStackTrace();
         }
 
         return isCreated;

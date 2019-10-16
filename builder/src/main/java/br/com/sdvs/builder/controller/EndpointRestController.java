@@ -1,6 +1,5 @@
 package br.com.sdvs.builder.controller;
 
-import br.com.sdvs.builder.exception.NotFoundException;
 import br.com.sdvs.builder.exception.NotContextException;
 import br.com.sdvs.builder.model.Endpoint;
 import br.com.sdvs.builder.repository.EndpointRepository;

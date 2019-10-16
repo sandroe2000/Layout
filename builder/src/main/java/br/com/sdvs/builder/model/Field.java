@@ -13,6 +13,8 @@ import java.util.Date;
 public @Data
 class Field implements Serializable {
 
+    private static final long serialVersionUID = -5269422398125900989L;
+
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;

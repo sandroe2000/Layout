@@ -15,6 +15,8 @@ import java.util.List;
 public @Data
 class Endpoint implements Serializable {
 
+    private static final long serialVersionUID = -7212576100720026594L;
+
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
