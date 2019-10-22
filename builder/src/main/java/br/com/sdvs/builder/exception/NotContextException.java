@@ -5,6 +5,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.NO_CONTENT)
 public class NotContextException extends RuntimeException {
+
+    private static final long serialVersionUID = 3509112831677223167L;
+
     public NotContextException() {
         super();
     }

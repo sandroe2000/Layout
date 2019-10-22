@@ -11,9 +11,10 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name="endpoints", indexes = {@Index(name="idx_endpoints", columnList="id")})
 public @Data
 class Endpoint implements Serializable {
+
+    private static final long serialVersionUID = -7761444701260005807L;
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -26,7 +27,7 @@ class Endpoint implements Serializable {
     private String uri;
 
     @ManyToMany(cascade = CascadeType.PERSIST)
-    private List<Field> fields = new ArrayList<Field>();
+    private List<Field> fields = new ArrayList<>();
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy", locale = "pt-BR", timezone = "Brazil/East")
     @DateTimeFormat(pattern = "dd/MM/yyyy")

@@ -9,10 +9,11 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Table(name="fields", indexes = {@Index(name="idx_fields", columnList="id")})
 public @Data
 class Field implements Serializable {
 
+    private static final long serialVersionUID = -3044375219621331175L;
+    
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
