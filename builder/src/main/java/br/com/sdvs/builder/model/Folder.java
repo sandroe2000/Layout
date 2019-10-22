@@ -64,5 +64,4 @@ class Folder implements Serializable {
     @JsonIgnoreProperties({"parent", "folders", "files"})
     @OneToMany(fetch=FetchType.EAGER, cascade={CascadeType.ALL})
     private Set<File> files = new HashSet<File>();
-    
 }

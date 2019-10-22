@@ -51,11 +51,16 @@ Caused by: java.nio.channels.OverlappingFileLockException
 	at java.base/java.nio.channels.FileChannel.tryLock(FileChannel.java:1165)
 	at org.h2.mvstore.FileStore.open(FileStore.java:163)
 	... 29 more
+<<<<<<< HEAD
 2019-10-15 15:12:36 jdbc[13]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "FOLDERS[*]"; SQL statement:
 FOLDERS [42000-199]
 2019-10-15 15:13:28 database: flush
 org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:C:/SDVS-WorkSpaces/Layout/builder/db/h2.mv.db [1.4.199/7]" [50000-199]
+=======
+2019-10-15 18:47:31 database: flush
+org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:D:/builder/db/h2.mv.db [1.4.199/7]" [50000-199]
+>>>>>>> df18e75b376f102e314c3c2fea8fd86a9f7522d6
 	at org.h2.message.DbException.get(DbException.java:194)
 	at org.h2.message.DbException.convert(DbException.java:347)
 	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:90)
@@ -85,6 +90,7 @@ org.h2.message.DbException: General error: "java.lang.IllegalStateException: The
 	at com.zaxxer.hikari.pool.HikariPool.access$100(HikariPool.java:71)
 	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:706)
 	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:692)
+<<<<<<< HEAD
 	at java.base/java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:264)
 	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java)
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
@@ -405,6 +411,35 @@ Caused by: java.lang.IllegalArgumentException: 2019-0-21
 2019-10-21 13:45:33 jdbc[14]: exception
 org.h2.jdbc.JdbcSQLDataException: Cannot parse "TIMESTAMP" constant "2/0/2019"; SQL statement:
 INSERT INTO "PUBLIC"."FOLDER"("ID","CREATED","DISABLED","MODIFIED","NAME","VISIBLE","PARENT")VALUES(?,?,?,?,?,?,?) -- (?1, ?2, ?3, ?4, ?5, ?6, ?7) [22007-199]
+=======
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: General error: "java.lang.IllegalStateException: The file is locked: nio:D:/builder/db/h2.mv.db [1.4.199/7]" [50000-199]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:427)
+	... 33 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:D:/builder/db/h2.mv.db [1.4.199/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:883)
+	at org.h2.mvstore.FileStore.open(FileStore.java:166)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:390)
+	... 27 more
+Caused by: java.nio.channels.OverlappingFileLockException
+	at sun.nio.ch.SharedFileLockTable.checkList(FileLockTable.java:255)
+	at sun.nio.ch.SharedFileLockTable.add(FileLockTable.java:152)
+	at sun.nio.ch.FileChannelImpl.tryLock(FileChannelImpl.java:1107)
+	at org.h2.store.fs.FileNio.tryLock(FilePathNio.java:121)
+	at java.nio.channels.FileChannel.tryLock(FileChannel.java:1155)
+	at org.h2.mvstore.FileStore.open(FileStore.java:163)
+	... 28 more
+2019-10-15 20:37:49 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "INSERT INTO FOLDER ('15/10/2019'[*], NULL, NULL, 'root', TRUE) "; expected "identifier"; SQL statement:
+INSERT INTO FOLDER ('15/10/2019', NULL, NULL, 'root', true) [42001-199]
+2019-10-15 20:39:29 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: Cannot parse "TIMESTAMP" constant "15/10/2019"; SQL statement:
+INSERT INTO FOLDER (CREATED, DISABLED, MODIFIED, NAME, VISIBLE) VALUES ('15/10/2019', NULL, NULL, 'root', true) -- ('15/10/2019', NULL, NULL, 'root', TRUE) [22007-199]
+>>>>>>> df18e75b376f102e314c3c2fea8fd86a9f7522d6
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:455)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:427)
 	at org.h2.message.DbException.get(DbException.java:194)
@@ -417,12 +452,21 @@ INSERT INTO "PUBLIC"."FOLDER"("ID","CREATED","DISABLED","MODIFIED","NAME","VISIB
 	at org.h2.command.dml.Insert.update(Insert.java:132)
 	at org.h2.command.CommandContainer.update(CommandContainer.java:133)
 	at org.h2.command.Command.executeUpdate(Command.java:267)
+<<<<<<< HEAD
 	at org.h2.jdbc.JdbcPreparedStatement.executeUpdateInternal(JdbcPreparedStatement.java:200)
 	at org.h2.jdbc.JdbcPreparedStatement.executeUpdate(JdbcPreparedStatement.java:154)
 	at org.h2.result.UpdatableRow.insertRow(UpdatableRow.java:324)
 	at org.h2.jdbc.JdbcResultSet.insertRow(JdbcResultSet.java:3034)
 	at org.h2.server.web.WebApp.editResult(WebApp.java:1133)
 	at org.h2.server.web.WebApp.process(WebApp.java:243)
+=======
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:233)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1113)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1436)
+	at org.h2.server.web.WebApp.query(WebApp.java:1111)
+	at org.h2.server.web.WebApp.query(WebApp.java:1087)
+	at org.h2.server.web.WebApp.process(WebApp.java:237)
+>>>>>>> df18e75b376f102e314c3c2fea8fd86a9f7522d6
 	at org.h2.server.web.WebApp.processRequest(WebApp.java:169)
 	at org.h2.server.web.WebServlet.doGet(WebServlet.java:121)
 	at org.h2.server.web.WebServlet.doPost(WebServlet.java:158)
@@ -461,6 +505,7 @@ INSERT INTO "PUBLIC"."FOLDER"("ID","CREATED","DISABLED","MODIFIED","NAME","VISIB
 	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:853)
 	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)
 	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+<<<<<<< HEAD
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
@@ -469,10 +514,21 @@ Caused by: java.lang.NumberFormatException: For input string: "2/0/"
 	at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
 	at java.base/java.lang.Integer.parseInt(Integer.java:652)
 	at java.base/java.lang.Integer.parseInt(Integer.java:770)
+=======
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: java.lang.NumberFormatException: For input string: "15/10/"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:580)
+	at java.lang.Integer.parseInt(Integer.java:615)
+>>>>>>> df18e75b376f102e314c3c2fea8fd86a9f7522d6
 	at org.h2.util.DateTimeUtils.parseDateValue(DateTimeUtils.java:369)
 	at org.h2.util.DateTimeUtils.parseTimestamp(DateTimeUtils.java:528)
 	at org.h2.value.ValueTimestamp.parse(ValueTimestamp.java:138)
 	... 56 more
+<<<<<<< HEAD
 2019-10-21 13:45:33 jdbc[14]: exception
 org.h2.jdbc.JdbcSQLDataException: Cannot parse "TIMESTAMP" constant "2/0/2019"; SQL statement:
 INSERT INTO "PUBLIC"."FOLDER"("ID","CREATED","DISABLED","MODIFIED","NAME","VISIBLE","PARENT")VALUES(?,?,?,?,?,?,?) -- (?1, ?2, ?3, ?4, ?5, ?6, ?7) [22007-199]
@@ -1742,3 +1798,22 @@ Caused by: java.nio.channels.OverlappingFileLockException
 	at java.base/java.nio.channels.FileChannel.tryLock(FileChannel.java:1165)
 	at org.h2.mvstore.FileStore.open(FileStore.java:163)
 	... 28 more
+=======
+2019-10-15 20:50:10 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT DISTINCT
+	F.ID, 
+	F.NAME 
+FROM 
+	FOLDER F 
+	INNER JOIN FOLDER_FOLDERS FF ON
+		F.ID = FF.FOLDER_ID
+WHERE[*]"; expected "NOT, EXISTS, INTERSECTS"; SQL statement:
+SELECT DISTINCT
+	F.ID, 
+	F.NAME 
+FROM 
+	FOLDER F 
+	INNER JOIN FOLDER_FOLDERS FF ON
+		F.ID = FF.FOLDER_ID
+WHERE [42001-199]
+>>>>>>> df18e75b376f102e314c3c2fea8fd86a9f7522d6

@@ -9,15 +9,17 @@ body {
 
 div.nav-app button.btn {
 	border-radius: 50%;
-	width: 46px;
-	height: 46px;
+	width: 40px;
+	height: 40px;
 	margin-bottom: 5px;
 }
 
 .btn-bottom {
 	position: absolute;
+	left: 0px;
 	width: 100%;
 	bottom: 10px;
+	text-align: center;
 }
 
 .nav-app {
@@ -29,6 +31,7 @@ div.nav-app button.btn {
 	background-color: #f4f5f7;
 	border-right: 1px solid #dfe1e6;
 	padding: 8px;
+	text-align: center;
 	z-index: 5000;
 }
 
@@ -265,7 +268,7 @@ transform: rotate(180deg);
 }
 
   .mdi {
-	  font-size: 2rem;
+	  font-size: 1.8rem;
   }
 
   tbody tr td span {

@@ -1,11 +1,12 @@
 package br.com.sdvs.builder.service.impl;
 
-import br.com.sdvs.builder.service.FileService;
+import java.io.FileWriter;
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.io.FileWriter;
-import java.io.IOException;
+import br.com.sdvs.builder.service.FileService;
 
 @Service
 public class FileImpl implements FileService {
@@ -25,6 +26,7 @@ public class FileImpl implements FileService {
     @Override
     public boolean createFile(br.com.sdvs.builder.model.File file) {
 
+       //BufferedWriter output = null;
         boolean isCreated = false;
         this.name = file.getName();
         this.content = file.getContent();
@@ -35,10 +37,8 @@ public class FileImpl implements FileService {
             fw.write(content);
             fw.close();
             isCreated = true;
-        }catch(IOException ex){
-            System.out.println(ex);
-        }catch(Exception ex){
-            System.out.println(ex);
+        } catch (IOException ex){
+            ex.printStackTrace();
         }
 
         return isCreated;
